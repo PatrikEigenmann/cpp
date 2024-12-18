@@ -1,5 +1,10 @@
 # ------------------------------------------------------------------------------------
-# Makefile for the project cForward. Compile instruction to compile the c project.
+# makefile for the tool pmake. pmake is a tool that reads instructions you give it
+# about how to use a compiler of your choice and then automatically runs the compiler
+# to build your software projects. Imagine it as a smart assistant that knows exactly
+# how to compile and prepare all the pieces of your software, ensuring everything fits
+# together correctly without you having to manually run each step. This automation makes
+# the development process faster and reduces the chance of errors.
 # ------------------------------------------------------------------------------------
 # Author: Patrik Eigenmann (p.eigenmann@gmx.net)
 # ------------------------------------------------------------------------------------

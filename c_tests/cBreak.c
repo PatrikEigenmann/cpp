@@ -1,43 +1,43 @@
-/* ******************************************************************************************************************
- * cBreak.c - In C programming, the break keyword is a crucial control statement used to alter the flow of loops and
- * switch statements. Its primary function is to terminate the execution of the closest enclosing loop or switch
- * statement, allowing the program to exit the loop or switch immediately and continue with the next statement after
- * the loop or switch.
+/* ***********************************************************************************************************
+ * cBreak.c - In C programming, the break keyword is a crucial control statement used to alter the flow of
+ * loops and switch statements. Its primary function is to terminate the execution of the closest enclosing
+ * loop or switch statement, allowing the program to exit the loop or switch immediately and continue with
+ * the next statement after the loop or switch.
  *
- * For instance, consider a scenario where you’re iterating over a list of items, and you want to stop the iteration
- * as soon as you find a particular item. The break statement becomes invaluable here, as it prevents unnecessary
- * iterations once the condition is met.
+ * For instance, consider a scenario where you’re iterating over a list of items, and you want to stop the
+ * iteration as soon as you find a particular item. The break statement becomes invaluable here, as it prevents
+ * unnecessary iterations once the condition is met.
  *
  * compiler instructions:
- * If you use my own tool "pmake" to compile this sample program its: pmake cBreak.makefile
- * If you use the GNU cross=platform compiler: gcc cBreak.c -o cBreak
- * If you use the Clang compiler: clang cBreak.c -o cBreak
- * ------------------------------------------------------------------------------------------------------------------
+ * clang/gcc cBreak.c -o cBreak
+ * pmake cBreak.makefile
+ * ------------------------------------------------------------------------------------------------------------
  * Author:       Patrik Eigenmann
  * eMail:        p.eigenmann@gmx.net
- * -------------------------------------------------------------------------------------------------------------------
- * Thu 2025-12-05 File created.                                                                         Version: 00.01
- * -------------------------------------------------------------------------------------------------------------------
+ * ------------------------------------------------------------------------------------------------------------
+ * Thu 2025-12-05 File created.                                                                 Version: 00.01
+ * ------------------------------------------------------------------------------------------------------------
  * To Do's:
- * *******************************************************************************************************************/
+ * *************************************************************************************************************/
 #include<stdio.h>
 
-/* ---------------------------------------------------------------------------------------------------------------
- * main - In the vast, uncharted realms of cyberspace, there exists a function. Not just any function, but the main
- * function. It is the gatekeeper, the sentinel that stands at the threshold of every C and C++ program. It is the
- * beginning and the end, the alpha and the omega.
+/* -------------------------------------------------------------------------------------------------------
+ * main - In the vast, uncharted realms of cyberspace, there exists a function. Not just any function, but
+ * the main function. It is the gatekeeper, the sentinel that stands at the threshold of every C and C++
+ * program. It is the beginning and the end, the alpha and the omega.
  *
  * @param int argc     - Command argument count
  * @param char **argv  - Command argument strings
- * @return             - 0 if the program executes successfully. If the program encounters an error that warrants
- *                       termination, you can return a different integer value (commonly 1 or another non-zero value)
- *                       to indicate the type of error.
- * --------------------------------------------------------------------------------------------------------------- */
+ * @return             - 0 if the program executes successfully. If the program encounters an error that
+ *                       warrants termination, you can return a different integer value (commonly 1 or
+ *                       another non-zero value) to indicate the type of error.
+ * -------------------------------------------------------------------------------------------------------- */
 int main (int argc, char **argv) {
     
     /*
-     * This structure showcases the break keyword, which is a crucial control statement in C. It allows you to
-     * exit loops early based on specific conditions, providing better control over the program flow.
+     * This structure showcases the break keyword, which is a crucial control statement in C.
+     * It allows you to exit loops early based on specific conditions, providing better control
+     * over the program flow.
      */
     
     // Initialize an integer variable 'i' to 0

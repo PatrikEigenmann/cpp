@@ -1,20 +1,19 @@
-/* ******************************************************************************************************************
- * cCase.c - This example demonstrates how to use the case keyword within a switch statement to execute specific code
- * blocks based on the value of a variable. It’s a powerful way to manage control flow in a clean and readable
- * manner.
+/* ***************************************************************************************************
+ * cCase.c - This example demonstrates how to use the case keyword within a switch statement to
+ * execute specific code blocks based on the value of a variable. It’s a powerful way to manage control
+ * flow in a clean and readable manner.
  *
  * compiler instructions:
- * If you use my own tool "pmake" to compile this sample program its: pmake <c program>.makefile
- * If you use the GNU cross=platform compiler: gcc <c program>.c -o <c program>
- * If you use the Clang compiler: clang <c program>.c -o <c program>
- * ------------------------------------------------------------------------------------------------------------------
+ * clang/gcc cCase.c -o cCase
+ * pmake cCase.makefile
+ * ---------------------------------------------------------------------------------------------------
  * Author:       Patrik Eigenmann
  * eMail:        p.eigenmann@gmx.net
- * -------------------------------------------------------------------------------------------------------------------
- * Thu 2024-12-05 File created.                                                                         Version: 00.01
- * -------------------------------------------------------------------------------------------------------------------
+ * ---------------------------------------------------------------------------------------------------
+ * Thu 2024-12-05 File created.                                                         Version: 00.01
+ * ---------------------------------------------------------------------------------------------------
  * To Do's:
- * *******************************************************************************************************************/
+ * ****************************************************************************************************/
 
 #include<stdio.h>
 #include <time.h>
@@ -42,19 +41,21 @@ int isHoliday(int day, int month) {
     return 0;
 }
 
-/* ------------------------------------------------------------------------------------------------------------------
- * The getTodayInfo() function is designed to provide real-time information about the current date, the day of the
- * week, and whether today is a holiday. It begins by accessing the system's clock to fetch the current date and time,
- * ensuring that the information is always up to date. It then identifies the day of the week, such as Sunday or
- * Monday, by leveraging the tm structure from the time.h library. After determining the day, the function checks if
- * today is a recognized holiday by comparing the current date against a predefined list of holidays. This check helps
- * in adjusting plans or operations accordingly. The function outputs the gathered information in a clear and concise
- * manner, making it easy for users to understand the current date, the day, and whether it's a holiday. Overall,
- * getTodayInfo() enhances the system's ability to provide temporal context, supporting better decision-making and
- * planning. By integrating real-time date checks and holiday recognition, it becomes an essential tool for any
- * application that requires awareness of the current temporal parameters. This function demonstrates efficiency and
- * precision in managing and presenting date-related information seamlessly.
- * ------------------------------------------------------------------------------------------------------------------*/
+/* -----------------------------------------------------------------------------------------------
+ * The getTodayInfo() function is designed to provide real-time information about the current date,
+ * the day of the week, and whether today is a holiday. It begins by accessing the system's clock
+ * to fetch the current date and time, ensuring that the information is always up to date. It then
+ * identifies the day of the week, such as Sunday or Monday, by leveraging the tm structure from the
+ * time.h library. After determining the day, the function checks if today is a recognized holiday
+ * by comparing the current date against a predefined list of holidays. This check helps in adjusting
+ * plans or operations accordingly. The function outputs the gathered information in a clear and
+ * concise manner, making it easy for users to understand the current date, the day, and whether it's
+ * a holiday. Overall, getTodayInfo() enhances the system's ability to provide temporal context,
+ * supporting better decision-making and planning. By integrating real-time date checks and holiday
+ * recognition, it becomes an essential tool for any application that requires awareness of the
+ * current temporal parameters. This function demonstrates efficiency and precision in managing
+ * and presenting date-related information seamlessly.
+ * -------------------------------------------------------------------------------------------------*/
 void getTodayInfo() {
     // Get the current time
     time_t t = time(NULL);
@@ -76,17 +77,16 @@ void getTodayInfo() {
 }
 
 
-/* ---------------------------------------------------------------------------------------------------------------
- * main - In the vast, uncharted realms of cyberspace, there exists a function. Not just any function, but the main
- * function. It is the gatekeeper, the sentinel that stands at the threshold of every C and C++ program. It is the
- * beginning and the end, the alpha and the omega.
- *
- * @param int argc     - Command argument count
- * @param char **argv  - Command argument strings
- * @return             - 0 if the program executes successfully. If the program encounters an error that warrants
- *                       termination, you can return a different integer value (commonly 1 or another non-zero value)
- *                       to indicate the type of error.
- * --------------------------------------------------------------------------------------------------------------- */
+// ---------------------------------------------------------------------------------------------
+// main - The main function is the starting point of a C or C++ program, where execution begins.
+// This version of the main function allows the program to take command-line arguments when it
+// runs. The function typically returns an numbered value to the operating system, often zero
+// to signify successful execution.
+//
+// @param argc  The number of command-line arguments.
+// @param argv  The array of command-line arguments.
+// @return      0 on successful completion, 1 on error.
+// ----------------------------------------------------------------------------------------------
 int main(int argc, char **argv) {
     
     /*
