@@ -12,7 +12,8 @@
 # Sat 2024-11-16 File created.                                          Version: 00.01
 # Sun 2024-11-17 Changed the configuration to fit the project.          Version: 00.02
 # ------------------------------------------------------------------------------------
-# The compiler used to compile the project. Common compilers used Windows gcc, and MacOS clang.
+# The compiler used to compile the project. Common compilers used in both Windows and
+# MacOS are gcc or clang.
 # comp=clang
 comp=gcc
 

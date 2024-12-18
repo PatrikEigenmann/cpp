@@ -9,24 +9,27 @@
 # Author: Patrik Eigenmann (p.eigenmann@gmx.net)
 # ------------------------------------------------------------------------------------
 # Change Log:
-# {Day} {date} File created.                                          Version: 00.01
-# {Day} {date} Changed the configuration to fit the project.          Version: 00.02
+# Fri 2024-12-06 File created.                                          Version: 00.01
+# Fri 2024-12-06 Changed the configuration to fit the project.          Version: 00.02
 # ------------------------------------------------------------------------------------
-#The compiler used to compile the project. Common compilers used Windows gcc, and MacOS clang.
-#comp=gcc
-comp=clang
+# The compiler used to compile the project. Common compilers used in both Windows and
+# MacOS are gcc or clang.
+# comp=clang
+comp=gcc
 
-#If the project needs to be compile with specific compiler flags (optional).
+# If the project needs to be compile with specific compiler flags (optional).
 cflags=
 
-#Targed binary of the project, either an executive or an object/library file.
-#target=obj
+# Targed binary of the project, either an executive or an object/library file.
+# target=obj
 target=exec
 
-#Project name, if there is no src file defined, pmake assumes that the .c file has the same name as the project name.
+# Project name, if there is no src file defined, pmake assumes that the .c
+# file has the same name as the project name.
 project=cCase
 
-#Source file: Use it if the source filename is different than the project name. As example main.c but project is cal.exe.
+# Source file: Use it if the source filename is different than the project
+# name. As example main.c but project is cal.exe.
 src=
 
 #Libraries to add, or already compiled .o files. Make sure they are properly included.
