@@ -14,6 +14,10 @@
  *
  * It's a fun challenge that tests your vocabulary and spelling skills, all while keeping you on
  * your toes with each guess.
+ *
+ * Compile instructions:
+ * gcc/clang cHangman.c ../mylibs/cVersion.c ../mylibs/cManPage.c -o cHangman
+ * pmake cHangman.makefile
  * -----------------------------------------------------------------------------------------------
  * Author:       Patrik Eigenmann
  * eMail:        p.eigenmann@gmx.net

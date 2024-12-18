@@ -32,7 +32,7 @@
  * a .txt file.
  *
  * Compile instructions:
- * gcc/clang cEnigma.c -o cEnigma
+ * gcc/clang cEnigma.c ../mylibs/cVersion.c ../mylibs/cManPage.c -o cEnigma
  * pmake cEnigma.makefile
  * ***********************************************************************************************
  * Author:      Patrik Eigenmann
@@ -51,7 +51,6 @@
  * -----------------------------------------------------------------------------------------------
  * To Do's:
  * ***********************************************************************************************/
-
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>

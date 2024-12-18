@@ -17,7 +17,8 @@
  * command-line excellence with our refined, robust, and highly functional directory management tool.
  *
  * Compile instructions:
- * For Windows  -> gcc cp.c ..\mylibs\cVersion.c ..\mylibs\cManPage.o -o cp
+ * gcc/clang cp.c ../mylibs/cVersion.c ../mylibs/cManPage.c -o cp
+ * pmake cp.makefile
  * ---------------------------------------------------------------------------------------------------------------
  * Author:       Patrik Eigenmann
  * eMail:        p.eigenmann@gmx.net
@@ -38,8 +39,17 @@
 #include <time.h>
 #include <utime.h>
 
-#include "..\mylibs\cVersion.h"
-#include "..\mylibs\cManPage.h"
+#ifdef _WIN32
+    // -= This is a complete Windows Program and not nessecary to compile on UNIX based systems. =- //
+    #include "..\mylibs\cVersion.h"
+    #include "..\mylibs\cManPage.h"
+
+#else
+    // -= I have the UNIX part here only because I want to avoid error messages. =- //
+    #include "../mylibs/cVersion.h"
+    #include "../mylibs/cManPage.h"
+
+#endif
 
 /* ---------------------------------------------------------------------------------------------------------------
  * The print_help function is our top-notch guidance feature, crafted to provide users with clear, intuitive
@@ -220,34 +230,36 @@ void copy_file(const char *source, const char *destination, int preserve, int in
     }
 }
 
-/* ---------------------------------------------------------------------------------------------------------------
- * Introducing our groundbreaking copy_directory function—a key component of our sophisticated file management
- * suite for the Windows Command Prompt. This function exemplifies efficiency and precision, enabling users to
- * seamlessly replicate entire directory structures with unmatched ease.
+/* ------------------------------------------------------------------------------------------------
+ * Introducing our groundbreaking copy_directory function—a key component of our sophisticated file
+ * management suite for the Windows Command Prompt. This function exemplifies efficiency and
+ * precision, enabling users to seamlessly replicate entire directory structures with unmatched ease.
  *
- * Imagine a tool that not only copies directories recursively but also empowers users with options to preserve
- * file attributes, interactively manage overwrites, and intelligently update files based on modification dates.
- * The copy_directory function integrates these capabilities to ensure robust, flexible, and user-friendly
- * directory operations.
+ * Imagine a tool that not only copies directories recursively but also empowers users with options
+ * to preserve file attributes, interactively manage overwrites, and intelligently update files based
+ * on modification dates. The copy_directory function integrates these capabilities to ensure robust,
+ * flexible, and user-friendly directory operations.
  *
- * Designed to handle complex tasks effortlessly, copy_directory is our commitment to delivering powerful yet
- * accessible tools. It's the ultimate solution for users seeking to enhance their command-line experience with
- * reliable and high-performance file management.
+ * Designed to handle complex tasks effortlessly, copy_directory is our commitment to delivering
+ * powerful yet accessible tools. It's the ultimate solution for users seeking to enhance their
+ * command-line experience with reliable and high-performance file management.
  *
- * Crafted with meticulous attention to detail, this function merges power and usability, highlighting our
- * dedication to cutting-edge software development. Elevate your file and directory management capabilities with
- * copy_directory and experience the pinnacle of command-line efficiency.
+ * Crafted with meticulous attention to detail, this function merges power and usability, highlighting
+ * our dedication to cutting-edge software development. Elevate your file and directory management
+ * capabilities with copy_directory and experience the pinnacle of command-line efficiency.
  *
  * @param source The path to the source directory.
  * @param destination The path to the destination directory.
  * @param preserve Preserve file attributes if set to true.
  * @param interactive Prompt before overwriting if set to true.
  * @param update Copy only if the source file is newer than the destination file if set to true.
- * --------------------------------------------------------------------------------------------------------------- */
+ * ------------------------------------------------------------------------------------------------ */
 void copy_directory(const char *source, const char *destination, int preserve, int interactive, int update) {
     struct stat st = {0};
     if (stat(destination, &st) == -1) {
+        #ifdef _WIN32
         mkdir(destination);
+        #endif
     }
 
     DIR *dir = opendir(source);
@@ -266,7 +278,9 @@ void copy_directory(const char *source, const char *destination, int preserve, i
         struct stat entry_stat;
         if (stat(src_path, &entry_stat) == 0 && S_ISDIR(entry_stat.st_mode)) {
             if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0) {
+            #ifdef _WIN32
                 copy_directory(src_path, dest_path, preserve, interactive, update);
+            #endif
             }
         } else {
             copy_file(src_path, dest_path, preserve, interactive, update);
@@ -276,26 +290,16 @@ void copy_directory(const char *source, const char *destination, int preserve, i
     closedir(dir);
 }
 
-/* ---------------------------------------------------------------------------------------------------------------
- * Meet our transformative C program—a game-changer for file and directory management in the Windows Command
- * Prompt. This dynamic tool, inspired by the Unix cp command, revolutionizes how users interact with their file
- * systems, combining simplicity with robust functionality.
- *
- * Imagine seamless file operations with intuitive options: recursive copying, file attribute preservation,
- * interactive prompts before overwriting, and intelligent updates based on modification dates. It's engineered to
- * be both powerful and user-friendly, ensuring effortless navigation and manipulation of file systems.
- *
- * Our built-in help feature mirrors the clarity of Unix man pages, providing instant, reliable support with just
- * a simple flag. This program is more than a utility; it's a leap toward a more efficient and productive
- * command-line environment.
- *
- * Crafted with meticulous attention to detail, our C program exemplifies cutting-edge software development,
- * poised to elevate the command-line experience to new heights. Dive into a new era of efficiency and functionality
- * with our refined directory management tool.
- *
- * @param argc The number of command-line arguments passed to the program.
- * @param argv An array of null-terminated strings representing the command-line arguments.
- * --------------------------------------------------------------------------------------------------------------- */
+// ---------------------------------------------------------------------------------------------
+// main - The main function is the starting point of a C or C++ program, where execution begins.
+// This version of the main function allows the program to take command-line arguments when it
+// runs. The function typically returns an numbered value to the operating system, often zero
+// to signify successful execution.
+//
+// @param argc  The number of command-line arguments.
+// @param argv  The array of command-line arguments.
+// @return      0 on successful completion, 1 on error.
+// ----------------------------------------------------------------------------------------------
 int main(int argc, char *argv[]) {
     
     // Check if the help is triggered.
