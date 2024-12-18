@@ -57,8 +57,19 @@
 #include <ctype.h>
 #include <stdlib.h>
 
-#include "../mylibs/cVersion.h"
-#include "../mylibs/cManPage.h"
+#ifdef _WIN32
+    // --= Windows Section please uncomment what you need! =-- //
+    #include "..\mylibs\cVersion.h"
+    #include "..\mylibs\cManPage.h"
+//    #include "..\mylibs\cProgress.h"
+
+#else
+    // --= MacOS/Linux Section please uncomment what you need! =-- //
+    #include "../mylibs/cVersion.h"
+    #include "../mylibs/cManPage.h"
+//    #include "../mylibs/cProgress.h"
+
+#endif
 
 // Size of the alphabet
 #define ALPHABET_SIZE 26
