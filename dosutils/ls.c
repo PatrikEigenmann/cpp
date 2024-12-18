@@ -4,14 +4,15 @@
  * embodying the elegance of simplicity combined with robust functionality. Users can now execute
  * comprehensive directory listings, leveraging switches like -l for detailed views and -a for hidden files.
  *
- * The intuitive flag system enables seamless command combinations such as -al, ensuring users get exactly the
- * information they need with minimal effort. Additionally, our user-friendly help feature, accessible via -?,
- * guides you through the command’s capabilities, mirroring the familiarity and ease of Unix man pages.
+ * The intuitive flag system enables seamless command combinations such as -al, ensuring users get exactly
+ * the information they need with minimal effort. Additionally, our user-friendly help feature, accessible
+ * via -?, guides you through the command’s capabilities, mirroring the familiarity and ease of Unix man
+ * pages.
  *
- * Engineered to be both powerful and accessible, this utility empowers users to manage and explore their file
- * systems with newfound ease. Say goodbye to the cumbersome default dir command—welcome to a sleek, modern,
- * and highly functional directory listing tool. Ready to elevate your command-line experience? Dive into
- * productivity with our refined ls utility.
+ * Engineered to be both powerful and accessible, this utility empowers users to manage and explore their
+ * file systems with newfound ease. Say goodbye to the cumbersome default dir command—welcome to a sleek,
+ * modern, and highly functional directory listing tool. Ready to elevate your command-line experience?
+ * Dive into productivity with our refined ls utility.
  *
  * Compile instructions:
  * gcc/clang ls.c ../mylibs/cVersion.c ../mylibs/cManPage.c -o ls

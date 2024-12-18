@@ -1,16 +1,16 @@
-/* ***************************************************************************************************************
+/* *********************************************************************************************************
  * cp.c - Meet our latest innovation: a dynamic, user-centric C program designed to elevate the command-line
- * experience within the Windows Command Prompt. This program, a sophisticated enhancement inspired by the Unix cp
- * command, streamlines file and directory management with unparalleled precision and efficiency.
+ * experience within the Windows Command Prompt. This program, a sophisticated enhancement inspired by the
+ * Unix cp command, streamlines file and directory management with unparalleled precision and efficiency.
  *
  * Imagine the ease of executing seamless file operations with intuitive options like recursive copying, file
- * attribute preservation, interactive prompts before overwriting, and smart updates based on file modifications.
- * Engineered to be both powerful and accessible, this tool ensures that users can navigate and manipulate their
- * file systems effortlessly.
+ * attribute preservation, interactive prompts before overwriting, and smart updates based on file
+ * modifications. Engineered to be both powerful and accessible, this tool ensures that users can navigate
+ * and manipulate their file systems effortlessly.
  *
- * Our built-in help feature, accessible with a simple flag, mirrors the clarity and familiarity of Unix man pages,
- * providing users with instant, reliable support. This program is not just a utility; it's a leap towards a more
- * efficient, productive, and user-friendly command-line environment.
+ * Our built-in help feature, accessible with a simple flag, mirrors the clarity and familiarity of Unix man
+ * pages, providing users with instant, reliable support. This program is not just a utility; it's a leap
+ * towards a more efficient, productive, and user-friendly command-line environment.
  *
  * Crafted with meticulous attention to detail, our C program stands as a testament to cutting-edge software
  * development, ready to transform the way users interact with their file systems. Dive into a new era of
@@ -19,18 +19,18 @@
  * Compile instructions:
  * gcc/clang cp.c ../mylibs/cVersion.c ../mylibs/cManPage.c -o cp
  * pmake cp.makefile
- * ---------------------------------------------------------------------------------------------------------------
+ * --------------------------------------------------------------------------------------------------------
  * Author:       Patrik Eigenmann
  * eMail:        p.eigenmann@gmx.net
- * ---------------------------------------------------------------------------------------------------------------
- * Thu 2024-10-24 File created and basic functionality programmed.                                  Version: 00.01
- * Thu 2024-10-24 Manpage style help implemented.                                                   Version: 00.02
- * Thu 2024-10-24 Fixed compiler errors due to including header files and windows specific libs.    Version: 00.03
- * Mon 2024-11-05 cManPage.h implemented. New Update and Bug Fixes.                                 Version: 00.04
- * Mon 2024-11-11 Changed how the help is triggered.                                                Version: 00.05
- * Mon 2024-11-11 Method name change - instead show_help -> print_help.                             Version: 00.06
- * Thu 2024-11-21 Updated method create_manpage("cp", manpage, v.major, v.minor);                   Version: 00.07
- * *************************************************************************************************************** */
+ * --------------------------------------------------------------------------------------------------------
+ * Thu 2024-10-24 File created and basic functionality programmed.                          Version: 00.01
+ * Thu 2024-10-24 Manpage style help implemented.                                           Version: 00.02
+ * Thu 2024-10-24 Fixed crossplatform errors.                                               Version: 00.03
+ * Mon 2024-11-05 cManPage.h implemented. New Update and Bug Fixes.                         Version: 00.04
+ * Mon 2024-11-11 Changed how the help is triggered.                                        Version: 00.05
+ * Mon 2024-11-11 Method name change - instead show_help -> print_help.                     Version: 00.06
+ * Thu 2024-11-21 Updated method create_manpage("cp", manpage, v.major, v.minor);           Version: 00.07
+ * ********************************************************************************************************* */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -51,21 +51,22 @@
 
 #endif
 
-/* ---------------------------------------------------------------------------------------------------------------
+/* ---------------------------------------------------------------------------------------------------------
  * The print_help function is our top-notch guidance feature, crafted to provide users with clear, intuitive
- * instructions for leveraging our command-line utility within the Windows Command Prompt environment. Think of it
- * as your personal guide, always ready to offer step-by-step explanations for each option available in the tool.
+ * instructions for leveraging our command-line utility within the Windows Command Prompt environment.
+ * Think of it as your personal guide, always ready to offer step-by-step explanations for each option
+ * available in the tool.
  *
  * When users invoke this function, they receive a straightforward and well-structured breakdown of all possible
- * commands, ensuring they can navigate directory listings with ease and efficiency. With familiar flags like -l and
- * -a, the experience feels intuitive, mirroring the user-friendly nature of Unix systems, but optimized for the
- * Windows Command Prompt.
+ * commands, ensuring they can navigate directory listings with ease and efficiency. With familiar flags
+ * like -l and -a, the experience feels intuitive, mirroring the user-friendly nature of Unix systems, but
+ * optimized for the Windows Command Prompt.
  *
- * In essence, show_help embodies our commitment to user empowerment, making sure every feature is accessible and
- * easily understood. This minimizes learning curves and maximizes productivity. This function is the cornerstone
- * of our user-centric approach, providing instant, reliable support whenever needed. Welcome to a new era of
- * intuitive, efficient command-line interaction.
- * --------------------------------------------------------------------------------------------------------------- */
+ * In essence, show_help embodies our commitment to user empowerment, making sure every feature is accessible
+ * and easily understood. This minimizes learning curves and maximizes productivity. This function is the
+ * cornerstone of our user-centric approach, providing instant, reliable support whenever needed. Welcome to a
+ * new era of intuitive, efficient command-line interaction.
+ * --------------------------------------------------------------------------------------------------------- */
 void print_help() {
 
     // Version control implemented
@@ -145,22 +146,22 @@ void print_help() {
     free(manpage);
 }
 
-/* ---------------------------------------------------------------------------------------------------------------
- * Meet our pioneering C function, copy_file—a cornerstone of our advanced file management suite designed for the
- * Windows Command Prompt. This function epitomizes efficiency, enabling users to seamlessly copy files while
- * maintaining control over various aspects of the process.
+/* ------------------------------------------------------------------------------------------------------
+ * Meet our pioneering C function, copy_file—a cornerstone of our advanced file management suite designed
+ * for the Windows Command Prompt. This function epitomizes efficiency, enabling users to seamlessly copy
+ * files while maintaining control over various aspects of the process.
  *
- * Imagine a utility that not only copies files with precision but also empowers users to preserve file attributes,
- * interactively manage overwrites, and intelligently update files based on modification dates. The copy_file
- * function integrates these capabilities, ensuring robust and flexible file operations.
+ * Imagine a utility that not only copies files with precision but also empowers users to preserve file
+ * attributes, interactively manage overwrites, and intelligently update files based on modification dates.
+ * The copy_file function integrates these capabilities, ensuring robust and flexible file operations.
  *
- * Engineered to handle critical tasks with ease, copy_file embodies our commitment to delivering powerful yet
- * accessible tools. It's the ultimate solution for users seeking to enhance their command-line experience,
- * offering unmatched reliability and performance.
+ * Engineered to handle critical tasks with ease, copy_file embodies our commitment to delivering powerful
+ * yet accessible tools. It's the ultimate solution for users seeking to enhance their command-line
+ * experience, offering unmatched reliability and performance.
  *
- * Crafted with meticulous attention to detail, this function seamlessly blends power and usability, exemplifying
- * our dedication to cutting-edge software development. Elevate your file management capabilities with copy_file
- * and experience the pinnacle of command-line efficiency.
+ * Crafted with meticulous attention to detail, this function seamlessly blends power and usability,
+ * exemplifying our dedication to cutting-edge software development. Elevate your file management
+ * capabilities with copy_file and experience the pinnacle of command-line efficiency.
  *
  * Ready to transform your file management experience? Let’s innovate with copy_file.
  *
@@ -169,7 +170,7 @@ void print_help() {
  * @param preserve Preserve file attributes if set to true.
  * @param interactive Prompt before overwriting if set to true.
  * @param update Copy only if the source file is newer than the destination file if set to true.
- * --------------------------------------------------------------------------------------------------------------- */
+ * -------------------------------------------------------------------------------------------------------- */
 void copy_file(const char *source, const char *destination, int preserve, int interactive, int update) {
     // Check if update flag is set
     if (update) {

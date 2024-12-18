@@ -1,26 +1,30 @@
-/* ***************************************************************************************************************
- * cManPage.c - The cManPage.c file provides an interface for managing and manipulating manual pages in C. It
- * includes essential functions and data structures for creating, modifying, and verifying manual pages, ensuring
- * cross-platform compatibility and ease of use.
+/* *********************************************************************************************************
+ * cManPage.c - The cManPage.c file provides an interface for managing and manipulating manual pages in C.
+ * It includes essential functions and data structures for creating, modifying, and verifying manual pages,
+ * ensuring cross-platform compatibility and ease of use.
  * 
  * This library file serves as a foundational component for applications that require efficient documentation
  * handling.
- * ---------------------------------------------------------------------------------------------------------------
+ * 
+ * Compile instructions:
+ * clang/gcc -c cManPage.c -o cManPage.o
+ * pmake cManPage.makefile
+ * --------------------------------------------------------------------------------------------------------
  * Author:       Patrik Eigenmann
  * eMail:        p.eigenmann@gmx.net
- * ---------------------------------------------------------------------------------------------------------------
- * Mon 2024-10-28 File created.                                                                     Version: 00.01
- * Mon 2024-11-04 Fixed all bugs around the string concatination.                                   Version: 00.02
- * Mon 2024-11-05 Cross plattform implementation.                                                   Version: 00.03
- * Thu 2024-11-07 Take the check if the file exist away for now. Let's write it every time.         Version: 00.04
- * Thu 2024-11-21 Added major and minor to the methodes.                                            Version: 00.05
- * ***************************************************************************************************************
+ * --------------------------------------------------------------------------------------------------------
+ * Mon 2024-10-28 File created.                                                             Version: 00.01
+ * Mon 2024-11-04 Fixed all bugs around the string concatination.                           Version: 00.02
+ * Mon 2024-11-05 Cross plattform implementation.                                           Version: 00.03
+ * Thu 2024-11-07 Take the check if the file exist away for now. Let's write it every time. Version: 00.04
+ * Thu 2024-11-21 Added major and minor to the methodes.                                    Version: 00.05
+ * *********************************************************************************************************
  * To Do:
- * - The program checks if the particular manpage exist, if not it will write it. If it exist, it will just read
- *   it. That is incorrect, what if the content of the manpage changes? It should be rewritten if content changes
- *   are made.                                                                                      -> Temporary
- * - doesFileExist methode is fixed, now I need to extensively test the method.                     -> Done
- * ***************************************************************************************************************/
+ * - The program checks if the particular manpage exist, if not it will write it. If it exist, it will just
+ *   read it. That is incorrect, what if the content of the manpage changes? It should be rewritten if
+ *   content changes are made.                                                                  -> Temporary
+ * - doesFileExist methode is fixed, now I need to extensively test the method.                 -> Done
+ * *********************************************************************************************************/
 
 #include "cManPage.h"
 #include <stdio.h>
@@ -170,13 +174,14 @@
 
 const char *FILE_EXTENTION = ".man";
 
-/* ---------------------------------------------------------------------------------------------------------------
- * By encapsulating the creation of manual pages within this method, we ensure a seamless and efficient process
- * for generating documentation. This not only enhances the maintainability and readability of your codebase, but
- * also guarantees that manual pages are consistently formatted and easily accessible.
+/* ----------------------------------------------------------------------------------------------------
+ * By encapsulating the creation of manual pages within this method, we ensure a seamless and efficient
+ * process for generating documentation. This not only enhances the maintainability and readability of
+ * your codebase, but also guarantees that manual pages are consistently formatted and easily accessible.
  * 
- * Adopting the create_manpage method will streamline your documentation process, fostering better organization
- * and accessibility, and ultimately contributing to a more polished and user-friendly product.
+ * Adopting the create_manpage method will streamline your documentation process, fostering better
+ * organization and accessibility, and ultimately contributing to a more polished and user-friendly
+ * product.
  * 
  * @param char *filenameIn - The filename to the ManPage text file.
  * @param char *manualIn - The content of the ManPage text.
@@ -214,18 +219,19 @@ void create_manpage(char *filenameIn, char *manualIn, int major, int minor) {
     system(command);
 }
 
-/* ---------------------------------------------------------------------------------------------------------------
- * By encapsulating the process of appending formatted content within this method, we ensure a seamless and
- * efficient way to dynamically build strings. This method not only enhances the maintainability and readability
- * of your codebase, but also guarantees that formatted content is appended consistently and effectively.
+/* ----------------------------------------------------------------------------------------------------
+ * By encapsulating the process of appending formatted content within this method, we ensure a seamless
+ * and efficient way to dynamically build strings. This method not only enhances the maintainability and
+ * readability of your codebase, but also guarantees that formatted content is appended consistently and
+ * effectively.
  * 
- * Adopting the append_format method will streamline your string manipulation tasks, fostering better organization
- * and flexibility, and ultimately contributing to a more polished and efficient product.
+ * Adopting the append_format method will streamline your string manipulation tasks, fostering better
+ * organization and flexibility, and ultimately contributing to a more polished and efficient product.
  * 
  * @param char **dest - The destination string to which formatted content will be appended.
  * @param const char *format - The format string.
  * @param ... - Additional arguments to format and append to the destination string.
- * --------------------------------------------------------------------------------------------------------------- */
+ * ----------------------------------------------------------------------------------------------------- */
 void append_format(char **dest, const char *format, ...) {
     va_list args;
     va_start(args, format);
@@ -266,14 +272,15 @@ void append_format(char **dest, const char *format, ...) {
     free(temp);
 }
 
-/* ---------------------------------------------------------------------------------------------------------------
- * By encapsulating the detection of help command triggers within this method, we ensure a seamless and efficient
- * way to handle user requests for help or usage information. This method not only enhances the maintainability
- * and readability of your codebase but also guarantees that help commands are consistently and accurately
- * recognized.
+/* ----------------------------------------------------------------------------------------------------
+ * By encapsulating the detection of help command triggers within this method, we ensure a seamless and
+ * efficient way to handle user requests for help or usage information. This method not only enhances
+ * the maintainability and readability of your codebase but also guarantees that help commands are
+ * consistently and accurately recognized.
  * 
- * Adopting the isHelpTriggered method will streamline your application's user interaction processes, fostering
- * better user experience and accessibility, and ultimately contributing to a more user-friendly product.
+ * Adopting the isHelpTriggered method will streamline your application's user interaction processes,
+ * fostering better user experience and accessibility, and ultimately contributing to a more
+ * user-friendly product.
  * 
  * @param int argcIn - The number of command-line arguments.
  * @param char *argvIn - The first string of the command-line arguments array.
