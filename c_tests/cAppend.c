@@ -21,9 +21,8 @@
  * software applications.
  *
  * Compile instructions:
- * For Windows  -> gcc cAppend.c -o cAppend
- * For MacOS    -> clang cAppend.c -o cAppend
- * pmake cAppend.makefile
+ * gcc/clang cAppend.c -o cAppend
+ * pmake cAppend.makefile 
  * -----------------------------------------------------------------------------------------------
  * Author:       Patrik Eigenmann
  * eMail:        p.eigenmann@gmx.net

@@ -32,8 +32,8 @@
  * a .txt file.
  *
  * Compile instructions:
- * For Windows  -> gcc cEnigma.c ..\mylibs\cVersion.o ..\mylibs\cManPage.o -o cEnigma.exe
- * For MacOS    -> clang cEnigma.c ..\mylibs\cVersion.o ..\mylibs\cManPage.o -o cEnigma.bin
+ * gcc/clang cEnigma.c -o cEnigma
+ * pmake cEnigma.makefile
  * ***********************************************************************************************
  * Author:      Patrik Eigenmann
  * eMail:       p.eigenmann@gmx.net
@@ -57,8 +57,8 @@
 #include <ctype.h>
 #include <stdlib.h>
 
-#include "..\mylibs\cVersion.h"
-#include "..\mylibs\cManPage.h"
+#include "../mylibs/cVersion.h"
+#include "../mylibs/cManPage.h"
 
 // Size of the alphabet
 #define ALPHABET_SIZE 26
@@ -226,22 +226,16 @@ void print_help() {
     free(manpage);
 }
 
-/* ---------------------------------------------------------------------------------------------------------
- * main - The main function is like the front door of the cEnigma program—it’s where everything starts.
- * When you run the program, it first checks if you’ve given it the right instructions. If not, it shows you
- * a help message to guide you on how to use it properly.
- *
- * If you’ve given the correct instructions, it then decides whether you want to encode (convert plain text
- * into secret code) or decode (convert secret code back into plain text) based on your input.
- *
- * So, in a nutshell, the main function is the conductor of the cEnigma program, orchestrating the whole
- * process from start to finish.
- *
- * @param int argc
- * @param char *argv[]
- *
- * @return 0 or 1
- * --------------------------------------------------------------------------------------------------------*/
+// ---------------------------------------------------------------------------------------------
+// main - The main function is the starting point of a C or C++ program, where execution begins.
+// This version of the main function allows the program to take command-line arguments when it
+// runs. The function typically returns an numbered value to the operating system, often zero
+// to signify successful execution.
+//
+// @param argc  The number of command-line arguments.
+// @param argv  The array of command-line arguments.
+// @return      0 on successful completion, 1 on error.
+// ----------------------------------------------------------------------------------------------
 int main(int argc, char *argv[]) {
 
     // Check if the correct number of arguments are provided
