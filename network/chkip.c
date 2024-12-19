@@ -1,36 +1,39 @@
-/* ***************************************************************************************************************
- * chkip.c - Our cutting-edge program efficiently pings and identifies online IP addresses within a specified
- * range. It dynamically updates the user on the progress, ensuring a seamless and transparent experience. The
- * results are presented in a visually structured table, accommodating varying IP address lengths for utmost
- * clarity. This tool is integral for network administrators, enhancing the accuracy and speed of network
- * diagnostics and management.
+/* *************************************************************************************************
+ * chkip.c - Our cutting-edge program efficiently pings and identifies online IP addresses within a
+ * specified range. It dynamically updates the user on the progress, ensuring a seamless and
+ * transparent experience. The results are presented in a visually structured table, accommodating
+ * varying IP address lengths for utmost clarity. This tool is integral for network administrators,
+ * enhancing the accuracy and speed of network diagnostics and management.
  *
  * Compile instructions:
- * For Windows  -> gcc chkip.c ..\mylibs\cVersion.o ..\mylibs\cProgress.o ..\mylibs\cManPage.o -o chkip
- * For MacOS    -> clang chkip.c ../mylibs/cVersion.o ../mylibs/cProgress.o ../mylibs/cManPage.o -o chkip
- * ---------------------------------------------------------------------------------------------------------------
+ * clang/gcc chkip.c ..\mylibs\cVersion.o ..\mylibs\cProgress.o ..\mylibs\cManPage.o -o chkip
+ * pmake chkip.makefile
+ * --------------------------------------------------------------------------------------------------
  * Author:       Patrik Eigenmann
  * eMail:        p.eigenmann@gmx.net
- * ---------------------------------------------------------------------------------------------------------------
- * Fri 2024-10-25 File created and basic functionality programmed.                                  Version: 00.01
- * Fri 2024-10-25 Changed the ping commant option from -c 1 -W 1 to -n 1 because of Windows.        Version: 00.02
- * Fri 2024-10-25 Changed program to look for wildcards * as range checker.                         Version: 00.03
- * Fri 2024-10-25 Bugfix in the ip address, there was a dot (.) too much.                           Version: 00.04
- * Fri 2024-10-25 Revised the whole program, now instead of showing result in real time, store the  Version: 00.05
- *                result of the ip's found online in an array and display it at the end.
- * Sat 2024-10-26 Inplemented a Progress Bar.                                                       Version: 00.06
- * Sat 2024-10-26 Version Control and help file implemented.                                        Version: 00.07
- * Sun 2024-10-27 Progress bar implemented.                                                         Version: 00.08
- * Sun 2024-10-27 Instead of recursive functions, I use the top-down approach.                      Version: 00.09
- * Mon 2024-11-04 cManPage.h implemented.                                                           Version: 00.10
- * Wed 2024-11-06 Crossplatform Programming, made it conform for Windows/MacOS.                     Version: 00.11
- * Wed 2024-11-06 Changed wild card because in Unix, the wild card '*' causes an error.             Version: 00.12
- * Thu 2024-11-07 Changed things around, because under Unix things don't work quite right.          Version: 00.13
- * Fri 2024-11-07 Small changes because unter Unix the things are different.                        Version: 00.14
- * Tue 2024-11-19 Bugfix under Unix, ping doesn't result in "Reply from".                           Version: 00.15
- * Tue 2024-11-19 Bugfix under Windows, ping doesn't result in "1 packets received".                Version: 00.16
- * Thu 2024-11-21 Updated to the new create_manpage("chkip", manpage, v.major, v.minor);            Version: 00.17
- * *************************************************************************************************************** */
+ * --------------------------------------------------------------------------------------------------
+ * Fri 2024-10-25 File created and basic functionality programmed.                      Version: 00.01
+ * Fri 2024-10-25 Changed the ping commant option from -c 1 -W 1 to -n 1 because of     Version: 00.02
+ *                Windows.
+ * Fri 2024-10-25 Changed program to look for wildcards * as range checker.             Version: 00.03
+ * Fri 2024-10-25 Bugfix in the ip address, there was a dot (.) too much.               Version: 00.04
+ * Fri 2024-10-25 Revised the whole program, now instead of showing result in real      Version: 00.05
+ *                time, store the result of the ip's found online in an array and
+ *                display it at the end.
+ * Sat 2024-10-26 Inplemented a Progress Bar.                                           Version: 00.06
+ * Sat 2024-10-26 Version Control and help file implemented.                            Version: 00.07
+ * Sun 2024-10-27 Progress bar implemented.                                             Version: 00.08
+ * Sun 2024-10-27 Instead of recursive functions, I use the top-down approach.          Version: 00.09
+ * Mon 2024-11-04 cManPage.h implemented.                                               Version: 00.10
+ * Wed 2024-11-06 Crossplatform Programming, made it conform for Windows/MacOS.         Version: 00.11
+ * Wed 2024-11-06 Changed wild card because in Unix, the wild card '*' causes an error. Version: 00.12
+ * Thu 2024-11-07 Changed things around, because under Unix things don't work quite     Version: 00.13
+ *                right.
+ * Fri 2024-11-07 Small changes because unter Unix the things are different.            Version: 00.14
+ * Tue 2024-11-19 Bugfix under Unix, ping doesn't result in "Reply from".               Version: 00.15
+ * Tue 2024-11-19 Bugfix under Windows, ping doesn't result in "1 packets received".    Version: 00.16
+ * Thu 2024-11-21 Updated to the new create_manpage("chkip", manpage, v.major, v.minor);Version: 00.17
+ * ************************************************************************************************* */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -47,28 +50,22 @@
 
 const int IP_MAX = 254;
 
-/* ------------------------------------------------------------------------------------------------
- * print_help - This function is a helper function that prints out the help message for the cEnigma
- * program in man pages style. This message includes but is not limited to:
+/* ---------------------------------------------------------------------------------------------------------
+ * The print_help function is our top-notch guidance feature, crafted to provide users with clear, intuitive
+ * instructions for leveraging our command-line utility within the Windows Command Prompt environment.
+ * Think of it as your personal guide, always ready to offer step-by-step explanations for each option
+ * available in the tool.
  *
- * NAME: A brief description of the program.
+ * When users invoke this function, they receive a straightforward and well-structured breakdown of all possible
+ * commands, ensuring they can navigate directory listings with ease and efficiency. With familiar flags
+ * like -l and -a, the experience feels intuitive, mirroring the user-friendly nature of Unix systems, but
+ * optimized for the Windows Command Prompt.
  *
- * SYNOPSIS: How to use the program, including the command-line arguments it accepts.
- *
- * DESCRIPTION: Detailed information about what the program does and how to use it. It explains the
- *              -e and -d options for encoding and decoding a text file, respectively.
- *
- *              -h, -H, -help -Help or no parameter at all: These options display the help message.
- *
- * AUTHOR: Information about the author of the program.
- *
- * COPYRIGHT: The copyright notice, license information, and a disclaimer.
- *
- * This function does not take any arguments and does not return any values. It simply prints the
- * help message to the standard output. It’s typically called when the user passes a help flag
- * (-h, -H, -help, or -Help) or when the program is used incorrectly. It helps users understand
- * how to use the program correctly.
- * ------------------------------------------------------------------------------------------------*/
+ * In essence, show_help embodies our commitment to user empowerment, making sure every feature is accessible
+ * and easily understood. This minimizes learning curves and maximizes productivity. This function is the
+ * cornerstone of our user-centric approach, providing instant, reliable support whenever needed. Welcome to a
+ * new era of intuitive, efficient command-line interaction.
+ * --------------------------------------------------------------------------------------------------------- */
 void print_help() {
     
     // Version control implemented
@@ -125,19 +122,20 @@ void print_help() {
     free(manpage);
 }
 
-// ---------------------------------------------------------------------------------------------------------------
-// Our count_wildcards function is designed to bring unparalleled efficiency and clarity to your string processing
-// tasks. With its precise algorithm, this function traverses any given string to count the occurrences of a
-// specified wildcard character. Perfect for scenarios where tracking or validating wildcard usage is paramount,
-// count_wildcards ensures that you can manage and manipulate strings with confidence and ease.
+// ----------------------------------------------------------------------------------------------------
+// Our count_wildcards function is designed to bring unparalleled efficiency and clarity to your string
+// processing tasks. With its precise algorithm, this function traverses any given string to count the
+// occurrences of a specified wildcard character. Perfect for scenarios where tracking or validating
+// wildcard usage is paramount, count_wildcards ensures that you can manage and manipulate strings with
+// confidence and ease.
 //
-// By integrating count_wildcards, you enhance your ability to analyze and process strings, paving the way for
-// robust data handling and validation mechanisms. It’s a simple yet powerful tool, poised to elevate your
-// programming toolkit.
+// By integrating count_wildcards, you enhance your ability to analyze and process strings, paving the
+// way for robust data handling and validation mechanisms. It’s a simple yet powerful tool, poised to
+// elevate your programming toolkit.
 //
 // @param str   The string in which to count wildcard characters.
 // @return      The number of wildcard characters found in the string.
-// ---------------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------
 int count_wildcards(const char *str) {
     int count = 0;
     while (*str) {
@@ -149,18 +147,18 @@ int count_wildcards(const char *str) {
     return count;
 }
 
-// ---------------------------------------------------------------------------------------------------------------
-// Our ping_ip function is a game-changer in network diagnostics, designed to efficiently determine the online
-// status of any IP address. By leveraging system ping commands, this function accurately assesses connectivity,
-// providing immediate feedback on network availability. Perfect for network administrators and developers, ping_ip
-// offers a reliable method to verify IP address responsiveness.
+// ----------------------------------------------------------------------------------------------------
+// Our ping_ip function is a game-changer in network diagnostics, designed to efficiently determine the
+// online status of any IP address. By leveraging system ping commands, this function accurately assesses
+// connectivity, providing immediate feedback on network availability. Perfect for network administrators
+// and developers, ping_ip offers a reliable method to verify IP address responsiveness.
 //
-// Incorporate ping_ip into your projects to streamline network checks and maintain high standards of connectivity.
-// With its robust implementation, you can be assured of accurate and timely results.
+// Incorporate ping_ip into your projects to streamline network checks and maintain high standards of
+// connectivity. With its robust implementation, you can be assured of accurate and timely results.
 //
 // @param ip    The IP address to ping.
 // @return      1 if the IP is online, otherwise 0.
-// ---------------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------
 int ping_ip(const char *ip) {
     char command[100];
     
@@ -195,21 +193,21 @@ int ping_ip(const char *ip) {
     return is_online;
 }
 
-// ---------------------------------------------------------------------------------------------------------------
-// Our replace_wildcard function is a revolutionary tool designed to streamline the process of dynamically
-// configuring IP addresses. By replacing wildcard characters with specified values, this function ensures that
-// your network configurations are both flexible and precise. Ideal for scenarios where IP ranges need to be
-// dynamically managed, replace_wildcard offers an efficient solution to adapt and configure network settings on
-// the fly.
+// --------------------------------------------------------------------------------------------
+// Our replace_wildcard function is a revolutionary tool designed to streamline the process of
+// dynamically configuring IP addresses. By replacing wildcard characters with specified values,
+// this function ensures that your network configurations are both flexible and precise. Ideal
+// for scenarios where IP ranges need to be dynamically managed, replace_wildcard offers an efficient
+// solution to adapt and configure network settings on the fly.
 //
-// Incorporate replace_wildcard into your projects to enhance the adaptability and accuracy of your IP management
-// processes. With its straightforward implementation, you can effortlessly handle complex IP configurations with
-// ease.
+// Incorporate replace_wildcard into your projects to enhance the adaptability and accuracy of
+// your IP management processes. With its straightforward implementation, you can effortlessly
+// handle complex IP configurations with ease.
 //
 // @param ip            The IP address containing the wildcard.
 // @param replacement   The string to replace the wildcard with.
 // @return              A new IP address string with the wildcard replaced.
-// ---------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------
 char *replace_wildcard(const char *ip, const char *replacement) {
     static char new_ip[30];
     strcpy(new_ip, ip);
@@ -221,20 +219,20 @@ char *replace_wildcard(const char *ip, const char *replacement) {
     return new_ip;
 }
 
-// ---------------------------------------------------------------------------------------------------------------
-// Our print_online_ips function is designed to deliver unparalleled clarity in network diagnostics, presenting
-// the results of your IP address checks in a structured, visually appealing table. By dynamically adjusting to
-// varying IP address lengths, this function ensures that the display remains clear, precise, and professional.
-// Perfect for network administrators and IT professionals, print_online_ips transforms raw data into insightful
-// information.
+// --------------------------------------------------------------------------------------------------
+// Our print_online_ips function is designed to deliver unparalleled clarity in network diagnostics,
+// presenting the results of your IP address checks in a structured, visually appealing table. By
+// dynamically adjusting to varying IP address lengths, this function ensures that the display remains
+// clear, precise, and professional. Perfect for network administrators and IT professionals,
+// print_online_ips transforms raw data into insightful information.
 //
-// Integrate print_online_ips into your network tools to enhance the presentation of your diagnostics, making it
-// easier to interpret and act upon the results. With its clean and elegant output, you can ensure that your
-// network status reports are both informative and accessible.
+// Integrate print_online_ips into your network tools to enhance the presentation of your diagnostics,
+// making it easier to interpret and act upon the results. With its clean and elegant output, you can
+// ensure that your network status reports are both informative and accessible.
 //
 // @param online_ips    An array of strings containing the online IP addresses.
 // @param count         The number of online IP addresses in the array.
-// ---------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------
 void print_online_ips(char **online_ips, int count) {
     printf("+-----------------+\n");
     printf("| Online IPs      |\n");
@@ -253,20 +251,21 @@ void print_online_ips(char **online_ips, int count) {
     printf("+-----------------+\n");
 }
 
-// ---------------------------------------------------------------------------------------------------------------
-// Our main function serves as the command center of your network diagnostics tool, orchestrating the seamless
-// execution of all key operations. It handles user input, dynamically configures the scanning range, initiates
-// progress tracking, and processes the results with utmost efficiency. Designed for top-down clarity, this function
-// ensures that every step, from initialization to output, is executed with precision.
+// ---------------------------------------------------------------------------------------------------
+// Our main function serves as the command center of your network diagnostics tool, orchestrating the
+// seamless execution of all key operations. It handles user input, dynamically configures the scanning
+// range, initiates progress tracking, and processes the results with utmost efficiency. Designed for
+// top-down clarity, this function ensures that every step, from initialization to output, is executed
+// with precision.
 //
-// By leveraging the main function, developers can effortlessly manage complex network diagnostics tasks, ensuring
-// a streamlined and intuitive user experience. It integrates all components harmoniously, reflecting the highest
-// standards of coding excellence.
+// By leveraging the main function, developers can effortlessly manage complex network diagnostics tasks,
+// ensuring a streamlined and intuitive user experience. It integrates all components harmoniously,
+// reflecting the highest standards of coding excellence.
 //
 // @param argc  The number of command-line arguments.
 // @param argv  The array of command-line arguments.
 // @return      0 on successful completion, 1 on error.
-// ---------------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------
 int main(int argc, char *argv[]) {
     
     // Check if the help is triggered.
