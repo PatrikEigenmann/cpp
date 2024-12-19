@@ -50,6 +50,8 @@
  * Thu 2024-11-21 Updated create_manpage("cEnigma", mp.manpage, v.major, v.minor);  Version: 00.09
  * -----------------------------------------------------------------------------------------------
  * To Do's:
+ * - Implement the same Rotor functionality like in the jEnigma Java application. So files are
+ *   interchangable.
  * ***********************************************************************************************/
 #include <stdio.h>
 #include <string.h>
