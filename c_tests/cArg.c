@@ -12,11 +12,13 @@
  * gcc/clang cArg.c -o cArg
  * pmake cArg.makefile 
  * -------------------------------------------------------------------------------------------------------
- * Author:       Patrik Eigenmann
- * eMail:        p.eigenmann@gmx.net
+ * Author:  Patrik Eigenmann
+ * eMail:   p.eigenmann@gmx.net
+ * GitHub:  www.github.com/PatrikEigenmann/cpp
  * -------------------------------------------------------------------------------------------------------
  * Sun 2024-02-04 File created.                                                             Version: 00.01
  * Tue 2024-11-05 Crossplatform tests.                                                      Version: 00.02
+ * Tue 2025-01-22 Header comment GitHub URL updated.                                        Version: 00.03
  * *******************************************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>

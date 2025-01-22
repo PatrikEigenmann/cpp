@@ -19,11 +19,13 @@
  * gcc/clang cHangman.c ../mylibs/cVersion.c ../mylibs/cManPage.c -o cHangman
  * pmake cHangman.makefile
  * -----------------------------------------------------------------------------------------------
- * Author:       Patrik Eigenmann
- * eMail:        p.eigenmann@gmx.net
+ * Author:  Patrik Eigenmann
+ * eMail:   p.eigenmann@gmx.net
+ * GitHub:  www.github.com/PatrikEigenmann/cpp
  * -----------------------------------------------------------------------------------------------
  * Sat 2024-11-23 File created.                                                     Version: 00.01
  * Mon 2024-11-25 Integrated mylibs.                                                Version: 00.02
+ * Wed 2025-01-22 Header comment GitHub URL updated.                                Version: 00.03
  * -----------------------------------------------------------------------------------------------
  * To Do's:
  * ***********************************************************************************************/
@@ -65,7 +67,7 @@
 void print_help() {
 
     // Version control implemented
-    Version v = create_version(0, 2);
+    Version v = create_version(0, 3);
     
     // The buffer is needed to write
     // the correct formated version number.

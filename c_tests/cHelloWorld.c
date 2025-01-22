@@ -33,10 +33,12 @@
  * For Windows  -> gcc cHelloWorld.c -o cHelloWorld
  * For MacOS    -> clang cHelloWorld.c -o cHelloWorld
  * ---------------------------------------------------------------------------------------------------
- * Author:       Patrik Eigenmann
- * eMail:        p.eigenmann@gmx.net
+ * Author:  Patrik Eigenmann
+ * eMail:   p.eigenmann@gmx.net
+ * GitHub:  www.github.com/PatrikEigenmann/cpp
  * ---------------------------------------------------------------------------------------------------
  * Mon	2024-02-04	File created.                                                       Version: 00.01
+ * Tue	2025-01-22	Header comment GitHub URL updated.                                  Version: 00.02
  * ***************************************************************************************************/
 #include<stdio.h>
 

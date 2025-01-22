@@ -35,8 +35,9 @@
  * gcc/clang cEnigma.c ../mylibs/cVersion.c ../mylibs/cManPage.c -o cEnigma
  * pmake cEnigma.makefile
  * ***********************************************************************************************
- * Author:      Patrik Eigenmann
- * eMail:       p.eigenmann@gmx.net
+ * Author:  Patrik Eigenmann
+ * eMail:   p.eigenmann@gmx.net
+ * GitHub:  www.github.com/PatrikEigenmann/cpp
  * -----------------------------------------------------------------------------------------------
  * Version Control:
  * Wed 2023-06-07 File created.                                                     Version: 00.01
@@ -48,6 +49,7 @@
  * Mon 2024-02-12 Man page help made scrollable.                                    Version: 00.07
  * Mon 2024-11-05 cManPage.h implemented. Updates and Bugfixes.                     Version: 00.08
  * Thu 2024-11-21 Updated create_manpage("cEnigma", mp.manpage, v.major, v.minor);  Version: 00.09
+ * Tue 2025-01-22 Header comment GitHub URL updated.                                Version: 00.10
  * -----------------------------------------------------------------------------------------------
  * To Do's:
  * - Implement the same Rotor functionality like in the jEnigma Java application. So files are
@@ -177,7 +179,7 @@ char decode(char ch, char* rotor) {
 void print_help() {
     
     // Version control implemented
-    Version v = create_version(0, 9);
+    Version v = create_version(0, 10);
     
     // The buffer is needed to write
     // the correct formated version number.

@@ -18,8 +18,9 @@
  * gcc/clang ls.c ../mylibs/cVersion.c ../mylibs/cManPage.c -o ls
  * pmake ls.makefile
  * -------------------------------------------------------------------------------------------------------
- * Author:       Patrik Eigenmann
- * eMail:        p.eigenmann@gmx.net
+ * Author:  Patrik Eigenmann
+ * eMail:   p.eigenmann@gmx.net
+ * GitHub:  www.github.com/PatrikEigenmann/cpp
  * -------------------------------------------------------------------------------------------------------
  * Thu 2024-10-24 File created and basic functionality programmed.                          Version: 00.01
  * Thu 2024-10-24 Manpage style help implemented.                                           Version: 00.02
@@ -28,6 +29,7 @@
  * Mon 2024-11-11 Changed how the help is triggered.                                        Version: 00.05
  * Mon 2024-11-11 Method name change - instead show_help -> print_help.                     Version: 00.06
  * Thu 2024-11-21 Updated method create_manpage("ls", manpage, v.major, v.minor);           Version: 00.07
+ * Wed 2025-01-22 Header comment GitHub URL updated.                                        Version: 00.08
  * ******************************************************************************************************** */
 #include <stdio.h>
 #include <stdlib.h>
@@ -64,7 +66,7 @@
 void print_help() {
 
     // Version control implemented
-    Version v = create_version(0, 7);
+    Version v = create_version(0, 8);
     
     // The buffer is needed to write
     // the correct formated version number.

@@ -6,11 +6,13 @@
  * This header file serves as a foundational component for applications that require efficient
  * documentation handling.
  * ----------------------------------------------------------------------------------------------------
- * Author:       Patrik Eigenmann
- * eMail:        p.eigenmann@gmx.net
+ * Author:  Patrik Eigenmann
+ * eMail:   p.eigenmann@gmx.net
+ * GitHub:  www.github.com/PatrikEigenmann/cpp
  * ----------------------------------------------------------------------------------------------------
  * Mon 2024-10-28 File created.                                                         Version: 00.01
  * Thu 2024-11-07 Added functionality to get it to work poperly under MacOS.            Version: 00.02
+ * Wed 2025-01-22 Header comment GitHub URL updated.                                    Version: 00.03
  * *****************************************************************************************************/
 #ifndef CMANPAGE_H
 #define CMANPAGE_H

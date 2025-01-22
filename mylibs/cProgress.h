@@ -8,11 +8,13 @@
  * the advancement of tasks with customizable markers and titles. cProgress empowers developers to
  * maintain clear oversight, enhancing both productivity and user engagement.
  * --------------------------------------------------------------------------------------------------
- * Author:       Patrik Eigenmann
- * eMail:        p.eigenmann@gmx.net
+ * Author:  Patrik Eigenmann
+ * eMail:   p.eigenmann@gmx.net
+ * GitHub:  www.github.com/PatrikEigenmann/cpp
  * --------------------------------------------------------------------------------------------------
  * Fri 2024-10-25 File created.                                                         Version: 00.01
  * Sun 2024-10-27 Implemented sleep time and the flag if Sleep is needed.               Version: 00.02
+ * Wed 2025-01-22 Header comment GitHub URL updated.                                    Version: 00.03
  * **************************************************************************************************/
  #ifndef CPROGRESS_H
  #define CPROGRESS_H

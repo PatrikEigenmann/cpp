@@ -9,8 +9,9 @@
  * clang/gcc chkip.c ..\mylibs\cVersion.o ..\mylibs\cProgress.o ..\mylibs\cManPage.o -o chkip
  * pmake chkip.makefile
  * --------------------------------------------------------------------------------------------------
- * Author:       Patrik Eigenmann
- * eMail:        p.eigenmann@gmx.net
+ * Author:  Patrik Eigenmann
+ * eMail:   p.eigenmann@gmx.net
+ * GitHub:  www.github.com/PatrikEigenmann/cpp
  * --------------------------------------------------------------------------------------------------
  * Fri 2024-10-25 File created and basic functionality programmed.                      Version: 00.01
  * Fri 2024-10-25 Changed the ping commant option from -c 1 -W 1 to -n 1 because of     Version: 00.02
@@ -33,6 +34,7 @@
  * Tue 2024-11-19 Bugfix under Unix, ping doesn't result in "Reply from".               Version: 00.15
  * Tue 2024-11-19 Bugfix under Windows, ping doesn't result in "1 packets received".    Version: 00.16
  * Thu 2024-11-21 Updated to the new create_manpage("chkip", manpage, v.major, v.minor);Version: 00.17
+ * Wed 2025-01-22 Header comment GitHub URL updated.                                    Version: 00.18
  * ************************************************************************************************* */
 #include <stdio.h>
 #include <stdlib.h>
@@ -69,7 +71,7 @@ const int IP_MAX = 254;
 void print_help() {
     
     // Version control implemented
-    Version v = create_version(0, 17);
+    Version v = create_version(0, 18);
         
     // The buffer is needed to write
     // the correct formated version number.

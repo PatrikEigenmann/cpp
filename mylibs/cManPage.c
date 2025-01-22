@@ -10,14 +10,16 @@
  * clang/gcc -c cManPage.c -o cManPage.o
  * pmake cManPage.makefile
  * --------------------------------------------------------------------------------------------------------
- * Author:       Patrik Eigenmann
- * eMail:        p.eigenmann@gmx.net
+ * Author:  Patrik Eigenmann
+ * eMail:   p.eigenmann@gmx.net
+ * GitHub:  www.github.com/PatrikEigenmann/cpp
  * --------------------------------------------------------------------------------------------------------
  * Mon 2024-10-28 File created.                                                             Version: 00.01
  * Mon 2024-11-04 Fixed all bugs around the string concatination.                           Version: 00.02
  * Mon 2024-11-05 Cross plattform implementation.                                           Version: 00.03
  * Thu 2024-11-07 Take the check if the file exist away for now. Let's write it every time. Version: 00.04
  * Thu 2024-11-21 Added major and minor to the methodes.                                    Version: 00.05
+ * Wed 2025-01-22 Header comment GitHub URL updated.                                        Version: 00.06
  * *********************************************************************************************************
  * To Do:
  * - The program checks if the particular manpage exist, if not it will write it. If it exist, it will just

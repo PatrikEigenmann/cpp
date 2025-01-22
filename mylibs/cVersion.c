@@ -24,12 +24,14 @@
  * clang/gcc - c cVersion.c -o cVersion.o
  * pmake cVersion.makefile
  * ---------------------------------------------------------------------------------------------------
- * Author:       Patrik Eigenmann
- * eMail:        p.eigenmann@gmx.net
+ * Author:  Patrik Eigenmann
+ * eMail:   p.eigenmann@gmx.net
+ * GitHub:  www.github.com/PatrikEigenmann/cpp
  * ---------------------------------------------------------------------------------------------------
  * Sun 2024-02-11 File created.                                                         Version: 00.01
  * Sat 2024-10-26 #include <stdlib.h> added.                                            Version: 00.02
  * Wed 2024-12-18 #include <stdlib.h> removed, not needed.                              Version: 00.03
+ * Wed 2025-01-22 Header comment GitHub URL updated.                                    Version: 00.04
  * ---------------------------------------------------------------------------------------------------
  * To Do's:
  * ***************************************************************************************************/

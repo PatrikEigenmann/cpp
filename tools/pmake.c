@@ -14,8 +14,9 @@
  * clang/gcc pmake.c -o pmake
  * pmake pmake.makefile
  * ----------------------------------------------------------------------------------------------------
- * Author:       Patrik Eigenmann
- * eMail:        p.eigenmann@gmx.net
+ * Author:  Patrik Eigenmann
+ * eMail:   p.eigenmann@gmx.net
+ * GitHub:  www.github.com/PatrikEigenmann/cpp
  * ----------------------------------------------------------------------------------------------------
  * Fri 2024-11-15 File created.                                                         Version: 00.01
  * Sat 2024-11-16 Rearranged the whole program and renamed it. Fixed some bug too.      Version: 00.02
@@ -31,6 +32,7 @@
  *                pmake.c.
  * Thu 2024-11-21 Updated the method doesFileExist(), first check if file exists,       Version: 00.08
  *                second check if it is the same version.
+ * Wed 2025-01-22 Header comment GitHub URL updated.                                    Version: 00.09
  * -----------------------------------------------------------------------------------------------------
  * To Do's:
  * - Take cVersion.h & cVersion.c appart and integrate it directly into this code base.             Done.                             Done.
@@ -421,7 +423,7 @@ int isHelpTriggered(int argcIn, char *argvIn) {
 void print_help() {
 
     // Version control implemented
-    Version v = create_version(0, 8);
+    Version v = create_version(0, 9);
     
     // The buffer is needed to write
     // the correct formated version number.

@@ -24,10 +24,12 @@
  * gcc/clang cAppend.c -o cAppend
  * pmake cAppend.makefile 
  * -----------------------------------------------------------------------------------------------
- * Author:       Patrik Eigenmann
- * eMail:        p.eigenmann@gmx.net
+ * Author:  Patrik Eigenmann
+ * eMail:   p.eigenmann@gmx.net
+ * GitHub:  www.github.com/PatrikEigenmann/cpp
  * -----------------------------------------------------------------------------------------------
  * Sun 2024-02-04 File created.                                                     Version: 00.01
+ * Wed 2025-01-22 Header comment GitHub URL updated.                                Version: 00.02
  * ***********************************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>

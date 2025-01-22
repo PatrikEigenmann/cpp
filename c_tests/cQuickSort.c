@@ -20,6 +20,7 @@
  * GitHub:  www.github.com/PatrikEigenmann/cpp
  * -------------------------------------------------------------------------------------------
  * Wed 2025-01-22 File created.                                                 Version: 00.01
+ * Wed 2025-01-22 Header comment GitHub URL updated.                            Version: 00.02
  * ********************************************************************************************/
 #include <stdio.h>
 

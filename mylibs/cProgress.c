@@ -11,8 +11,9 @@
  * clang/gcc -c cProgress.c -o cProgress.o
  * pmake cProgress.makefile
  * --------------------------------------------------------------------------------------------------
- * Author:       Patrik Eigenmann
- * eMail:        p.eigenmann@gmx.net
+ * Author:  Patrik Eigenmann
+ * eMail:   p.eigenmann@gmx.net
+ * GitHub:  www.github.com/PatrikEigenmann/cpp
  * --------------------------------------------------------------------------------------------------
  * Mon 2024-10-25 File created.                                                         Version: 00.01
  * Sun 2024-10-27 Small corrections and bug fixes.                                      Version: 00.02
@@ -20,6 +21,7 @@
  * Tue 2024-11-05 Corrected Windows and MacOS differences.                              Version: 00.04
  * Tue 2024-11-05 Created the crossplatform version of this library.                    Version: 00.05
  * Fri 2024-11-08 fflush the buffer stdout before printing a new character.             Version: 00.06
+ * Wed 2025-01-22 Header comment GitHub URL updated.                                    Version: 00.07
  * **************************************************************************************************/
 #include "cProgress.h"
 #include <stdio.h>

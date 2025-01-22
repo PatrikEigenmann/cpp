@@ -20,12 +20,14 @@
  * labels are always formatted in the same way, making it easy to tell which version of the product you
  * have.
  * ---------------------------------------------------------------------------------------------------
- * Author:       Patrik Eigenmann
- * eMail:        p.eigenmann@gmx.net
+ * Author:  Patrik Eigenmann
+ * eMail:   p.eigenmann@gmx.net
+ * GitHub:  www.github.com/PatrikEigenmann/cpp
  * ---------------------------------------------------------------------------------------------------
  * Sun 2024-02-11 File created.                                                         Version: 00.01
  * Sat 2024-10-26 #include <stdlib.h> removed.                                          Version: 00.02
  * Thu 2024-11-21 get_major & get_minor removed, unnecessary methods.                   Version: 00.03
+ * Wed 2025-01-22 Header comment GitHub URL updated.                                    Version: 00.04
  * ---------------------------------------------------------------------------------------------------
  * To Do's:
  * ***************************************************************************************************/

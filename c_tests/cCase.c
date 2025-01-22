@@ -7,15 +7,15 @@
  * clang/gcc cCase.c -o cCase
  * pmake cCase.makefile
  * ---------------------------------------------------------------------------------------------------
- * Author:       Patrik Eigenmann
- * eMail:        p.eigenmann@gmx.net
+ * Author:  Patrik Eigenmann
+ * eMail:   p.eigenmann@gmx.net
+ * GitHub:  www.github.com/PatrikEigenmann/cpp
  * ---------------------------------------------------------------------------------------------------
  * Thu 2024-12-05 File created.                                                         Version: 00.01
- * ---------------------------------------------------------------------------------------------------
- * To Do's:
+ * Wed 2025-01-22 Header comment GitHub URL updated.                                    Version: 00.02
  * ****************************************************************************************************/
 
-#include<stdio.h>
+#include <stdio.h>
 #include <time.h>
 #include <string.h>
 
