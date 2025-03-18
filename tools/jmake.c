@@ -191,6 +191,26 @@ typedef struct {
     int minor;  // Minor built
 } Version;
 
+/* --------------------------------------------------------------------------------------------------------
+ * The ManPage struct is a crucial data structure designed to streamline and enhance the management of
+ * manual pages within your applications. It encapsulates all the necessary details of a manual page,
+ * including the filename and its corresponding content, into a single, organized unit. This structured
+ * approach not only simplifies the creation and modification of documentation but also ensures that your
+ * manual pages are consistently and efficiently handled across different platforms.
+ * 
+ * By leveraging the ManPage struct, your development team can achieve greater efficiency, maintainability,
+ * and clarity in managing application documentation, ultimately contributing to a more robust and
+ * user-friendly software experience.
+ * -------------------------------------------------------------------------------------------------------- */
+typedef struct {
+    char *filename;
+    char *manual;
+} ManPage;
+
+const char *FILE_EXTENTION = ".man";
+
+#define MAX_LINE_LENGTH 256
+
 // --------------------------------------------------------------------------------------------------------
 // The create_version function is a set of instructions that takes two numbers as input. These numbers
 // represent the major and minor parts of a version number, respectively. The function then constructs a
@@ -225,24 +245,6 @@ Version create_version(int major, int minor) {
 void to_string(Version v, char* buffer) {
     sprintf(buffer, "%02d.%02d", v.major, v.minor);
 }
-
-/* --------------------------------------------------------------------------------------------------------
- * The ManPage struct is a crucial data structure designed to streamline and enhance the management of
- * manual pages within your applications. It encapsulates all the necessary details of a manual page,
- * including the filename and its corresponding content, into a single, organized unit. This structured
- * approach not only simplifies the creation and modification of documentation but also ensures that your
- * manual pages are consistently and efficiently handled across different platforms.
- * 
- * By leveraging the ManPage struct, your development team can achieve greater efficiency, maintainability,
- * and clarity in managing application documentation, ultimately contributing to a more robust and
- * user-friendly software experience.
- * -------------------------------------------------------------------------------------------------------- */
-typedef struct {
-    char *filename;
-    char *manual;
-} ManPage;
-
-const char *FILE_EXTENTION = ".man";
 
 /* --------------------------------------------------------------------------------------------------------
  * By encapsulating the process of appending formatted content within this method, we ensure a seamless and
@@ -372,8 +374,6 @@ int isHelpTriggered(int argcIn, char *argvIn) {
         strcmp(argvIn, "-Help") == 0);
 }
 
-#define MAX_LINE_LENGTH 256
-
 /* -------------------------------------------------------------------------------------------------------
  * The print_help function is our top-notch guidance feature, crafted to provide users with clear,
  * intuitive instructions for leveraging our command-line utility within the Windows Command Prompt
@@ -407,43 +407,52 @@ void print_help() {
 
     // Write the ManPage style help file.
     append_format(&manpage, "NAME\n");
-    append_format(&manpage, "       pmake Version: %s\n", buffer);
-    append_format(&manpage, "       Our custom \"pmake\" program is designed to empower developers by\n");
+    append_format(&manpage, "       jmake Version: %s\n", buffer);
+    append_format(&manpage, "       Our custom \"jmake\" program is designed to empower Java developers by\n");
     append_format(&manpage, "       streamlining the build process with simplicity and efficiency.\n");
     append_format(&manpage, "       Tailored specifically for flexibility, it reads configuration files,\n");
     append_format(&manpage, "       interprets instructions, and executes commands to compile and build\n");
     append_format(&manpage, "       projects seamlessly. By offering an intuitive and robust solution,\n");
-    append_format(&manpage, "       our pmake program not only enhances productivity but also ensures\n");
+    append_format(&manpage, "       our jmake program not only enhances productivity but also ensures\n");
     append_format(&manpage, "       consistency across various development environments. This tool is\n");
     append_format(&manpage, "       an essential asset for any development team, enabling faster\n");
     append_format(&manpage, "       turnaround times and improved project management.\n");
     append_format(&manpage, "\n");
     append_format(&manpage, "SYNOPSIS\n");
-    append_format(&manpage, "       pmake <makefile>\n");
-    append_format(&manpage, "       pmake <-h\\-help\\-H\\-Help>\n");
+    append_format(&manpage, "       jmake <makefile>\n");
+    append_format(&manpage, "       jmake <-h\\-help\\-H\\-Help>\n");
     append_format(&manpage, "\n");
     append_format(&manpage, "DESCRIPTION\n");
     append_format(&manpage, "       <makefile> The name of the makefile with the build instructions\n");
     append_format(&manpage, "       to be processed.\n");
     append_format(&manpage, "\n");
-    append_format(&manpage, "           Example Makefile myproject.makefile:\n");
+    append_format(&manpage, "           Example Makefile myproject.jmake:\n");
     append_format(&manpage, "           ---------------------------------------\n");
-    append_format(&manpage, "           # Define the compiler and flags\n");
-    append_format(&manpage, "           comp=gcc\n");
-    append_format(&manpage, "           cflags=-Wall -Wextra -std=c11 (optional)\n");
+    append_format(&manpage, "           # Define the java compiler, if left empty default compiler is used.\n");
+    append_format(&manpage, "           javac=\n");
     append_format(&manpage, "\n");
-    append_format(&manpage, "           # Define the target executable or object\\library files\n");
-    append_format(&manpage, "           target=exec or\n");
-    append_format(&manpage, "           target=obj\n");
+    append_format(&manpage, "           # Define the classpath. Unused libraries or projects can be simply commented out.\n");
+    append_format(&manpage, "           classpath=.\n");
+    append_format(&manpage, "           /path/to/Project1\n");
+    append_format(&manpage, "           #/path/to/Project2\n");
+    append_format(&manpage, "           /path/to/lib1\n");
+    append_format(&manpage, "           #/path/to/lib2\n");
+    append_format(&manpage, "           # end of classpath  <- empty line or \"end of classpath\" indicates the end of classpath.\n");
     append_format(&manpage, "\n");
-    append_format(&manpage, "           # Define the source files\n");
-    append_format(&manpage, "           src=main.c (optional)\n");
+    append_format(&manpage, "           #Or you can define the classpath externally in the classpath.txt file.\n");
+    append_format(&manpage, "           classpath=classpath.txt\n");
     append_format(&manpage, "\n");
-    append_format(&manpage, "           # Define the project name\n");
-    append_format(&manpage, "           project=myproject\n");
+    append_format(&manpage, "           # Source files to compile, if left empty it will compile all java files\n");
+    append_format(&manpage, "           # in the active folder by using *.java. or you can list the files to compile.\n");
+    append_format(&manpage, "           # Or you can let jmake find all .java files in the active folder and subfolders.\n");
+    append_format(&manpage, "           # by using the @<source_file>.txt\n");
+    append_format(&manpage, "           src=\n");
     append_format(&manpage, "\n");
-    append_format(&manpage, "           # Define the library files\n");
-    append_format(&manpage, "           libs=../mylibs/lib1.o ../mylibs/lib2.o\n");
+    append_format(&manpage, "           # OR\n");
+    append_format(&manpage, "           src=Class1.java Class2.java Class3.java (optional)\n");
+    append_format(&manpage, "\n");
+    append_format(&manpage, "           # OR\n");
+    append_format(&manpage, "           src=@sources.txt (optional)\n");
     append_format(&manpage, "           ---------------------------------------\n");
     append_format(&manpage, "\n");
     append_format(&manpage, "       -h, -help -H -Help\n");
@@ -482,111 +491,14 @@ void process_makefile(const char *filename) {
     }
     
     char line[MAX_LINE_LENGTH];
-    char comp[50] = "gcc";
-    char cflags[100] = "";
-    char target[10] = "exec";
-    char project[50] = "";
-    char src[500] = "";
-    char libs[500] = "";
+    char javac[MAX_LINE_LENGTH] = "";
+    char classpath[MAX_LINE_LENGTH * 4] = "";
+    char src[MAX_LINE_LENGTH * 4] = "";
     
     while (fgets(line, sizeof(line), file)) {
         // Trim newline character
         line[strcspn(line, "\n")] = 0;
-        
-        // Skip empty lines or comments
-        if (line[0] == '\0' || line[0] == '#') continue;
-        
-        // Parse the makefile variables
-        if (strncmp(line, "comp=", 5) == 0) {
-            strcpy(comp, line + 5);
-        } else if (strncmp(line, "cflags=", 7) == 0) {
-            strcpy(cflags, line + 7);
-        } else if (strncmp(line, "target=", 7) == 0) {
-            strcpy(target, line + 7);
-        } else if (strncmp(line, "project=", 8) == 0) {
-            strcpy(project, line + 8);
-        } else if (strncmp(line, "src=", 4) == 0) {
-            strcpy(src, line + 4);
-        } else if (strncmp(line, "libs=", 5) == 0) {
-            strcpy(libs, line + 5);
-        }
-    }
-    
-    fclose(file);
-
-    char *command = NULL;
-
-    append_format(&command, "%s ", comp);
-
-    if(cflags[0] != '\0')
-        append_format(&command, "%s ", cflags);
-
-    if(target[0] != 'e')
-        append_format(&command, "-c ");
-
-    if(src[0] != '\0')
-        append_format(&command, "%s ", src);
-    else
-        append_format(&command, "%s.c ", project);
-
-    if(libs[0] != '\0')
-        append_format(&command, "%s ", libs);
-
-    if(target[0] != 'e')
-        append_format(&command, "-o %s.o", project);
-    else
-        append_format(&command, "-o %s", project);
-
-    printf("Compiling command:\n");
-    printf("%s\n", command);
-
-    // Execute the command
-    int result = system(command);
-    
-    if (result != 0) {
-        fprintf(stderr, "Command failed: %s\n", command);
-        exit(EXIT_FAILURE);
-    }
-}
-
-// ---------------------------------------------------------------------------------------------
-// main - The main function is the starting point of a C or C++ program, where execution begins.
-// This version of the main function allows the program to take command-line arguments when it
-// runs. The function typically returns an numbered value to the operating system, often zero
-// to signify successful execution.
-//
-// @param argc  The number of command-line arguments.
-// @param argv  The array of command-line arguments.
-// @return      0 on successful completion, 1 on error.
-// ----------------------------------------------------------------------------------------------
-int main (int argc, char **argv) {
-    
-    return 0;
-}
-
-/*
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#define MAX_LINE_LENGTH 1024
-
-int main() {
-    FILE *makefile = fopen("jmakefile", "r");
-    if (!makefile) {
-        perror("Failed to open makefile");
-        return 1;
-    }
-
-    char line[MAX_LINE_LENGTH];
-    char javac[MAX_LINE_LENGTH] = "javac";
-    char classpath[MAX_LINE_LENGTH] = ".";
-    char src[MAX_LINE_LENGTH] = "*.java";
-
-    while (fgets(line, sizeof(line), makefile)) {
-        // Remove newline character
-        line[strcspn(line, "\n")] = 0;
-
+                
         // Parse javac directive
         if (strncmp(line, "javac=", 6) == 0) {
             strcpy(javac, line + 6);
@@ -594,7 +506,6 @@ int main() {
                 strcpy(javac, "javac"); // Default to system javac
             }
         }
-
         // Parse classpath directive
         else if (strncmp(line, "classpath=", 10) == 0) {
             strcpy(classpath, line + 10);
@@ -616,7 +527,7 @@ int main() {
                 }
             }
         }
-
+        
         // Parse src directive
         else if (strncmp(line, "src=", 4) == 0) {
             strcpy(src, line + 4);
@@ -624,11 +535,89 @@ int main() {
                 strcpy(src, "*.java"); // Default to all .java files
             } else if (src[0] == '@') {
                 // Generate sources.txt file
-                char command[MAX_LINE_LENGTH];
-                snprintf(command, sizeof(command), "find . -name \"*.java\" > %s", src + 1);
-                system(command);
+                char create[MAX_LINE_LENGTH];
+                snprintf(create, sizeof(create), "find . -name \"*.java\" > %s", src + 1);
+                system(create);
             }
         }
+    }
+    
+    fclose(file);
+
+    char *command = NULL;
+
+    append_format(&command, "%s ", javac);
+
+    if(classpath[0] != '\0')
+        append_format(&command, "-cp %s ", classpath);
+
+    if(src[0] != '\0')
+        append_format(&command, "%s ", src);
+
+    printf("Compiling command:\n");
+    printf("%s\n", command);
+
+    // Execute the command
+    int result = system(command);
+
+    // clean up
+    if(src[0] == '@') {
+        char del[MAX_LINE_LENGTH];
+        snprintf(del, sizeof(del), "rm %s", src + 1);
+        system(del);
+    }
+
+    if (result != 0) {
+        fprintf(stderr, "Command failed: %s\n", command);
+        exit(EXIT_FAILURE);
+    }
+}
+
+// ---------------------------------------------------------------------------------------------
+// main - The main function is the starting point of a C or C++ program, where execution begins.
+// This version of the main function allows the program to take command-line arguments when it
+// runs. The function typically returns an numbered value to the operating system, often zero
+// to signify successful execution.
+//
+// @param argc  The number of command-line arguments.
+// @param argv  The array of command-line arguments.
+// @return      0 on successful completion, 1 on error.
+// ----------------------------------------------------------------------------------------------
+int main (int argc, char **argv) {
+    // Check if the help is triggered.
+    if(isHelpTriggered(argc, argv[1])) {
+        print_help();
+        return 1;
+    }
+
+    process_makefile(argv[1]);
+    return EXIT_SUCCESS;
+}
+
+/*
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_LINE_LENGTH 1024
+
+int main() {
+    FILE *makefile = fopen("jmakefile", "r");
+    if (!makefile) {
+        perror("Failed to open makefile");
+        return 1;
+    }
+
+    while (fgets(line, sizeof(line), makefile)) {
+        // Remove newline character
+        line[strcspn(line, "\n")] = 0;
+
+
+
+
+
+
+
     }
 
     fclose(makefile);
