@@ -29,6 +29,7 @@
 #include <string.h>
 #include <stdarg.h>
 #include <ctype.h>
+#include <stdbool.h>
 
 #ifdef _WIN32
     // Include Windows relevant libraries
@@ -494,42 +495,58 @@ void process_makefile(const char *filename) {
     char javac[MAX_LINE_LENGTH] = "";
     char classpath[MAX_LINE_LENGTH * 4] = "";
     char src[MAX_LINE_LENGTH * 4] = "";
+    bool in_classpath = false;
     
     while (fgets(line, sizeof(line), file)) {
         // Trim newline character
         line[strcspn(line, "\n")] = 0;
                 
         // Parse javac directive
-        if (strncmp(line, "javac=", 6) == 0) {
+        if (strncmp(line, "javac=", 6) == 0 && !in_classpath) {
             strcpy(javac, line + 6);
             if (strlen(javac) == 0) {
                 strcpy(javac, "javac"); // Default to system javac
             }
         }
+
         // Parse classpath directive
-        else if (strncmp(line, "classpath=", 10) == 0) {
+        // Start processing a classpath block
+        if (strncmp(line, "classpath=", 10) == 0) {
+            in_classpath = true;
             strcpy(classpath, line + 10);
-            if (classpath[0] == '\0') {
-                strcpy(classpath, ".");
-            } else if (classpath[0] == '@') {
-                // Read from file (e.g., classpath.txt)
+            if (classpath[0] == '@') {
+                // Handle @ directive for classpath
                 FILE *classpathFile = fopen(classpath + 1, "r");
                 if (classpathFile) {
                     char path[MAX_LINE_LENGTH];
                     classpath[0] = '\0'; // Reset classpath
                     while (fgets(path, sizeof(path), classpathFile)) {
-                        path[strcspn(path, "\n")] = 0;
+                        path[strcspn(path, "\n")] = 0; // Trim newline characters
                         if (path[0] == '#' || path[0] == '\0') continue; // Skip comments/empty lines
                         if (strlen(classpath) > 0) strcat(classpath, ":");
                         strcat(classpath, path);
                     }
                     fclose(classpathFile);
                 }
+                in_classpath = false; // Single-line directive is complete
+            }
+        } 
+        // Continue processing multi-line classpath block
+        else if (in_classpath) {
+            if (line[0] == '\0' || strncmp(line, "javac=", 6) == 0
+                || strncmp(line, "src=", 4) == 0
+                || strcmp(line, "# end of classpath") == 0) {
+                in_classpath = false; // End of classpath block
+            } else {
+                if (line[0] != '#') { // Skip comments/empty lines
+                    if (strlen(classpath) > 0) strcat(classpath, ":");
+                    strcat(classpath, line);
+                }
             }
         }
         
         // Parse src directive
-        else if (strncmp(line, "src=", 4) == 0) {
+        else if (strncmp(line, "src=", 4) == 0 && !in_classpath) {
             strcpy(src, line + 4);
             if (strlen(src) == 0) {
                 strcpy(src, "*.java"); // Default to all .java files
@@ -593,42 +610,3 @@ int main (int argc, char **argv) {
     process_makefile(argv[1]);
     return EXIT_SUCCESS;
 }
-
-/*
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#define MAX_LINE_LENGTH 1024
-
-int main() {
-    FILE *makefile = fopen("jmakefile", "r");
-    if (!makefile) {
-        perror("Failed to open makefile");
-        return 1;
-    }
-
-    while (fgets(line, sizeof(line), makefile)) {
-        // Remove newline character
-        line[strcspn(line, "\n")] = 0;
-
-
-
-
-
-
-
-    }
-
-    fclose(makefile);
-
-    // Construct and execute the javac command
-    char command[MAX_LINE_LENGTH * 4];
-    snprintf(command, sizeof(command), "%s -cp %s %s", javac, classpath, src);
-    printf("Executing: %s\n", command);
-    int result = system(command);
-
-    return result;
-}
-
-*/
