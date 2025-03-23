@@ -15,7 +15,7 @@
  * Dive into productivity with our refined ls utility.
  *
  * Compile instructions:
- * gcc/clang ls.c ../mylibs/cVersion.c ../mylibs/cManPage.c -o ls
+ * gcc/clang ls.c ../mylibs/utility/cVersion.c ../mylibs/utility/cManPage.c -o ls
  * pmake ls.makefile
  * -------------------------------------------------------------------------------------------------------
  * Author:  Patrik Eigenmann
