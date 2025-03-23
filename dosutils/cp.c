@@ -17,7 +17,7 @@
  * command-line excellence with our refined, robust, and highly functional directory management tool.
  *
  * Compile instructions:
- * gcc/clang cp.c ../mylibs/cVersion.c ../mylibs/cManPage.c -o cp
+ * gcc/clang cp.c ../mylibs/utility/cVersion.c ../mylibs/utility/cManPage.c -o cp
  * pmake cp.makefile
  * --------------------------------------------------------------------------------------------------------
  * Author:  Patrik Eigenmann
@@ -43,13 +43,13 @@
 
 #ifdef _WIN32
     // -= This is a complete Windows Program and not nessecary to compile on UNIX based systems. =- //
-    #include "..\mylibs\cVersion.h"
-    #include "..\mylibs\cManPage.h"
+    #include "..\mylibs\utility\cVersion.h"
+    #include "..\mylibs\utility\cManPage.h"
 
 #else
     // -= I have the UNIX part here only because I want to avoid error messages. =- //
-    #include "../mylibs/cVersion.h"
-    #include "../mylibs/cManPage.h"
+    #include "../mylibs/utility/cVersion.h"
+    #include "../mylibs/utility/cManPage.h"
 
 #endif
 

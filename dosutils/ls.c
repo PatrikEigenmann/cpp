@@ -37,13 +37,13 @@
 
 #ifdef _WIN32
     // -= This is a complete Windows Program and not nessecary to compile on UNIX based systems. =- //
-    #include "..\mylibs\cVersion.h"
-    #include "..\mylibs\cManPage.h"
+    #include "..\mylibs\utility\cVersion.h"
+    #include "..\mylibs\utility\cManPage.h"
 
 #else
     // -= I have the UNIX part here only because I want to avoid error messages. =- //
-    #include "../mylibs/cVersion.h"
-    #include "../mylibs/cManPage.h"
+    #include "../mylibs/utility/cVersion.h"
+    #include "../mylibs/utility/cManPage.h"
 
 #endif
 
