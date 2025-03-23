@@ -48,7 +48,7 @@ Build and process management tools:
 - Change to the tools directory.
 - Compile pmake using GCC. Instructions are in the pmake.c
 - Copy the binary pmake to the bin directory in your home folder.
-- Add pmake to your system PATH:
+- Add bin directory to your system PATH:
     - Open your shell configuration file (.zshrc for MacOS, .bashrc for Linux).
     - Add the line: export PATH="/path/to/your/bin:$PATH".
     - Save and close the file.
