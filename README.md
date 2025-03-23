@@ -6,7 +6,7 @@ It is up to the developer completely to use my pmake, make or cmake. Whatever yo
 ## 📂 Directory Structure
 
 ### 1. **dosutils**
-Utility programs, including:
+Windows specific utility programs (who doesn't like the old schoold UNIX commands), including:
 - `cp.c` and `ls.c` with their respective `makefiles`.
 
 ### 2. **enigma**
@@ -42,4 +42,23 @@ Build and process management tools:
 
 ---
 
-## 🛠 Build Instructions
+## 🛠 Setting Up pmake:
+
+- Clone the repository.
+- Change to the tools directory.
+- Compile pmake using GCC. Instructions are in the pmake.c
+- Copy the binary pmake to the bin directory in your home folder.
+- Add pmake to your system PATH:
+-- Open your shell configuration file (.zshrc for MacOS, .bashrc for Linux).
+-- Add the line: export PATH="/path/to/your/bin:$PATH".
+-- Save and close the file.
+- Source the shell configuration file to apply changes.
+
+You are now ready to use pmake!
+
+# License
+This project is distributed under the GNU open source License, more in the LICENSE file.
+Review the terms before use.
+
+# Note from the Developer
+"C Hackers... Come out and play!"
