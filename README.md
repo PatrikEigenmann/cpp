@@ -1,13 +1,13 @@
 # cpp Projects
-
 This repository contains C-based projects, utilities, and libraries, organized for easy navigation and use. The custom tool pmake is included to compile all projects and programs with its specific makefiles.
-It is up to the developer completely to use my pmake, make or cmake. Whatever you prefer, but once you look into pmake and the ease of use, I promise you'll love it. :-)
+It is up to the developer completely to use my pmake, make or cmake. Whatever you prefer, but once you look into pmake and see the ease of use, I promise you'll love it. :-)
 
 ## 📂 Directory Structure
 
 ### 1. **dosutils**
 Windows specific utility programs (who doesn't like the old schoold UNIX commands), including:
-- `cp.c` and `ls.c` with their respective `makefiles`.
+- `cp.c`: UNIX command `cp` clone.
+- `ls.c`: UNIX command `ls` clone.
 
 ### 2. **enigma**
 An implementation of the Enigma machine:
@@ -29,7 +29,7 @@ A collection of libraries and utilities:
 
 ### 5. **network**
 Network utilities:
-- `chkip`: A tool for IP-related tasks with source and makefile.
+- `chkip`: A tool to find all active IP-Addresses within a certain IP range.
 
 ### 6. **tests**
 Assorted test programs:
@@ -61,4 +61,4 @@ This project is distributed under the GNU open source License, more in the LICEN
 Review the terms before use.
 
 # Note from the Developer
-"C Hackers... Come out and play!"
+"Old School C Hackers... Come out and play!"
