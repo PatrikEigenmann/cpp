@@ -16,7 +16,8 @@
  * - Document high-level functionality provided by the library.
  * 
  * Compiler instructions:
- * 4) gcc -shared -o bin/libsamael.so util/cManPage.c util/cProgress.c util/cVersion.c
+ * 4) gcc -shared -o bin/libsamael.so samael.c utility/cManPage.c utility/cProgress.c
+ *                   utility/cVersion.c
  * Or pmake samael.makefile
  * -------------------------------------------------------------------------------------------
  * Author:  Patrik Eigenmann
@@ -24,6 +25,7 @@
  * GitHub:  www.github.com/PatrikEigenmann/cpp
  * -------------------------------------------------------------------------------------------
  * Sat 2025-03-22 File created.                                                 Version: 00.01
+ * Sat 2025-03-23 Folder update: From util to utility.                          Version: 00.02
  * ********************************************************************************************/
 
 #include "samael.h"

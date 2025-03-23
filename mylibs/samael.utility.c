@@ -1,7 +1,7 @@
 /* *******************************************************************************************
- * samael.h - This file serves as an umbrella header for a shared library. It aggregates and
- * provides access to all the necessary module headers, offering a single point of inclusion
- * for the library's functionality.
+ * samael.utility.c - This file serves as an umbrella header for a shared library. It
+ * aggregates and provides access to all the necessary module headers, offering a single point
+ * of inclusion for the library's functionality.
  *
  * By including this file, users gain access to all components of the library without needing
  * to include each module individually. This approach simplifies integration, ensures
@@ -16,28 +16,19 @@
  * - Document high-level functionality provided by the library.
  * 
  * Compiler instructions:
- * 1) gcc -shared -o bin/libsamael.so samael.c utility/cManPage.c utility/cProgress.c
+ * 4) gcc -shared -o bin/libsamael.utility.so samael.utility.c utility/cManPage.c utility/cProgress.c
  *                   utility/cVersion.c
- * or pmake samael.makefile
+ * Or pmake samael.utility.makefile
  * -------------------------------------------------------------------------------------------
  * Author:  Patrik Eigenmann
  * eMail:   p.eigenmann@gmx.net
  * GitHub:  www.github.com/PatrikEigenmann/cpp
  * -------------------------------------------------------------------------------------------
  * Sat 2025-03-22 File created.                                                 Version: 00.01
- * Sun 2025-03-23 Folder update: From util to utility.                          Version: 00.02
- * -------------------------------------------------------------------------------------------
- * To Do's:
  * ********************************************************************************************/
 
-#ifndef SAMAEL_H
-#define SAMAEL_H
+#include "samael.utility.h"
 
-/* *******************************************************************************************
- * Include all the necessary module headers for the shared library.
- * ********************************************************************************************/
-#include "utility/cManPage.h"
-#include "utility/cProgress.h"
-#include "utility/cVersion.h"
-
-#endif
+/* -------------------------------------------------------------------------------------------
+ * Note: This file currently does not contain any additional implementation.
+ * ------------------------------------------------------------------------------------------- */
