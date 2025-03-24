@@ -6,7 +6,8 @@
  * enhancing the accuracy and speed of network diagnostics and management.
  *
  * Compile instructions:
- * clang/gcc chkip.c ..\mylibs\cVersion.o ..\mylibs\cProgress.o ..\mylibs\cManPage.o -o chkip
+ * clang/gcc chkip.c ../mylibs/utility/cVersion.o ../mylibs/utility/cProgress.o
+ *                   ../mylibs/utility/cManPage.o -o chkip
  * pmake chkip.makefile
  * --------------------------------------------------------------------------------------------------
  * Author:  Patrik Eigenmann
@@ -41,13 +42,13 @@
 #include <string.h>
 
 #ifdef _WIN32
-    #include "..\mylibs\cVersion.h"
-    #include "..\mylibs\cProgress.h"
-    #include "..\mylibs\cManPage.h"
+    #include "..\mylibs\utility\cVersion.h"
+    #include "..\mylibs\utility\cProgress.h"
+    #include "..\mylibs\utility\cManPage.h"
 #else
-    #include "../mylibs/cVersion.h"
-    #include "../mylibs/cProgress.h"
-    #include "../mylibs/cManPage.h"
+    #include "../mylibs/utility/cVersion.h"
+    #include "../mylibs/utility/cProgress.h"
+    #include "../mylibs/utility/cManPage.h"
 #endif
 
 const int IP_MAX = 254;

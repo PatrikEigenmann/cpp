@@ -35,4 +35,4 @@ src=
 
 # Libraries to add, or already compiled .o files. Make sure they are properly included.
 # libs=../mylibs/cVersion.o ../mylibs/cManPage.o ../mylibs/cProgress.o
-libs=../mylibs/cVersion.c ../mylibs/cManPage.c ../mylibs/cProgress.c
+libs=../mylibs/utility/cVersion.c ../mylibs/utility/cManPage.c ../mylibs/utility/cProgress.c

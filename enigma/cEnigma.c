@@ -32,7 +32,7 @@
  * a .txt file.
  *
  * Compile instructions:
- * gcc/clang cEnigma.c ../mylibs/cVersion.c ../mylibs/cManPage.c -o cEnigma
+ * gcc/clang cEnigma.c ../mylibs/utility/cVersion.c ../mylibs/utility/cManPage.c -o cEnigma
  * pmake cEnigma.makefile
  * ***********************************************************************************************
  * Author:  Patrik Eigenmann
@@ -62,14 +62,14 @@
 
 #ifdef _WIN32
     // --= Windows Section please uncomment what you need! =-- //
-    #include "..\mylibs\cVersion.h"
-    #include "..\mylibs\cManPage.h"
+    #include "..\mylibs\utility\cVersion.h"
+    #include "..\mylibs\utility\cManPage.h"
 //    #include "..\mylibs\cProgress.h"
 
 #else
     // --= MacOS/Linux Section please uncomment what you need! =-- //
-    #include "../mylibs/cVersion.h"
-    #include "../mylibs/cManPage.h"
+    #include "../mylibs/utility/cVersion.h"
+    #include "../mylibs/utility/cManPage.h"
 //    #include "../mylibs/cProgress.h"
 
 #endif
