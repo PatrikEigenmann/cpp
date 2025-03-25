@@ -35,6 +35,7 @@
  * Wed 2025-01-22 Header comment GitHub URL updated.                                    Version: 00.09
  * Sun 2025-03-23 Target handles now obj, exec or shared.                               Version: 00.10
  * Sun 2025-03-23 Fixed a bug while handling "shared".                                  Version: 00.11
+ * Tue 2025-03-25 Changed the way the compiler command is put together.                 Version: 00.12
  * -----------------------------------------------------------------------------------------------------
  * To Do's:
  * - Take cVersion.h & cVersion.c appart and integrate it directly into this code base.             Done.                             Done.
@@ -425,7 +426,7 @@ int isHelpTriggered(int argcIn, char *argvIn) {
 void print_help() {
 
     // Version control implemented
-    Version v = create_version(0, 11);
+    Version v = create_version(0, 12);
     
     // The buffer is needed to write
     // the correct formated version number.
@@ -549,12 +550,17 @@ void process_makefile(const char *filename) {
 
     char *command = NULL;
 
+    // Step 1: Start with the compiler in the command.
     append_format(&command, "%s ", comp);
 
+    // Step 2: Set the flags if there are any.
     if(cflags[0] != '\0')
         append_format(&command, "%s ", cflags);
 
-    if(target[0] == 'o')
+    // Step 3: Check the target, is it object, exec or shared.
+    if(target[0] == 's')
+        append_format(&command, "-shared ");
+    else if(target[0] == 'o')
         append_format(&command, "-c ");
 
     if(src[0] != '\0')
@@ -565,7 +571,9 @@ void process_makefile(const char *filename) {
     if(libs[0] != '\0')
         append_format(&command, "%s ", libs);
 
-    if(target[0] == 'o')
+    if(target[0] == 's')
+        append_format(&command, "-o %s.so", project);
+    else if(target[0] == 'o')
         append_format(&command, "-o %s.o", project);
     else
         append_format(&command, "-o %s", project);

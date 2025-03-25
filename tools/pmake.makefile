@@ -31,7 +31,7 @@ project=pmake
 
 # Source file: Use it if the source filename is different than the project name.
 # As example main.c but project is cal.exe.
-src=
+src=pmake.c
 
 # Libraries to add, or already compiled .o files. Make sure they are properly included.
 libs=
