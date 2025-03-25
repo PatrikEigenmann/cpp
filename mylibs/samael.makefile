@@ -44,7 +44,7 @@ target=shared
 # is not specified, pmake assumes the corresponding .c file has the same name as the project directive.
 # This automatic association streamlines the build process by aligning the project name with its main 
 # source file when no specific source files are defined.
-project=bin/libSamael.so
+project=bin/libSamael
 
 # The `src` directive specifies the source files that require compilation. If the `src` directive is
 # left empty, `pmake` assumes that the corresponding `.c` file shares the same name as the project
