@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------------------------------
-# samael.makefile - This file is the makefile for the tool pmake for the project samael.
+# enigma.makefile - This file is the makefile for the tool pmake for the project enigma.
 # pmake is a tool that reads instructions you give it about how to use a compiler of your choice
 # and then automatically runs the compiler to build your software projects. Imagine it as a smart
 # assistant that knows exactly how to compile and prepare all the pieces of your software, ensuring
@@ -12,8 +12,7 @@
 # GitHub: www.github.com/PatrikEigenmann/Java
 # ------------------------------------------------------------------------------------------------
 # Change Log:
-# Sat 2025-03-22 File created.                                                      Version: 00.01
-# Sun 2025-03-23 Folder update: from util to utility.                               Version: 00.02
+# Tue 2025-03-25 File created.                                                      Version: 00.01
 # ------------------------------------------------------------------------------------------------
 
 # The compiler used for compiling the project is essential. Commonly, GCC is employed for Windows
@@ -29,7 +28,7 @@ comp=gcc
 # these flags can lead to more robust and optimized software, improving performance and catching
 # potential errors during compilation. While optional, using the right flags is crucial for
 # consistency and reproducibility in the build process.
-cflags=-shared
+cflags=-L../mylibs/bin
 
 # If the project necessitates specific compiler flags for compilation, these should be meticulously
 # specified to ensure precise and efficient code compilation. Compiler flags play a crucial role in
@@ -38,22 +37,22 @@ cflags=-shared
 # software, ensuring consistency and reducing potential errors in the build process. Although optional,
 # their strategic use is pivotal for achieving high-quality, reliable software development.
 # target=obj
-target=shared
+target=exec
 
 # Specify the project name, as pmake will use this name to create the executable. If the src directive
 # is not specified, pmake assumes the corresponding .c file has the same name as the project directive.
 # This automatic association streamlines the build process by aligning the project name with its main 
 # source file when no specific source files are defined.
-project=bin/libSamael.so
+project=enigma
 
 # The `src` directive specifies the source files that require compilation. If the `src` directive is
 # left empty, `pmake` assumes that the corresponding `.c` file shares the same name as the project
 # directive. This automatic association streamlines the build process by aligning the project name
 # with its main source file when no specific source files are defined.
-src=Samael.c
+src=_enigma.c
 
 # Specify the libraries, either as .c source files or already compiled .o object files. Ensure these
 # files are properly included in the build process to guarantee successful compilation and linking
 # of the project.
 # libs=../mylibs/cVersion.c ../mylibs/cManPage.c ../mylibs/cProgress.c
-libs=Utility/cVersion.c Utility/cManPage.c Utility/cProgress.c TowerOfBabel/Enigma.c TowerOfBabel/Rotor.c
+libs=-lSamael

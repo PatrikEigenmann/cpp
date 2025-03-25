@@ -43,16 +43,16 @@ target=shared
 # is not specified, pmake assumes the corresponding .c file has the same name as the project directive.
 # This automatic association streamlines the build process by aligning the project name with its main 
 # source file when no specific source files are defined.
-project=bin/libsamael.utility.so
+project=bin/libSamael.Utility.so
 
 # The `src` directive specifies the source files that require compilation. If the `src` directive is
 # left empty, `pmake` assumes that the corresponding `.c` file shares the same name as the project
 # directive. This automatic association streamlines the build process by aligning the project name
 # with its main source file when no specific source files are defined.
-src=samael.utility.c
+src=Samael.Utility.c
 
 # Specify the libraries, either as .c source files or already compiled .o object files. Ensure these
 # files are properly included in the build process to guarantee successful compilation and linking
 # of the project.
 # libs=../mylibs/cVersion.c ../mylibs/cManPage.c ../mylibs/cProgress.c
-libs=utility/cVersion.c utility/cManPage.c utility/cProgress.c
+libs=Utility/cVersion.c Utility/cManPage.c Utility/cProgress.c

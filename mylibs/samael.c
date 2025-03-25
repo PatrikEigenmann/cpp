@@ -1,5 +1,5 @@
 /* *******************************************************************************************
- * samael.c - This file serves as an umbrella header for a shared library. It aggregates and
+ * Samael.c - This file serves as an umbrella header for a shared library. It aggregates and
  * provides access to all the necessary module headers, offering a single point of inclusion
  * for the library's functionality.
  *
@@ -28,7 +28,7 @@
  * Sat 2025-03-23 Folder update: From util to utility.                          Version: 00.02
  * ********************************************************************************************/
 
-#include "samael.h"
+#include "Samael.h"
 
 /* -------------------------------------------------------------------------------------------
  * Note: This file currently does not contain any additional implementation.

@@ -1,5 +1,5 @@
 /* *******************************************************************************************
- * samael.h - This file serves as an umbrella header for a shared library. It aggregates and
+ * Samael.h - This file serves as an umbrella header for a shared library. It aggregates and
  * provides access to all the necessary module headers, offering a single point of inclusion
  * for the library's functionality.
  *
@@ -34,10 +34,17 @@
 #define SAMAEL_H
 
 /* *******************************************************************************************
- * Include all the necessary module headers for the shared library.
+ * Include all Utility headers
  * ********************************************************************************************/
-#include "utility/cManPage.h"
-#include "utility/cProgress.h"
-#include "utility/cVersion.h"
+#include "Utility/cManPage.h"
+#include "Utility/cProgress.h"
+#include "Utility/cVersion.h"
+
+
+/* *******************************************************************************************
+ * Include all TowerOfBabel headers
+ * ********************************************************************************************/
+#include "TowerOfBabel/Enigma.h"
+#include "TowerOfBabel/Rotor.h"
 
 #endif

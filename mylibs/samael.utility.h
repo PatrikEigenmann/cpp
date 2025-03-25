@@ -35,8 +35,8 @@
 /* *******************************************************************************************
  * Include all the necessary module headers for the shared library.
  * ********************************************************************************************/
-#include "utility/cManPage.h"
-#include "utility/cProgress.h"
-#include "utility/cVersion.h"
+#include "Utility/cManPage.h"
+#include "Utility/cProgress.h"
+#include "Utility/cVersion.h"
 
 #endif

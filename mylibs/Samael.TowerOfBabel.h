@@ -1,5 +1,5 @@
 /* *******************************************************************************************
- * samael.utility.c - This file serves as an umbrella header for a shared library. It
+ * Samael.TowerOfBabel.h - This file serves as an umbrella header for a shared library. It
  * aggregates and provides access to all the necessary module headers, offering a single point
  * of inclusion for the library's functionality.
  *
@@ -16,19 +16,25 @@
  * - Document high-level functionality provided by the library.
  * 
  * Compiler instructions:
- * 4) gcc -shared -o bin/libsamael.utility.so samael.utility.c utility/cManPage.c utility/cProgress.c
+ * 1) gcc -shared -o bin/libsamael.so samael.c utility/cManPage.c utility/cProgress.c
  *                   utility/cVersion.c
- * Or pmake samael.utility.makefile
+ * or pmake samael.makefile
  * -------------------------------------------------------------------------------------------
  * Author:  Patrik Eigenmann
  * eMail:   p.eigenmann@gmx.net
  * GitHub:  www.github.com/PatrikEigenmann/cpp
  * -------------------------------------------------------------------------------------------
- * Sat 2025-03-22 File created.                                                 Version: 00.01
+ * Tue 2025-03-25 File created.                                                 Version: 00.01
+ * -------------------------------------------------------------------------------------------
+ * To Do's:
  * ********************************************************************************************/
+#ifndef SAMAEL_TOWEROFBABEL_H
+#define SAMAEL_TOWEROFBABEL_H
 
-#include "Samael.Utility.h"
+/* *******************************************************************************************
+ * Include all TowerOfBabel headers
+ * ********************************************************************************************/
+#include "TowerOfBabel/Enigma.h"
+#include "TowerOfBabel/Rotor.h"
 
-/* -------------------------------------------------------------------------------------------
- * Note: This file currently does not contain any additional implementation.
- * ------------------------------------------------------------------------------------------- */
+#endif
