@@ -1,7 +1,7 @@
 /* *******************************************************************************************
  * Samael.h - This file serves as an umbrella header for a shared library. It aggregates and
  * provides access to all the necessary module headers, offering a single point of inclusion
- * for the library's functionality.
+ * for the library's functionality. 
  *
  * By including this file, users gain access to all components of the library without needing
  * to include each module individually. This approach simplifies integration, ensures

@@ -36,7 +36,6 @@
  * Sun 2025-03-23 Target handles now obj, exec or shared.                               Version: 00.10
  * Sun 2025-03-23 Fixed a bug while handling "shared".                                  Version: 00.11
  * Tue 2025-03-25 Changed the way the compiler command is put together.                 Version: 00.12
- * Tue 2025-03-25 Shared Libraries under Windows are now .dll and under Unix .so.       Version: 00.13
  * -----------------------------------------------------------------------------------------------------
  * To Do's:
  * - Take cVersion.h & cVersion.c appart and integrate it directly into this code base.             Done.                             Done.
@@ -427,7 +426,11 @@ int isHelpTriggered(int argcIn, char *argvIn) {
 void print_help() {
 
     // Version control implemented
+<<<<<<< HEAD
     Version v = create_version(0, 13);
+=======
+    Version v = create_version(0, 12);
+>>>>>>> 276e1924fc19afa82f5e512597afc7fb49f49754
     
     // The buffer is needed to write
     // the correct formated version number.
@@ -572,6 +575,7 @@ void process_makefile(const char *filename) {
     if(libs[0] != '\0')
         append_format(&command, "%s ", libs);
 
+<<<<<<< HEAD
     #ifdef _WIN32
         if(target[0] == 's')
             append_format(&command, "-o %s.dll", project);
@@ -589,6 +593,14 @@ void process_makefile(const char *filename) {
             append_format(&command, "-o %s", project);
 
     #endif
+=======
+    if(target[0] == 's')
+        append_format(&command, "-o %s.so", project);
+    else if(target[0] == 'o')
+        append_format(&command, "-o %s.o", project);
+    else
+        append_format(&command, "-o %s", project);
+>>>>>>> 276e1924fc19afa82f5e512597afc7fb49f49754
 
     printf("Compiling command:\n");
     printf("%s\n", command);
