@@ -54,6 +54,6 @@ src=Samael.c
 
 # Specify the libraries, either as .c source files or already compiled .o object files. Ensure these
 # files are properly included in the build process to guarantee successful compilation and linking
-# of the project.
+# of the project. 
 # libs=../mylibs/cVersion.c ../mylibs/cManPage.c ../mylibs/cProgress.c
 libs=Utility/cVersion.c Utility/cManPage.c Utility/cProgress.c TowerOfBabel/Enigma.c TowerOfBabel/Rotor.c

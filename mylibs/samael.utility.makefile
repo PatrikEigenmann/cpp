@@ -48,7 +48,7 @@ project=bin/libSamael.Utility.so
 # The `src` directive specifies the source files that require compilation. If the `src` directive is
 # left empty, `pmake` assumes that the corresponding `.c` file shares the same name as the project
 # directive. This automatic association streamlines the build process by aligning the project name
-# with its main source file when no specific source files are defined.
+# with its main source file when no specific source files are defined. 
 src=Samael.Utility.c
 
 # Specify the libraries, either as .c source files or already compiled .o object files. Ensure these

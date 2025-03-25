@@ -20,7 +20,7 @@
  *                   utility/cVersion.c
  * Or pmake samael.makefile
  * -------------------------------------------------------------------------------------------
- * Author:  Patrik Eigenmann
+ * Author:  Patrik Eigenmann 
  * eMail:   p.eigenmann@gmx.net
  * GitHub:  www.github.com/PatrikEigenmann/cpp
  * -------------------------------------------------------------------------------------------
