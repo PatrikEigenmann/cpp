@@ -56,4 +56,4 @@ src=_enigma.c
 # of the project.
 # libs=../mylibs/cVersion.c ../mylibs/cManPage.c ../mylibs/cProgress.c
 # libs=../mylibs/TowerOfBabel/Rotor.c ../mylibs/TowerOfBabel/Enigma.c
-libs=-L../mylibs/bin -lSamael.TowerOfBabel
+libs=-L../mylibs/bin -lSamael
