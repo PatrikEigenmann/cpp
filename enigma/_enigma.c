@@ -38,6 +38,8 @@
  * -----------------------------------------------------------------------------------------------
  * Version Control:
  * Tue 2025-03-25 File created.                                                     Version: 00.01
+ * Tue 2025-03-25 Windows compatibility in include paths added.                     Version: 00.02
+ * Tue 2025-03-25 Memory initialization for encrypted and decrypted messages added. Version: 00.03
  * ***********************************************************************************************/
 
 #include <stdio.h>
@@ -45,17 +47,31 @@
 #include <stdlib.h>
 #include <stdbool.h> // For bool data type
 
-#include "../mylibs/Samael.h"
+#ifdef _WIN32
+    // ---------------------- Windows ----------------------
+    // Handling Windows include paths
+    // -----------------------------------------------------
+    #include "..\mylibs\Samael.TowerOfBabel.h"
+#else
+    // ------------------------ Unix -----------------------
+    // Handling Unix include paths
+    // -----------------------------------------------------
+    #include "../mylibs/Samael.TowerOfBabel.h"
+#endif
 
 int main() {
+
+    printf("Enigma Machine Test v00.03\n");
 
     // Power up the Enigma machine
     powerUp();
 
     // Input message
     char message[] = "Beautiful work, Patrik! The encryption seamlessly transforms the message.\0";
-    char encryptedMessage[sizeof(message)];
-    char decryptedMessage[sizeof(message)];
+    char encryptedMessage[sizeof(message)];                 // Encrypted message
+    memset(encryptedMessage, 0, sizeof(encryptedMessage));  // Mainly for Windows: Initialize encrypted message
+    char decryptedMessage[sizeof(message)];                 // Decrypted message
+    memset(decryptedMessage, 0, sizeof(decryptedMessage));  // Mainly for Windows: Initialize decrypted message
 
     // Encrypt message
     for (int i = 0; message[i] != '\0'; i++) {
