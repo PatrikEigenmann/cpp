@@ -573,6 +573,7 @@ void process_makefile(const char *filename) {
 
 
     #ifdef _WIN32
+        // Windows version
         if(target[0] == 's')
             append_format(&command, "-o %s.dll", project);
         else if(target[0] == 'o')
@@ -580,7 +581,7 @@ void process_makefile(const char *filename) {
         else
             append_format(&command, "-o %s", project);
     #else
-
+        // Unix version
         if(target[0] == 's')
             append_format(&command, "-o %s.so", project);
         else if(target[0] == 'o')
