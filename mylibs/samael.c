@@ -16,9 +16,9 @@
  * - Document high-level functionality provided by the library.
  * 
  * Compiler instructions:
- * 4) gcc -shared -o bin/libsamael.so samael.c utility/cManPage.c utility/cProgress.c
+ * 4) gcc -shared -o bin/libSamael.so Samael.c utility/cManPage.c utility/cProgress.c
  *                   utility/cVersion.c
- * Or pmake samael.makefile
+ * Or pmake Samael.makefile
  * -------------------------------------------------------------------------------------------
  * Author:  Patrik Eigenmann 
  * eMail:   p.eigenmann@gmx.net

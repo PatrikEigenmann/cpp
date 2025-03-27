@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------------------------------
-# samael.makefile - This file is the makefile for the tool pmake for the project samael.
+# Samael.makefile - This file is the makefile for the tool pmake for the project Samael.
 # pmake is a tool that reads instructions you give it about how to use a compiler of your choice
 # and then automatically runs the compiler to build your software projects. Imagine it as a smart
 # assistant that knows exactly how to compile and prepare all the pieces of your software, ensuring

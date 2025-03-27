@@ -1,5 +1,5 @@
 /* *******************************************************************************************
- * samael.utility.c - This file serves as an umbrella header for a shared library. It
+ * Samael.utility.c - This file serves as an umbrella header for a shared library. It
  * aggregates and provides access to all the necessary module headers, offering a single point
  * of inclusion for the library's functionality.
  *
@@ -16,9 +16,9 @@
  * - Document high-level functionality provided by the library.
  * 
  * Compiler instructions:
- * 4) gcc -shared -o bin/libsamael.utility.so samael.utility.c utility/cManPage.c utility/cProgress.c
+ * 4) gcc -shared -o bin/libSamael.utility.so Samael.utility.c utility/cManPage.c utility/cProgress.c
  *                   utility/cVersion.c
- * Or pmake samael.utility.makefile
+ * Or pmake Samael.utility.makefile
  * -------------------------------------------------------------------------------------------
  * Author:  Patrik Eigenmann
  * eMail:   p.eigenmann@gmx.net
