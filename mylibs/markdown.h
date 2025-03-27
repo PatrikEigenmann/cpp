@@ -34,11 +34,23 @@
 #ifndef MARKDOWN_H
 #define MARKDOWN_H
 
-/* *******************************************************************************************
- * Include all the necessary module headers for the shared library.
- * ********************************************************************************************/
-#include "md4c/entity.h"
-#include "md4c/md4c-html.h"
-#include "md4c/md4c.h"
+#ifdef _WIN32
+    // --------------------------------------- Windows -------------------------------------------
+    /* *******************************************************************************************
+     * Include all the necessary module headers for the shared library.
+     * ********************************************************************************************/
+    #include "md4c\entity.h"
+    #include "md4c\md4c-html.h"
+    #include "md4c\md4c.h"
+#else
+    // --------------------------------------- Unix ----------------------------------------------
+    /* *******************************************************************************************
+     * Include all the necessary module headers for the shared library.
+     * ********************************************************************************************/
+    #include "md4c/entity.h"
+    #include "md4c/md4c-html.h"
+    #include "md4c/md4c.h"
+
+#endif
 
 #endif

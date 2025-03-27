@@ -28,7 +28,7 @@ comp=gcc
 # these flags can lead to more robust and optimized software, improving performance and catching
 # potential errors during compilation. While optional, using the right flags is crucial for
 # consistency and reproducibility in the build process.
-cflags=-shared
+cflags=
 
 # If the project necessitates specific compiler flags for compilation, these should be meticulously
 # specified to ensure precise and efficient code compilation. Compiler flags play a crucial role in

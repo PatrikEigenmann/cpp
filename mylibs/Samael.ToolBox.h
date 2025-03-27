@@ -1,5 +1,5 @@
 /* *******************************************************************************************
- * Samael.TowerOfBabel.c - Samael.ToolBox is the foundational module for practical and
+ * Samael.ToolBox.h - Samael.ToolBox is the foundational module for practical and
  * essential utilities within the Samael framework. It serves as a centralized repository for
  * frequently used tools, offering streamlined methods to perform common tasks such as type
  * checks, validations, and basic operations. This module is intentionally general-purpose,
@@ -12,21 +12,39 @@
  * companion for developers seeking clarity and simplicity in their codebase.
  * 
  * Compiler instructions:
- * 1) gcc -shared -o bin/libSamaelTowerOfBabel.so Samael.TowerOfBabel.c TowerOfBabel/Enigma.c
- *                  TowerOfBabel/Rotor.c
- * or pmake Samael.TowerOfBabel.makefile
+ * gcc -shared -o bin/libSamael.ToolBox.so Samael.ToolBox.c ToolBox/cManPage.c ToolBox/cProgress.c
+ *                   ToolBox/cVersion.c
+ * or pmake Samael.ToolBox.makefile
  * -------------------------------------------------------------------------------------------
  * Author:  Patrik Eigenmann
  * eMail:   p.eigenmann@gmx.net
  * GitHub:  www.github.com/PatrikEigenmann/cpp
  * -------------------------------------------------------------------------------------------
- * Tue 2025-03-25 File created.                                                 Version: 00.01
+ * Sat 2025-03-22 File created.                                                 Version: 00.01
+ * Wed 2025-03-26 Folder update: From Utility to ToolBox.                       Version: 00.02
  * -------------------------------------------------------------------------------------------
  * To Do's:
  * ********************************************************************************************/
 
-#include "Samael.TowerOfBabel.h"
+#ifndef SAMAEL_TOOLBOX_H
+#define SAMAEL_TOOLBOX_H
 
-/* -------------------------------------------------------------------------------------------
- * Note: This file currently does not contain any additional implementation.
- * ------------------------------------------------------------------------------------------- */
+#ifdef _WIN32
+    // -------------------------------------------------------------------------------------------
+    // Include Samael.ToolBox headers for the library's functionality under Windows.
+    // -------------------------------------------------------------------------------------------
+    #include "ToolBox\cManPage.h"
+    #include "ToolBox\cProgress.h"
+    #include "ToolBox\cVersion.h"
+
+#else
+    // -------------------------------------------------------------------------------------------
+    // Include Samael.ToolBox headers for the library's functionality under Unix systems.
+    // -------------------------------------------------------------------------------------------
+    #include "ToolBox/cManPage.h"
+    #include "ToolBox/cProgress.h"
+    #include "ToolBox/cVersion.h"
+
+#endif
+
+#endif
