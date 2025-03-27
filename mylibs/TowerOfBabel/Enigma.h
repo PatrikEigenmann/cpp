@@ -33,6 +33,8 @@
  * -----------------------------------------------------------------------------------------------
  * Version Control:
  * Tue 2025-03-25 File created.                                                     Version: 00.01
+ * Thu 2025-03-27 Defined ROTOR_LENTGH here, because it is enigma specific.         Version: 00.02
+ * Thu 2025-03-27 setRotorLength in powerUp before initializing the rotors.         Version: 00.03
  * ***********************************************************************************************/
 #ifndef ENIGMA_H
 #define ENIGMA_H
@@ -48,6 +50,11 @@
 #define SMALL 0     // Small rotor type
 #define MEDIUM 1    // Medium rotor type
 #define LARGE 2     // Large rotor type
+
+// -----------------------------------------------------------------------------------------------
+// Define the rotor's length to ensure consistency across the program.
+// -----------------------------------------------------------------------------------------------
+#define ROTOR_LENGTH 95
 
 // -----------------------------------------------------------------------------------------------
 // Definition of the three rotors used in the Enigma machine. The small, medium, and large rotor

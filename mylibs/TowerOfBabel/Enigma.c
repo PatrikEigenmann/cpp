@@ -32,6 +32,8 @@
  * -----------------------------------------------------------------------------------------------
  * Version Control:
  * Tue 2025-03-25 File created.                                                     Version: 00.01
+ * Thu 2025-03-27 Defined ROTOR_LENTGH in enigma.h, because it is enigma specific.  Version: 00.02
+ * Thu 2025-03-27 setRotorLength in powerUp before initializing the rotors.         Version: 00.03
  * ***********************************************************************************************/
 #include <stdio.h>
 #include <string.h>
@@ -56,6 +58,13 @@ Rotor smallRotor, mediumRotor, largeRotor;
 // and let the magic begin.
 // -----------------------------------------------------------------------------------------------
 void powerUp() {
+    
+    if (rotorLength == -1) {
+        setRotorLength(ROTOR_LENGTH);
+        // printf("Error: Rotor length not set. Please set the rotor length before powering up the Enigma machine.\n");
+        //return;
+    }
+    
     initRotor(&smallRotor,  "Small",  " 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~", SMALL);
     initRotor(&mediumRotor, "Medium", "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~abcdefghijklmnopqrstuvwxyz", MEDIUM);
     initRotor(&largeRotor,  "Large",  "89./:;<=>?@[\\]^_`{|}~ABCD4567LMNOghijklmnopqrEFGHIJK0123stuvwxyz!\"#$%&'()*+,-PQRST UVWXYZabcdef", LARGE);
@@ -86,12 +95,12 @@ void startFromScratch() {
 void crankThatCipher(int iteration) {
     rotate(&smallRotor);
 
-    if (iteration % ROTOR_LENGTH == 0 && iteration != 0) {
+    if (iteration % rotorLength == 0 && iteration != 0) {
         rotate(&mediumRotor);
     }
 
     // Large rotor rotates after every full rotation of the medium rotor
-    if (iteration % (ROTOR_LENGTH * ROTOR_LENGTH) == 0 && iteration != 0) {
+    if (iteration % (rotorLength * rotorLength) == 0 && iteration != 0) {
         rotate(&largeRotor);
     }
 }
@@ -119,7 +128,7 @@ char encrypt(char inputChar, Rotor *smallRotor, Rotor *mediumRotor, Rotor *large
  
     // Step 2: Find inputChar in smallRotor.mapping and get the index
     int index = -1;
-    for (int i = 0; i < ROTOR_LENGTH; i++) {
+    for (int i = 0; i < rotorLength; i++) {
         if (smallRotor->mapping[i] == inputChar) {
             index = i;
             break;
@@ -137,7 +146,7 @@ char encrypt(char inputChar, Rotor *smallRotor, Rotor *mediumRotor, Rotor *large
 
     // Step 4: Find the index of currentChar in largeRotor.mapping
     index = -1;
-    for (int i = 0; i < ROTOR_LENGTH; i++) {
+    for (int i = 0; i < rotorLength; i++) {
         if (largeRotor->mapping[i] == currentChar) {
             index = i;
             break;
@@ -171,7 +180,7 @@ char decrypt(char inputChar, Rotor *smallRotor, Rotor *mediumRotor, Rotor *large
 
     // Step 2: Find inputChar in smallRotor.mapping
     int index = -1;
-    for (int i = 0; i < ROTOR_LENGTH; i++) {
+    for (int i = 0; i < rotorLength; i++) {
         if (smallRotor->mapping[i] == inputChar) {
             index = i;  // Find index of inputChar in smallRotor
             break;
@@ -189,7 +198,7 @@ char decrypt(char inputChar, Rotor *smallRotor, Rotor *mediumRotor, Rotor *large
 
     // Step 4: Find index of currentChar in mediumRotor.mapping
     index = -1;
-    for (int i = 0; i < ROTOR_LENGTH; i++) {
+    for (int i = 0; i < rotorLength; i++) {
         if (mediumRotor->mapping[i] == currentChar) {
             index = i;  // Find index of character in mediumRotor
             break;
@@ -215,10 +224,10 @@ void rotate(Rotor *rotor) {
     }
 
     char firstChar = rotor->mapping[0];
-    for (int i = 0; i < ROTOR_LENGTH - 1; i++) {
+    for (int i = 0; i < rotorLength - 1; i++) {
         rotor->mapping[i] = rotor->mapping[i + 1];
     }
-    rotor->mapping[ROTOR_LENGTH - 1] = firstChar;
+    rotor->mapping[rotorLength - 1] = firstChar;
 
     // Debug print for the rotated rotor
     // printf("Rotated %sRotor: %s\n", rotor->name, rotor->mapping);

@@ -22,6 +22,7 @@
  * -----------------------------------------------------------------------------------------------
  * Change Log:
  * Mon 2025-03-24 File created.                                                     Version: 00.01
+ * Thu 2025-03-27 Replaced the ROTOR_LENGTH with a dynamic value rotorLength.       Version: 00.02
  * -----------------------------------------------------------------------------------------------
  * To Do:
  * - Change the rotor length to a dynamic value for more flexibility.
@@ -34,9 +35,8 @@
 
 // -----------------------------------------------------------------------------------------------
 // Define the rotor's length to ensure consistency across the program.
-// To Do: Change the rotor length to a dynamic value for more flexibility.
 // -----------------------------------------------------------------------------------------------
-#define ROTOR_LENGTH 95
+extern int rotorLength;
 
 // -----------------------------------------------------------------------------------------------
 // Rotor - Definition of a rotor with its base properties.
@@ -54,6 +54,14 @@ typedef struct {
     char *original;     // Original mapping for reinitialization
     bool initialized;   // Tracks if the rotor is fully initialized
 } Rotor;
+
+// -----------------------------------------------------------------------------------------------
+// setRotorLength - Set the rotor length to a specific value. This function is used to set the rotor
+// length to a specific value. The rotor length is the number of characters in the rotor's mapping.
+// -----------------------------------------------------------------------------------------------
+// @param length as an integer to set the rotor length.
+// -----------------------------------------------------------------------------------------------  
+void setRotorLength(int length);
 
 // -----------------------------------------------------------------------------------------------
 // defaultRotor - Because of a declaration problem, this function is a workaround to set the rotor

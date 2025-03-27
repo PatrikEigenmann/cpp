@@ -22,6 +22,7 @@
  * -----------------------------------------------------------------------------------------------
  * Change Log:
  * Mon 2025-03-24 File created.                                                     Version: 00.01
+ * Thu 2025-03-27 Replaced the ROTOR_LENGTH with a dynamic value rotorLength.       Version: 00.02
  * -----------------------------------------------------------------------------------------------
  * To Do:
  * - Change the rotor length to a dynamic value for more flexibility.
@@ -33,6 +34,18 @@
 #include <stdbool.h> // For bool data type
 
 #include "Rotor.h"
+
+int rotorLength = -1;
+
+// -----------------------------------------------------------------------------------------------
+// setRotorLength - Set the rotor length to a specific value. This function is used to set the rotor
+// length to a specific value. The rotor length is the number of characters in the rotor's mapping.
+// -----------------------------------------------------------------------------------------------
+// @param length as an integer to set the rotor length.
+// -----------------------------------------------------------------------------------------------  
+void setRotorLength(int length) {
+    rotorLength = length;
+}
 
 // -----------------------------------------------------------------------------------------------
 // defaultRotor - Because of a declaration problem, this function is a workaround to set the rotor
@@ -63,13 +76,22 @@ void defaultRotor(Rotor *rotor) {
 // To Do: Change order of parameters for better readability.
 // -----------------------------------------------------------------------------------------------
 void initRotor(Rotor *rotor, const char *name, const char *mapping, int type) {
+    
+
+    if(rotorLength == -1) {
+
+        printf("Error: Rotor length not set. Please set the rotor length before initializing the rotor.\n");
+        rotorLength = strlen(mapping);
+        //return;
+    }
+    
     rotor->name = malloc(strlen(name) + 1);  // Allocate memory for name
     strcpy(rotor->name, name);              // Copy name to struct
 
-    rotor->mapping = malloc(ROTOR_LENGTH + 1);  // Allocate memory for current mapping
+    rotor->mapping = malloc(rotorLength + 1);  // Allocate memory for current mapping
     strcpy(rotor->mapping, mapping);           // Copy mapping to struct
 
-    rotor->original = malloc(ROTOR_LENGTH + 1); // Allocate memory for original mapping
+    rotor->original = malloc(rotorLength + 1); // Allocate memory for original mapping
     strcpy(rotor->original, mapping);          // Store original mapping
 
     rotor->type = type;                        // Assign type

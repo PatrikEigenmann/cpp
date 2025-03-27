@@ -11,8 +11,8 @@
  * transformation at its core.
  * 
  * Compiler instructions:
- * 1) gcc -shared -o bin/libSamael.so Samael.c ToolBox/cManPage.c ToolBox/cProgress.c
- *        ToolBox/cVersion.c TowerOfBabel/rotor.c TowerOfBabel/enigma.c TowerOfBabel/
+ * gcc -shared -o bin/libSamael.so Samael.c ToolBox/cManPage.c ToolBox/cProgress.c
+ *        ToolBox/cVersion.c TowerOfBabel/rotor.c TowerOfBabel/enigma.c
  * or pmake Samael.makefile
  * -------------------------------------------------------------------------------------------
  * Author:  Patrik Eigenmann
