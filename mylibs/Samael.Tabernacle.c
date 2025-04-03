@@ -1,15 +1,14 @@
 /* *******************************************************************************************
- * Samael.Tabernacle.c - Samael.Tabernacle serves as a sanctuary for configuration
- * and settings management within the Samael framework. It provides a centralized and structured
- * approach to storing and retrieving application configurations, ensuring consistency and ease
- * of use. Samael.Tabernacle is designed to handle both static and dynamic settings, accommodating
- * everything from simple key-value pairs to complex hierarchical structures. This module supports
- * seamless integration with external configuration files and environment variables, adapting to
- * various deployment scenarios. It emphasizes flexibility and clarity, allowing for
- * straightforward customization and runtime adjustments. Whether used for managing global
- * parameters, user preferences, or environment-specific settings, Samael.Tabernacle ensures
- * that every detail is organized and accessible. It acts as the cornerstone of stability and
- * adaptability, safeguarding the integrity of application configurations.
+ * Samael.Tabernacle.c - Samael.Tabernacle is the gateway between the graphical world and the
+ * unseen binary realm. It transforms user interactions—clicks, gestures, and input—into
+ * structured operations, seamlessly linking the visual interface with the underlying computational
+ * logic.
+ * 
+ * Like a tabernacle connecting reality to deeper, invisible forces, Samael.Tabernacle is where
+ * human intention meets machine execution. It ensures that every action taken within the interface
+ * translates into precise, optimized processes at the system level. Whether handling complex
+ * workflows, dynamic user responses, or data visualization, this module makes sure the UI and the
+ * binary engine work in perfect harmony.
  *
  * Compile instructions:
  * gcc -shared Samael.Tabernacle.c -o bin/libSamael.Tabernacle.so

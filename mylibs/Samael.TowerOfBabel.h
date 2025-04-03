@@ -1,15 +1,10 @@
 /* *******************************************************************************************
- * Samael.TowerOfBabel.h - Samael.ToolBox is the foundational module for practical and
- * essential utilities within the Samael framework. It serves as a centralized repository for
- * frequently used tools, offering streamlined methods to perform common tasks such as type
- * checks, validations, and basic operations. This module is intentionally general-purpose,
- * providing accessible and efficient solutions for handling routine programming needs.
- * Samael.ToolBox ensures that developers can rely on a consistent set of functions to simplify
- * their workflows without duplicating efforts across different modules. Its lightweight design
- * prioritizes adaptability, making it easy to integrate into a wide range of applications.
- * From basic operations to sophisticated utilities, Samael.ToolBox embodies versatility and
- * efficiency, supporting both the framework and its extensions. It stands as a reliable
- * companion for developers seeking clarity and simplicity in their codebase.
+ * Samael.TowerOfBabel.h - Samael.TowerOfBabel is a cryptographic package designed to secure
+ * textual communication over public networks. It provides encryption, encoding, and decoding
+ * mechanisms ranging from nostalgic Enigma-style ciphers to modern AES, SHA, and advanced
+ * hashing techniques. By integrating this package, developers can protect sensitive data and
+ * ensure confidentiality in their applications. Import Samael.TowerOfBabel to incorporate
+ * reliable and scalable encryption solutions into your system.
  * 
  * Compiler instructions:
  * 1) gcc -shared -o bin/libSamaelTowerOfBabel.so Samael.TowerOfBabel.c TowerOfBabel/Enigma.c
