@@ -24,6 +24,7 @@
  * Wed 2025-03-26 Folder update: From Utility to ToolBox.                       Version: 00.02
  * Sun 2025-04-06 Depricate cVersion.h and moved it to Samael.Chronicle.        Version: 00.03
  * Sun 2025-04-06 Register package ToolBox with it's version number.            Version: 00.04
+ * Mon 2025-04-07 Component StringAppend added to Samael.ToolBox.               Version: 00.05
  * ********************************************************************************************/
 #include "Samael.h"
 #include "Samael.ToolBox.h"
@@ -40,5 +41,5 @@
 // -------------------------------------------------------------------------------------------
 __attribute__((constructor)) void regToolBox(void) {
     // Register the ToolBox package with its version number.
-    registerVersion("Samael.ToolBox", "", 0, 4);
+    registerVersion("Samael.ToolBox", "", 0, 5);
 }

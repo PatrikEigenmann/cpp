@@ -23,6 +23,7 @@
  * Wed 2025-01-22 Header comment GitHub URL updated.                                        Version: 00.06
  * Sun 2025-04-06 Moved to the ToolBox.                                                     Version: 00.07
  * Sun 2025-04-06 New versioning system implemented.                                        Version: 00.08
+ * Mon 2025-04-07 append_format exluded to StringAppend.                                    Version: 00.09
  * *********************************************************************************************************/
 
 #include <stdio.h>
@@ -41,6 +42,7 @@
     #include "../Samael.ToolBox.h"
 #endif
 
+#include "StringAppend.h"
 #include "cManPage.h"
 
 #ifdef _WIN32
@@ -196,7 +198,7 @@ const char *FILE_EXTENTION = ".man";
 // -------------------------------------------------------------------------------------------
 __attribute__((constructor)) void regCManPage(void) {
     // Register the cManPage package with its version number.
-    registerVersion("Samael.ToolBox", "cManPage", 0, 8);
+    registerVersion("Samael.ToolBox", "cManPage", 0, 9);
 }
 
 /* ----------------------------------------------------------------------------------------------------
@@ -242,59 +244,6 @@ void create_manpage(char *filenameIn, char *manualIn, int major, int minor) {
 
     strcat(command, mp.filename);
     system(command);
-}
-
-/* ----------------------------------------------------------------------------------------------------
- * By encapsulating the process of appending formatted content within this method, we ensure a seamless
- * and efficient way to dynamically build strings. This method not only enhances the maintainability and
- * readability of your codebase, but also guarantees that formatted content is appended consistently and
- * effectively.
- * 
- * Adopting the append_format method will streamline your string manipulation tasks, fostering better
- * organization and flexibility, and ultimately contributing to a more polished and efficient product.
- * 
- * @param char **dest - The destination string to which formatted content will be appended.
- * @param const char *format - The format string.
- * @param ... - Additional arguments to format and append to the destination string.
- * ----------------------------------------------------------------------------------------------------- */
-void append_format(char **dest, const char *format, ...) {
-    va_list args;
-    va_start(args, format);
-    
-    va_list args_copy;
-    va_copy(args_copy, args);
-    int size = vsnprintf(NULL, 0, format, args_copy) + 1;
-    va_end(args_copy);
-
-    char *temp = malloc(size);
-    if (temp == NULL) {
-        perror("malloc failed");
-        va_end(args);
-        return;
-    }
-    
-    vsprintf(temp, format, args);
-    va_end(args);
-
-    if (*dest == NULL) {
-        *dest = malloc(size);
-        if (*dest == NULL) {
-            perror("malloc failed");
-            free(temp);
-            return;
-        }
-        strcpy(*dest, temp);
-    } else {
-        *dest = realloc(*dest, strlen(*dest) + size);
-        if (*dest == NULL) {
-            perror("realloc failed");
-            free(temp);
-            return;
-        }
-        strcat(*dest, temp);
-    }
-    
-    free(temp);
 }
 
 /* ----------------------------------------------------------------------------------------------------

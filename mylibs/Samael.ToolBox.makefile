@@ -55,4 +55,4 @@ src=Samael.ToolBox.c
 # Specify the libraries, either as .c source files or already compiled .o object files. Ensure these
 # files are properly included in the build process to guarantee successful compilation and linking
 # of the project.
-libs=Samael.c Framework.c ToolBox/cManPage.c ToolBox/cProgress.c
+libs=Samael.c Framework.c ToolBox/cManPage.c ToolBox/cProgress.c ToolBox/StringAppend.c

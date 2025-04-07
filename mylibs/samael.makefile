@@ -58,5 +58,5 @@ src=Samael.c
 # of the project. 
 libs=Framework.c Samael.Alchemy.c Samael.Chronicle.c Chronicle/Version.c Samael.Entanglement.c
 Samael.HuginAndMunin.c Samael.Necronomicon.c Samael.Raven.c Samael.Scribe.c Samael.Tabernacle.c
-Samael.ToolBox.c ToolBox/cManPage.c ToolBox/cProgress.c Samael.TowerOfBabel.c
+Samael.ToolBox.c ToolBox/cManPage.c ToolBox/cProgress.c ToolBox/StringAppend.c Samael.TowerOfBabel.c
 TowerOfBabel/Enigma.c TowerOfBabel/Rotor.c
