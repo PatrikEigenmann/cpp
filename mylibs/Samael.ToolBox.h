@@ -22,8 +22,8 @@
  * -------------------------------------------------------------------------------------------
  * Sat 2025-03-22 File created.                                                 Version: 00.01
  * Wed 2025-03-26 Folder update: From Utility to ToolBox.                       Version: 00.02
- * -------------------------------------------------------------------------------------------
- * To Do's:
+ * Sun 2025-04-06 Depricate cVersion.h and moved it to Samael.Chronicle.        Version: 00.03
+ * Sun 2025-04-06 Register package ToolBox with it's version number.            Version: 00.04
  * ********************************************************************************************/
 
 #ifndef SAMAEL_TOOLBOX_H
@@ -35,7 +35,7 @@
     // -------------------------------------------------------------------------------------------
     #include "ToolBox\cManPage.h"
     #include "ToolBox\cProgress.h"
-    #include "ToolBox\cVersion.h"
+    // #include "ToolBox\cVersion.h" -> Deprecated and moved to Samael.Chronicle.Version.
 
 #else
     // -------------------------------------------------------------------------------------------
@@ -43,8 +43,20 @@
     // -------------------------------------------------------------------------------------------
     #include "ToolBox/cManPage.h"
     #include "ToolBox/cProgress.h"
-    #include "ToolBox/cVersion.h"
+    // #include "ToolBox/cVersion.h" -> Deprecated and moved to Samael.Chronicle.Version.
 
 #endif
+
+// -------------------------------------------------------------------------------------------
+// regToolBox - Automatically registers this component's version information with the versioning
+// system of the Samael framework.
+//
+// This function is marked with the constructor attribute in the implementation file
+// Samael.ToolBox.c, which means it will automatically be executed prior to the execution
+// of the main() function. This pre-main invocation is part of the automatic versioning
+// mechanism, ensuring that the version details for this component are registered as soon
+// as the module is loaded.
+// -------------------------------------------------------------------------------------------
+void regToolBox(void);
 
 #endif

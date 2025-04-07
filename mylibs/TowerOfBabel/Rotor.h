@@ -23,6 +23,7 @@
  * Change Log:
  * Mon 2025-03-24 File created.                                                     Version: 00.01
  * Thu 2025-03-27 Replaced the ROTOR_LENGTH with a dynamic value rotorLength.       Version: 00.02
+ * Sun 2025-04-06 Register component with its version in the Samael Framework.      Version: 00.03
  * -----------------------------------------------------------------------------------------------
  * To Do:
  * - Change the rotor length to a dynamic value for more flexibility.
@@ -54,6 +55,18 @@ typedef struct {
     char *original;     // Original mapping for reinitialization
     bool initialized;   // Tracks if the rotor is fully initialized
 } Rotor;
+
+// -------------------------------------------------------------------------------------------
+// regRotor - Automatically registers this component's version information with the versioning
+// system of the Samael framework.
+//
+// This function is marked with the constructor attribute in the implementation file
+// (Samael.TowerOfBabel.Rotor.c), which means it will automatically be executed prior to the
+// execution of the main() function. This pre-main invocation is part of the automatic versioning
+// mechanism, ensuring that the version details for this component are registered as soon
+// as the module is loaded.
+// -------------------------------------------------------------------------------------------
+void regRotor(void);
 
 // -----------------------------------------------------------------------------------------------
 // setRotorLength - Set the rotor length to a specific value. This function is used to set the rotor

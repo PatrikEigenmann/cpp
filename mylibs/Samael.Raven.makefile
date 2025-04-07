@@ -57,4 +57,4 @@ src=Samael.Raven.c
 # of the project.
 # libs=../mylibs/cVersion.c ../mylibs/cManPage.c ../mylibs/cProgress.c
 # libs=-lncurses
-libs=
+libs=Samael.c Framework.c

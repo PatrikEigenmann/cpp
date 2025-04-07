@@ -55,4 +55,4 @@ src=Samael.TowerOfBabel.c
 # files are properly included in the build process to guarantee successful compilation and linking
 # of the project.
 # libs=utility/cVersion.c utility/cManPage.c utility/cProgress.c
-libs=TowerOfBabel/Enigma.c TowerOfBabel/Rotor.c
+libs=Samael.c Framework.c TowerOfBabel/Enigma.c TowerOfBabel/Rotor.c

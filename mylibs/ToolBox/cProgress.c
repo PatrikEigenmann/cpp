@@ -15,6 +15,7 @@
  * eMail:   p.eigenmann@gmx.net
  * GitHub:  www.github.com/PatrikEigenmann/cpp
  * --------------------------------------------------------------------------------------------------
+ * Change Log:
  * Mon 2024-10-25 File created.                                                         Version: 00.01
  * Sun 2024-10-27 Small corrections and bug fixes.                                      Version: 00.02
  * Sun 2024-10-27 Implemented sleep time and the flag if Sleep is needed.               Version: 00.03
@@ -22,8 +23,9 @@
  * Tue 2024-11-05 Created the crossplatform version of this library.                    Version: 00.05
  * Fri 2024-11-08 fflush the buffer stdout before printing a new character.             Version: 00.06
  * Wed 2025-01-22 Header comment GitHub URL updated.                                    Version: 00.07
+ * Sun 2025-04-06 Moved to the ToolBox.                                                 Version: 00.08
+ * Sun 2025-04-06 New versioning system implemented.                                    Version: 00.09
  * **************************************************************************************************/
-#include "cProgress.h"
 #include <stdio.h>
 
 /* --------------------------------------------------------------------------------------------------
@@ -34,6 +36,8 @@
 #ifdef _WIN32
     // Include windows library
     #include <windows.h>
+    #include "..\Samael.h"
+    #include "..\Samael.ToolBox.h"
 
     // Now create the methode void goToSleep(int miliseconds) so it's Windows compatible.
     void goToSleep(int miliseconds) {
@@ -42,6 +46,8 @@
 #else
     // Include Unix library
     #include <unistd.h>
+    #include "../Samael.h"
+    #include "../Samael.ToolBox.h"
 
     // Now create the methode void goToSleep(int miliseconds) so it's Windows compatible.
     void goToSleep(int miliseconds) {
@@ -49,7 +55,24 @@
     }
 #endif
 
+#include "cProgress.h"
+
 const int DIVIDER = 60;     // The DIVIDER defines how many markers are seen in the progress bar.
+
+// -------------------------------------------------------------------------------------------
+// regCProgress - Automatically registers this component's version information with the
+// versioning system of the Samael framework.
+//
+// This function is marked with the constructor attribute in the implementation file
+// Samael.ToolBox.cProgress.c, which means it will automatically be executed prior to the execution
+// of the main() function. This pre-main invocation is part of the automatic versioning
+// mechanism, ensuring that the version details for this component are registered as soon
+// as the module is loaded.
+// -------------------------------------------------------------------------------------------
+__attribute__((constructor)) void regCProgress(void) {
+    // Register the Progress package with its version number.
+    registerVersion("Samael.ToolBox", "cProgress", 0, 9);
+}
 
 // ***************************************************************************************************
 // With create_progress, setting up a sophisticated progress bar is effortless. This powerful function

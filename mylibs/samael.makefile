@@ -56,5 +56,7 @@ src=Samael.c
 # Specify the libraries, either as .c source files or already compiled .o object files. Ensure these
 # files are properly included in the build process to guarantee successful compilation and linking
 # of the project. 
-# libs=../mylibs/cVersion.c ../mylibs/cManPage.c ../mylibs/cProgress.c
-libs=ToolBox/cVersion.c ToolBox/cManPage.c ToolBox/cProgress.c TowerOfBabel/Enigma.c TowerOfBabel/Rotor.c
+libs=Framework.c Samael.Alchemy.c Samael.Chronicle.c Chronicle/Version.c Samael.Entanglement.c
+Samael.HuginAndMunin.c Samael.Necronomicon.c Samael.Raven.c Samael.Scribe.c Samael.Tabernacle.c
+Samael.ToolBox.c ToolBox/cManPage.c ToolBox/cProgress.c Samael.TowerOfBabel.c
+TowerOfBabel/Enigma.c TowerOfBabel/Rotor.c

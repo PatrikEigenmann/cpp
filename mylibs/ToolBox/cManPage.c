@@ -14,26 +14,34 @@
  * eMail:   p.eigenmann@gmx.net
  * GitHub:  www.github.com/PatrikEigenmann/cpp
  * --------------------------------------------------------------------------------------------------------
+* Change Log:
  * Mon 2024-10-28 File created.                                                             Version: 00.01
  * Mon 2024-11-04 Fixed all bugs around the string concatination.                           Version: 00.02
  * Mon 2024-11-05 Cross plattform implementation.                                           Version: 00.03
  * Thu 2024-11-07 Take the check if the file exist away for now. Let's write it every time. Version: 00.04
  * Thu 2024-11-21 Added major and minor to the methodes.                                    Version: 00.05
  * Wed 2025-01-22 Header comment GitHub URL updated.                                        Version: 00.06
- * *********************************************************************************************************
- * To Do:
- * - The program checks if the particular manpage exist, if not it will write it. If it exist, it will just
- *   read it. That is incorrect, what if the content of the manpage changes? It should be rewritten if
- *   content changes are made.                                                                  -> Temporary
- * - doesFileExist methode is fixed, now I need to extensively test the method.                 -> Done
+ * Sun 2025-04-06 Moved to the ToolBox.                                                     Version: 00.07
+ * Sun 2025-04-06 New versioning system implemented.                                        Version: 00.08
  * *********************************************************************************************************/
 
-#include "cManPage.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
 #include <ctype.h>
+
+#ifdef _WIN32
+    // _-* Window Section *-_
+    #include "..\Samael.h"
+    #include "..\Samael.ToolBox.h"    
+#else
+    // _-* MacOS/Linux Section *-_
+    #include "../Samael.h"
+    #include "../Samael.ToolBox.h"
+#endif
+
+#include "cManPage.h"
 
 #ifdef _WIN32
     
@@ -175,6 +183,21 @@
 #endif
 
 const char *FILE_EXTENTION = ".man";
+
+// -------------------------------------------------------------------------------------------
+// regCManPage - Automatically registers this component's version information with the versioning
+// system of the Samael framework.
+//
+// This function is marked with the constructor attribute in the implementation file
+// Samael.ToolBox.cManPage.c, which means it will automatically be executed prior to the execution
+// of the main() function. This pre-main invocation is part of the automatic versioning
+// mechanism, ensuring that the version details for this component are registered as soon
+// as the module is loaded.
+// -------------------------------------------------------------------------------------------
+__attribute__((constructor)) void regCManPage(void) {
+    // Register the cManPage package with its version number.
+    registerVersion("Samael.ToolBox", "cManPage", 0, 8);
+}
 
 /* ----------------------------------------------------------------------------------------------------
  * By encapsulating the creation of manual pages within this method, we ensure a seamless and efficient

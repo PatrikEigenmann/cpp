@@ -19,6 +19,7 @@
  * GitHub:  www.github.com/PatrikEigenmann/cpp
  * -------------------------------------------------------------------------------------------
  * Wed 2025-03-26 File created.                                                 Version: 00.01
+ * Sun 2025-04-06 Register package Necronomicon with it's version number.       Version: 00.02
  * ********************************************************************************************/
 
 #ifndef SAMAEL_NECRONOMICON_H
@@ -35,5 +36,17 @@
     // -------------------------------------------------------------------------------------------
 
 #endif
+
+// -------------------------------------------------------------------------------------------
+// regNecronomicon - Automatically registers this component's version information with the
+// versioning system of the Samael framework.
+//
+// This function is marked with the constructor attribute in the implementation file
+// (Samael.Necronomicon.c), which means it will automatically be executed prior to the execution
+// of the main() function. This pre-main invocation is part of the automatic versioning
+// mechanism, ensuring that the version details for this component are registered as soon
+// as the module is loaded.
+// -------------------------------------------------------------------------------------------
+void regNecronomicon(void);
 
 #endif

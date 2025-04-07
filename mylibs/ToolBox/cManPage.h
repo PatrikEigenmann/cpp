@@ -10,9 +10,15 @@
  * eMail:   p.eigenmann@gmx.net
  * GitHub:  www.github.com/PatrikEigenmann/cpp
  * ----------------------------------------------------------------------------------------------------
- * Mon 2024-10-28 File created.                                                         Version: 00.01
- * Thu 2024-11-07 Added functionality to get it to work poperly under MacOS.            Version: 00.02
- * Wed 2025-01-22 Header comment GitHub URL updated.                                    Version: 00.03
+ * Change Log:
+ * Mon 2024-10-28 File created.                                                             Version: 00.01
+ * Mon 2024-11-04 Fixed all bugs around the string concatination.                           Version: 00.02
+ * Mon 2024-11-05 Cross plattform implementation.                                           Version: 00.03
+ * Thu 2024-11-07 Take the check if the file exist away for now. Let's write it every time. Version: 00.04
+ * Thu 2024-11-21 Added major and minor to the methodes.                                    Version: 00.05
+ * Wed 2025-01-22 Header comment GitHub URL updated.                                        Version: 00.06
+ * Sun 2025-04-06 Moved to the ToolBox.                                                     Version: 00.07
+ * Sun 2025-04-06 New versioning system implemented.                                        Version: 00.08
  * *****************************************************************************************************/
 #ifndef CMANPAGE_H
 #define CMANPAGE_H
@@ -32,6 +38,18 @@ typedef struct {
     char *filename;
     char *manual;
 } ManPage;
+
+// -------------------------------------------------------------------------------------------
+// regCManPage - Automatically registers this component's version information with the versioning
+// system of the Samael framework.
+//
+// This function is marked with the constructor attribute in the implementation file
+// Samael.ToolBox.cManPage.c, which means it will automatically be executed prior to the execution
+// of the main() function. This pre-main invocation is part of the automatic versioning
+// mechanism, ensuring that the version details for this component are registered as soon
+// as the module is loaded.
+// -------------------------------------------------------------------------------------------
+void regCManPage(void);
 
 /* ----------------------------------------------------------------------------------------------------
  * By encapsulating the creation of manual pages within this method, we ensure a seamless and efficient

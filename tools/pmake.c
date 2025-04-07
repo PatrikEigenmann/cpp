@@ -37,12 +37,18 @@
  * Sun 2025-03-23 Fixed a bug while handling "shared".                                  Version: 00.11
  * Tue 2025-03-25 Changed the way the compiler command is put together.                 Version: 00.12
  * Tue 2025-03-25 Shared Library under Windows is now a .dll and under Unix a .so.      Version: 00.13
+ * Sun 2025-04-06 Increased the library string to 10000 characters.                     Version: 00.14
+ * Sun 2025-04-06 New approach with a large library string. Using a isLibs flag.        Version: 00.15
+ * Sun 2025-04-06 BugFix in with the library string. strcpy wasn't working.             Version: 00.16
+ * Sun 2025-04-06 BugFix in the library string. Switched to append_format.              Version: 00.17
+ * Sun 2025-04-06 Making sure that the bug fix doesn't influence the make_process.      Version: 00.18   
  * -----------------------------------------------------------------------------------------------------
  * To Do's:
  * - Take cVersion.h & cVersion.c appart and integrate it directly into this code base.             Done.                             Done.
  * - Take cManPage.h & cManPage.c appart and integrate it directly into this code base.             Done.                             Done.
  * - Updated the method doesFileExists, checking first if the file really exist, then if it is      Done.
  *   the same version.
+ * - Make sure if the library string isn't in the end, the program doesn't crash.                   Done.
  * *****************************************************************************************************/
 
 #include <stdio.h>
@@ -427,7 +433,8 @@ int isHelpTriggered(int argcIn, char *argvIn) {
 void print_help() {
 
     // Version control implemented
-    Version v = create_version(0, 13);
+    Version v = create_version(0, 18);
+    
     // The buffer is needed to write
     // the correct formated version number.
     char buffer[6];
@@ -521,9 +528,12 @@ void process_makefile(const char *filename) {
     char target[10] = "exec";
     char project[50] = "";
     char src[500] = "";
-    char libs[500] = "";
+    char* libs = NULL;
     
+    int isLibs = -1;
+
     while (fgets(line, sizeof(line), file)) {
+        
         // Trim newline character
         line[strcspn(line, "\n")] = 0;
         
@@ -532,17 +542,26 @@ void process_makefile(const char *filename) {
         
         // Parse the makefile variables
         if (strncmp(line, "comp=", 5) == 0) {
+            isLibs = -1;
             strcpy(comp, line + 5);
         } else if (strncmp(line, "cflags=", 7) == 0) {
+            isLibs = -1;
             strcpy(cflags, line + 7);
         } else if (strncmp(line, "target=", 7) == 0) {
+            isLibs = -1;
             strcpy(target, line + 7);
         } else if (strncmp(line, "project=", 8) == 0) {
+            isLibs = -1;
             strcpy(project, line + 8);
         } else if (strncmp(line, "src=", 4) == 0) {
+            isLibs = -1;
             strcpy(src, line + 4);
-        } else if (strncmp(line, "libs=", 5) == 0) {
-            strcpy(libs, line + 5);
+        } else if (strncmp(line, "libs=", 5) == 0 || isLibs) {
+            isLibs = 1;
+            if(strncmp(line, "libs=", 5) == 0) 
+                append_format(&libs, "%s ", line + 5);
+            else
+                append_format(&libs, "%s ", line);
         }
     }
     
@@ -596,7 +615,10 @@ void process_makefile(const char *filename) {
 
     // Execute the command
     int result = system(command);
-    
+
+    free(libs);
+    free(command);
+
     if (result != 0) {
         fprintf(stderr, "Command failed: %s\n", command);
         exit(EXIT_FAILURE);

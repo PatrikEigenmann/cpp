@@ -15,7 +15,11 @@
  * eMail:   p.eigenmann@gmx.net
  * GitHub:  www.github.com/PatrikEigenmann/cpp
  * -------------------------------------------------------------------------------------------
+ * Change Log:
  * Tue 2025-03-25 File created.                                                 Version: 00.01
+ * Sun 2025-04-06 Added component Enigma to Samael.TowerOfBabel.                Version: 00.02
+ * Sun 2025-04-06 Added component Rotor to Samael.TowerOfBabel.                 Version: 00.03
+ * Sun 2025-04-06 Register Samael.TowerOfBabel with Version Control.            Version: 00.04
  * -------------------------------------------------------------------------------------------
  * To Do's:
  * ********************************************************************************************/
@@ -37,5 +41,17 @@
     #include "TowerOfBabel/Rotor.h"
 
 #endif
+
+// -------------------------------------------------------------------------------------------
+// regTowerOfBabel - Automatically registers this component's version information with the
+// versioning system of the Samael framework.
+//
+// This function is marked with the constructor attribute in the implementation file
+// Samael.TowerOfBabel.c, which means it will automatically be executed prior to the execution
+// of the main() function. This pre-main invocation is part of the automatic versioning
+// mechanism, ensuring that the version details for this component are registered as soon
+// as the module is loaded.
+// -------------------------------------------------------------------------------------------
+void regTowerOfBabel(void);
 
 #endif

@@ -35,11 +35,25 @@
  * Tue 2025-03-25 File created.                                                     Version: 00.01
  * Thu 2025-03-27 Defined ROTOR_LENTGH here, because it is enigma specific.         Version: 00.02
  * Thu 2025-03-27 setRotorLength in powerUp before initializing the rotors.         Version: 00.03
+ * Sun 2025-04-06 Register component with its version in the Samael Framework.      Version: 00.04
+ * Sun 2025-04-06 Renamed encrypt and decrypt to encryptChar and decryptChar.       Version: 00.05
  * ***********************************************************************************************/
 #ifndef ENIGMA_H
 #define ENIGMA_H
 
 #include "Rotor.h"
+
+// -------------------------------------------------------------------------------------------
+// regEnigma - Automatically registers this component's version information with the versioning
+// system of the Samael framework.
+//
+// This function is marked with the constructor attribute in the implementation file
+// (Samael.TowerOfBabel.Enigma.c), which means it will automatically be executed prior to the
+// execution of the main() function. This pre-main invocation is part of the automatic versioning
+// mechanism, ensuring that the version details for this component are registered as soon
+// as the module is loaded.
+// -------------------------------------------------------------------------------------------
+void regEnigma(void);
 
 // -----------------------------------------------------------------------------------------------
 // These types are specifically used for the enigma cipher machine to identify the rotor type and
@@ -103,7 +117,7 @@ void crankThatCipher(int iteration);
 // @param largeRotor as a pointer to the large rotor.
 // @return the encrypted character.
 // -----------------------------------------------------------------------------------------------
-char encrypt(char inputChar, Rotor *smallRotor, Rotor *mediumRotor, Rotor *largeRotor);
+char encryptChar(char inputChar, Rotor *smallRotor, Rotor *mediumRotor, Rotor *largeRotor);
 
 // -----------------------------------------------------------------------------------------------
 // decrypt - Decrypt a single character using the Enigma machine. This function takes a single
@@ -118,7 +132,7 @@ char encrypt(char inputChar, Rotor *smallRotor, Rotor *mediumRotor, Rotor *large
 // @param largeRotor as a pointer to the large rotor.
 // @return the decrypted character.
 // -----------------------------------------------------------------------------------------------
-char decrypt(char inputChar, Rotor *smallRotor, Rotor *mediumRotor, Rotor *largeRotor);
+char decryptChar(char inputChar, Rotor *smallRotor, Rotor *mediumRotor, Rotor *largeRotor);
 
 // -----------------------------------------------------------------------------------------------
 // rotate - Rotate a rotor by one position. This function rotates the rotor mapping by one position,
