@@ -21,6 +21,8 @@
  * -------------------------------------------------------------------------------------------
  * Wed 2025-03-26 File created.                                                 Version: 00.01
  * Sun 2025-04-06 Register package Entanglement with it's version number.       Version: 00.02
+ * Mon 2025-04-07 Implemented the new Samael naming convention.                 Version: 00.03
+ * Tue 2025-04-08 Bug Fixed: RegisterVersion(Samael.Entanglement", "", 0, 4);   Version: 00.04
  * ********************************************************************************************/
 
 #ifndef SAMAEL_ENTANGLEMENT_H
@@ -39,7 +41,7 @@
 #endif
 
 // -------------------------------------------------------------------------------------------
-// regEntanglement - Automatically registers this component's version information with the
+// RegEntanglement - Automatically registers this component's version information with the
 // versioning system of the Samael framework.
 //
 // This function is marked with the constructor attribute in the implementation file
@@ -48,6 +50,6 @@
 // mechanism, ensuring that the version details for this component are registered as soon
 // as the module is loaded.
 // -------------------------------------------------------------------------------------------
-void regEntanglement(void);
+void RegEntanglement(void);
 
 #endif

@@ -5,10 +5,6 @@
  * 
  * This library file serves as a foundational component for applications that require efficient documentation
  * handling.
- * 
- * Compile instructions:
- * clang/gcc -c cManPage.c -o cManPage.o
- * pmake cManPage.makefile
  * --------------------------------------------------------------------------------------------------------
  * Author:  Patrik Eigenmann
  * eMail:   p.eigenmann@gmx.net
@@ -24,6 +20,8 @@
  * Sun 2025-04-06 Moved to the ToolBox.                                                     Version: 00.07
  * Sun 2025-04-06 New versioning system implemented.                                        Version: 00.08
  * Mon 2025-04-07 append_format exluded to StringAppend.                                    Version: 00.09
+ * Tue 2025-04-08 BugFix: RegisterVersion("Samael.ToolBox", "cManPage", 0, 10);             Version: 00.10
+ * Tue 2025-04-08 BugFix: AppendFormat(&mp.filename, filenameIn);                           Version: 00.11
  * *********************************************************************************************************/
 
 #include <stdio.h>
@@ -198,7 +196,7 @@ const char *FILE_EXTENTION = ".man";
 // -------------------------------------------------------------------------------------------
 __attribute__((constructor)) void regCManPage(void) {
     // Register the cManPage package with its version number.
-    registerVersion("Samael.ToolBox", "cManPage", 0, 9);
+    RegisterVersion("Samael.ToolBox", "cManPage", 0, 11); // BugFix: Version 00.10
 }
 
 /* ----------------------------------------------------------------------------------------------------
@@ -218,13 +216,14 @@ void create_manpage(char *filenameIn, char *manualIn, int major, int minor) {
     ManPage mp;
 
     mp.filename = NULL;
-    append_format(&mp.filename, _home());
-    append_format(&mp.filename, PATH);
-    append_format(&mp.filename, filenameIn);
-    append_format(&mp.filename, FILE_EXTENTION);
+    // BugFix: Version 00.11 Changed from append_format to AppendFormat
+    AppendFormat(&mp.filename, _home());
+    AppendFormat(&mp.filename, PATH);
+    AppendFormat(&mp.filename, filenameIn);
+    AppendFormat(&mp.filename, FILE_EXTENTION);
 
     mp.manual = NULL;
-    append_format(&mp.manual, manualIn);
+    AppendFormat(&mp.manual, manualIn);
 
     if(!doesFileExist(mp.filename, major, minor)) {
         

@@ -1,9 +1,22 @@
 /* *******************************************************************************************
- * Framework.c - <description>
- *
- * Compile instructions:
- * gcc/clang Framework.c -o Framework
- * pmake Framework.makefile
+ * Framework.h - The Framework component is responsible to register each package and comoponent
+ * with the versioning system of the Samael framework. It provides the necessary functionality
+ * to do so. in the Samael framework, each component has a two digit major and minor number.
+ * The major number is increased for major software releases, while the minor number is increased
+ * after changes, bug fixes, or other minor updates.
+ * 
+ * The key differences between the Samael versioning system and traditional software versioning
+ * systems are:
+ * 1. The Samael versioning system is fully integrated into the runtime binaries of the software.
+ * 2. The versioning system is half-automated during runtime, meaning the information is available
+ *    during the runtime of the application.
+ * 3. The versioning system uses automation mechanisms during build process, making version maintenance
+ *    of each component easier and more efficient.
+ * 4. The versioning system is designed to be used in a distributed environment, where multiple
+ *    components may be running on different machines or devices.
+ * 
+ * The Framework component is a key part of the Samael framework, providing the necessary
+ * functionality for the Samael components and their lifecycles.
  * -------------------------------------------------------------------------------------------
  * Author:  Patrik Eigenmann
  * eMail:   p.eigenmann@gmx.net
@@ -11,12 +24,14 @@
  * -------------------------------------------------------------------------------------------
  * Sun 2025-04-06 File created.                                                 Version: 00.01
  * Sun 2025-04-06 Package name corrected.                                       Version: 00.02
- * -------------------------------------------------------------------------------------------
- * To Do's:
+ * Mon 2025-04-07 Bugfix: Dynamically allocated string in toListString().       Version: 00.03
+ * Mon 2025-04-07 Bugfix: Displaying package and component in toListString().   Version: 00.04
+ * Mon 2025-04-07 Implemented all new Samael nameing conventions.               Version: 00.05
  * ********************************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "Framework.h"
 
 #ifdef _WIN32
@@ -38,7 +53,7 @@
 static Version* snakeHead = NULL;
 
 // -------------------------------------------------------------------------------------------
-// regFramework - Automatically registers this component's version information with the
+// RegFramework - Automatically registers this component's version information with the
 // versioning system of the Samael framework.
 //
 // This function is marked with the constructor attribute in the implementation file
@@ -47,9 +62,9 @@ static Version* snakeHead = NULL;
 // mechanism, ensuring that the version details for this component are registered as soon
 // as the module is loaded.
 // -------------------------------------------------------------------------------------------
-__attribute__((constructor)) void regFramework(void) {
+__attribute__((constructor)) void RegFramework(void) {
     // For example, registering the framework itself with version 1.0.
-    registerVersion("Samael", "Framework", 0, 2);
+    RegisterVersion("Samael", "Framework", 0, 5);
 }
 
 // -------------------------------------------------------------------------------------------
@@ -57,16 +72,19 @@ __attribute__((constructor)) void regFramework(void) {
 // major version number, and minor version number. It initializes the version entry and
 // returns a pointer to the newly created Version structure.
 //
-// @param package  - The name of the framework or software package.
-// @param name     - The name of the component or module.
-// @param major    - The major version number.
-// @param minor    - The minor version number.
+// @param packageIn  - The name of the framework or software package.
+// @param nameIn     - The name of the component or module.
+// @param majorIn    - The major version number.
+// @param minorIn    - The minor version number.
 // -------------------------------------------------------------------------------------------
-void registerVersion(const char* package, const char* name, int major, int minor) {
-    Version* newVersion = createVersion((char*)package, (char*)name, major, minor);
+void RegisterVersion(const char* packageIn, const char* nameIn, int majorIn, int minorIn) {
+    
+    Version* newVersion = CreateVersion((char*)packageIn, (char*)nameIn, majorIn, minorIn);
+    
     if (newVersion == NULL) {
         return;  // Alternatively, you could handle the error appropriately
     }
+    
     if (snakeHead == NULL) {
         snakeHead = newVersion;
     } else {
@@ -86,43 +104,89 @@ void registerVersion(const char* package, const char* name, int major, int minor
 //
 // @return Version* - Pointer to the head of the linked list containing all registered versions.
 // -------------------------------------------------------------------------------------------
-const Version* getVersionList(void) {
+const Version* GetVersionList(void) {
     return snakeHead;
 }
 
 // -------------------------------------------------------------------------------------------
-// This function creates a formatted string representing the version information
-// for the whole software project. It formats the string to a human-readable format
-// and stores it in the provided buffer.
+// Generates a formatted string containing version information for the entire software project.
+// The function dynamically allocates memory for the output, ensuring sufficient space to store 
+// all registered components and packages in a structured, human-readable format.
 //
-// @param buffer    - The buffer to store the formatted string.
-// @param bufferSize - The size of the buffer.
+// The returned string is dynamically allocated and must be freed by the caller when no longer needed.
+//
+// @return A dynamically allocated string containing the version information. The caller is 
+//         responsible for freeing this memory.
 // -------------------------------------------------------------------------------------------
-void toListString(char* buffer, size_t bufferSize) {
-    if (buffer == NULL || bufferSize == 0) {
-        return;
+char* ToListString(void) {
+    
+    if (snakeHead == NULL) {
+        return strdup("");  // Return an empty string if no versions are registered
     }
-    // Ensure the buffer starts as an empty string.
-    buffer[0] = '\0';
-    
+
     Version* current = snakeHead;
-    char lineBuffer[256];  // Temporary buffer for each version's formatted string.
-    
+    size_t totalSize = 1; // Start with space for the null terminator
+
+    // First pass: Calculate required buffer size dynamically
     while (current != NULL) {
-        toString(current, lineBuffer);
-        strncat(buffer, lineBuffer, bufferSize - strlen(buffer) - 1);
-        strncat(buffer, "\n", bufferSize - strlen(buffer) - 1);
+        if (strcmp(current->name, "") == 0) { 
+            // It's a package
+            totalSize += snprintf(NULL, 0, "\nPackage:   %s v%02d.%02d\n------------------------------\n",
+                                  current->package, current->major, current->minor);
+        } else { 
+            // It's a component
+            totalSize += snprintf(NULL, 0, "Component: %s.%s v%02d.%02d\n",
+                                  current->package, current->name, current->major, current->minor);
+        }
         current = current->tail;
     }
+
+    // Allocate the final buffer
+    char *bufferOut = malloc(totalSize);
+    if (bufferOut == NULL) {
+        perror("malloc failed");
+        return NULL;
+    }
+    bufferOut[0] = '\0';  // Ensure an empty string to start
+
+    current = snakeHead;
+
+    // Second pass: Append formatted output
+    while (current != NULL) {
+        char lineBuffer[256];
+
+        if (strcmp(current->name, "") == 0) {
+            // It's a package
+            snprintf(lineBuffer, sizeof(lineBuffer), "\nPackage:   %s v%02d.%02d\n------------------------------\n",
+                     current->package, current->major, current->minor);
+        } else {
+            // It's a component
+            snprintf(lineBuffer, sizeof(lineBuffer), "Component: %s.%s v%02d.%02d\n",
+                     current->package, current->name, current->major, current->minor);
+        }
+
+        strcat(bufferOut, lineBuffer);
+        current = current->tail;
+    }
+
+    return bufferOut;  // Caller must free this memory
 }
 
 // -------------------------------------------------------------------------------------------
 // This function prints the version information of all registered components.
-// It iterates through the linked list of version entries and prints the package name,
-// component name, major version number, and minor version number for each entry.
+// It retrieves a dynamically allocated formatted string from toListString(),
+// prints it, and then ensures the allocated memory is properly freed.
 // --------------------------------------------------------------------------------------------
-void printListString(void) {
-    char buffer[1024];  // Adjust size as needed for your expected version list output.
-    toListString(buffer, sizeof(buffer));
+void PrintListString(void) {
+    
+    char *buffer = ToListString();  // Get the dynamically allocated version info string
+    
+    if (buffer == NULL) {
+        printf("Error: Unable to retrieve version information.\n");
+        return;
+    }
+    
     printf("%s", buffer);
+    
+    free(buffer);  // Free the allocated memory to prevent leaks
 }

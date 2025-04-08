@@ -17,9 +17,7 @@
  * is development without compromise.
  * 
  * Compiler instructions:
- * gcc -shared -o bin/libSamael.so Samael.c ToolBox/cManPage.c ToolBox/cProgress.c
- *     ToolBox/cVersion.c TowerOfBabel/rotor.c TowerOfBabel/enigma.c
- * Or pmake Samael.makefile
+ * pmake Samael.makefile
  * -------------------------------------------------------------------------------------------
  * Author:  Patrik Eigenmann 
  * eMail:   p.eigenmann@gmx.net
@@ -32,12 +30,13 @@
  * Wed 2025-03-26 Path correction for Windows/Unix systems.                     Version: 00.04
  * Thu 2025-03-27 Include all the modules for the Samael Framework.             Version: 00.05
  * Sun 2025-04-06 Register the Samael framework with it's version number.       Version: 00.06
+ * Mon 2025-04-07 Implemented all new Samael nameing conventions.               Version: 00.07
  * ********************************************************************************************/
 
 #include "Samael.h"
 
 // -------------------------------------------------------------------------------------------
-// regSamael - Automatically registers this component's version information with the versioning
+// RegSamael - Automatically registers this component's version information with the versioning
 // system of the Samael framework.
 //
 // This function is marked with the constructor attribute in the implementation file
@@ -47,5 +46,5 @@
 // as the module is loaded.
 // -------------------------------------------------------------------------------------------
 __attribute__((constructor)) void regSamael(void) {
-    registerVersion("Samael", "", 0, 1);
+    RegisterVersion("Samael", "", 0, 6);
 }

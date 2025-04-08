@@ -21,13 +21,14 @@
  * -------------------------------------------------------------------------------------------
  * Wed 2025-03-26 File created.                                                 Version: 00.01
  * Sun 2025-04-06 Register package Alchemy with it's version number.            Version: 00.02
+ * Mon 2025-04-07 Implemented all new Samael nameing conventions.               Version: 00.03
  * ********************************************************************************************/
 
 #include "Samael.h"
 #include "Samael.Alchemy.h"
 
 // -------------------------------------------------------------------------------------------
-// regAlchemy - Automatically registers this component's version information with the versioning
+// RegAlchemy - Automatically registers this component's version information with the versioning
 // system of the Samael framework.
 //
 // This function is marked with the constructor attribute in the implementation file
@@ -36,7 +37,7 @@
 // mechanism, ensuring that the version details for this component are registered as soon
 // as the module is loaded.
 // -------------------------------------------------------------------------------------------
-__attribute__((constructor)) void regAlchemy(void) {
+__attribute__((constructor)) void RegAlchemy(void) {
     // Register the version information for the Samael.Alchemy component
-    registerVersion("Samael.Alchemy", "", 0, 1);
+    RegisterVersion("Samael.Alchemy", "", 0, 3);
 }

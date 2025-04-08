@@ -1,9 +1,9 @@
 /* *******************************************************************************************
- * Samael.HuginAndMunin.h - Samael.HuginAndMunin is the essential module for managing
- * logging and messaging within the Samael framework. Named after Odin's legendary ravens, it
- * symbolizes the flow of thought and memory, embodying the transmission and preservation of
- * vital information. This module handles both real-time communication and long-term logging
- * with precision and reliability. Samael.HuginAndMunin ensures that every message is delivered
+ * Samael.HuginAndMunin.h - Samael.HuginAndMunin is the essential module for managing logging
+ * and messaging within the Samael framework. Named after Odin's legendary ravens, it symbolizes
+ * the flow of thought and memory, embodying the transmission and preservation of vital
+ * information. This module handles both real-time communication and long-term logging with
+ * precision and reliability. Samael.HuginAndMunin ensures that every message is delivered
  * accurately and every log entry is stored for reference and analysis. Its versatile design
  * supports integration with other modules and external systems, making it adaptable for a wide
  * range of use cases. From debugging to data pipelines, this module provides the infrastructure
@@ -20,6 +20,8 @@
  * -------------------------------------------------------------------------------------------
  * Wed 2025-03-26 File created.                                                 Version: 00.01
  * Sun 2025-04-06 Register package HuginAndMunin with it's version number.      Version: 00.02
+ * Mon 2025-04-07 Implemented the new Samael naming convention.                 Version: 00.03
+ * Tue 2025-04-08 BugFix: RegisterVersion("HuginAndMunin", "", 0, 4);           version: 00.04
  * ********************************************************************************************/
 
 #ifndef SAMAEL_HUGINANDMUNIN_H
@@ -47,6 +49,6 @@
 // mechanism, ensuring that the version details for this component are registered as soon
 // as the module is loaded.
 // -------------------------------------------------------------------------------------------
-void regHuginAndMunin(void);
+void RegHuginAndMunin(void);
 
 #endif

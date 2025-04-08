@@ -37,6 +37,8 @@
  * Thu 2025-03-27 setRotorLength in powerUp before initializing the rotors.         Version: 00.03
  * Sun 2025-04-06 Register component with its version in the Samael Framework.      Version: 00.04
  * Sun 2025-04-06 Renamed encrypt and decrypt to encryptChar and decryptChar.       Version: 00.05
+ * Tue 2025-04-08 Implemented the new Samael naming conventions.                    Version: 00.06
+ * Tue 2025-04-08 BugFix: RegisterVersion instead of registerVersion.               Version: 00.07
  * ***********************************************************************************************/
 #ifndef ENIGMA_H
 #define ENIGMA_H
@@ -44,7 +46,7 @@
 #include "Rotor.h"
 
 // -------------------------------------------------------------------------------------------
-// regEnigma - Automatically registers this component's version information with the versioning
+// RegEnigma - Automatically registers this component's version information with the versioning
 // system of the Samael framework.
 //
 // This function is marked with the constructor attribute in the implementation file
@@ -53,7 +55,7 @@
 // mechanism, ensuring that the version details for this component are registered as soon
 // as the module is loaded.
 // -------------------------------------------------------------------------------------------
-void regEnigma(void);
+void RegEnigma(void);
 
 // -----------------------------------------------------------------------------------------------
 // These types are specifically used for the enigma cipher machine to identify the rotor type and
@@ -78,78 +80,78 @@ void regEnigma(void);
 extern Rotor smallRotor, mediumRotor, largeRotor;
 
 // -----------------------------------------------------------------------------------------------
-// powerUp - This is truly a magical moment. I bet when german engineers first time powered up the
+// PowerUp - This is truly a magical moment. I bet when german engineers first time powered up the
 // Enigma machine, their eyes were sparkling like little kids on Christmas. I hope you can capture
 // the same magical moment when you include my Enigma.h and plug the beast in. Power it up baby.
 // There is something seriously satisfying just writing the word "powerUp". Ignite your cipher machine
 // and let the magic begin.
 // -----------------------------------------------------------------------------------------------
-void powerUp();
+void PowerUp(void);
 
 // -----------------------------------------------------------------------------------------------
-// startFromScratch - Reset the Enigma machine to its original state. This function is used to
+// StartFromScratch - Reset the Enigma machine to its original state. This function is used to
 // reset the rotor mappings to their original state. It is used to start the Enigma machine from
 // scratch, ensuring that the rotor mappings are in their initial configuration.
 // -----------------------------------------------------------------------------------------------
-void startFromScratch();
+void StartFromScratch(void);
 
 // -----------------------------------------------------------------------------------------------
-// crankThatCipher - Crank that cipher wheel! This function rotates the rotors of the Enigma machine
+// CrankThatCipher - Crank that cipher wheel! This function rotates the rotors of the Enigma machine
 // to create a new mapping for the encryption and decryption process. This was truly unique to the
 // Enigma machine and was one of the reasons why it was so secure. The dynamic rotor mechanism ensured
 // after every keypress, that a new mapping was used to encrypt or decrypt the message. Of course,
 // sender and receiver had to be in sync with their rotor settings.
 // -----------------------------------------------------------------------------------------------
-// @param iteration as an integer to track the number of keypresses.
+// @param iterationIn as an integer to track the number of keypresses.
 // -----------------------------------------------------------------------------------------------
-void crankThatCipher(int iteration);
+void CrankThatCipher(int iterationIn);
 
 // -----------------------------------------------------------------------------------------------
-// encrypt - Encrypt a single character using the Enigma machine. This function takes a single
+// EncryptChar - Encrypt a single character using the Enigma machine. This function takes a single
 // character as input and encrypts it using the rotor mappings of the small, medium, and large rotor.
 // The character is passed through the rotor mappings in a specific order to create the encrypted
 // character. The Enigma machine was a marvel of engineering and cryptography, and this function
 // emulates its encryption process.
 // -----------------------------------------------------------------------------------------------
-// @param inputChar as a character to be encrypted.
-// @param smallRotor as a pointer to the small rotor.
-// @param mediumRotor as a pointer to the medium rotor.
-// @param largeRotor as a pointer to the large rotor.
+// @param charIn         - Character to be encrypted.
+// @param smallRotorIn   - Pointer to the small rotor.
+// @param mediumRotorIn  - Pointer to the medium rotor.
+// @param largeRotorIn   - Pointer to the large rotor.
 // @return the encrypted character.
 // -----------------------------------------------------------------------------------------------
-char encryptChar(char inputChar, Rotor *smallRotor, Rotor *mediumRotor, Rotor *largeRotor);
+char EncryptChar(char charIn, Rotor *smallRotorIn, Rotor *mediumRotorIn, Rotor *largeRotorIn);
 
 // -----------------------------------------------------------------------------------------------
-// decrypt - Decrypt a single character using the Enigma machine. This function takes a single
+// DecryptChar - Decrypt a single character using the Enigma machine. This function takes a single
 // character as input and decrypts it using the rotor mappings of the small, medium, and large rotor.
 // The character is passed through the rotor mappings in reverse order to create the decrypted
 // character. The Enigma machine was a marvel of engineering and cryptography, and this function
 // emulates its decryption process.
 // -----------------------------------------------------------------------------------------------
-// @param inputChar as a character to be decrypted.
-// @param smallRotor as a pointer to the small rotor.
-// @param mediumRotor as a pointer to the medium rotor.
-// @param largeRotor as a pointer to the large rotor.
-// @return the decrypted character.
+// @param charIn         - Character to be decrypted.
+// @param smallRotorIn   - Pointer to the small rotor.
+// @param mediumRotorIn  - Pointer to the medium rotor.
+// @param largeRotorIn   - Pointer to the large rotor.
+// @return the Decrypted character.
 // -----------------------------------------------------------------------------------------------
-char decryptChar(char inputChar, Rotor *smallRotor, Rotor *mediumRotor, Rotor *largeRotor);
+char DecryptChar(char charIn, Rotor *smallRotorIn, Rotor *mediumRotorIn, Rotor *largeRotorIn);
 
 // -----------------------------------------------------------------------------------------------
-// rotate - Rotate a rotor by one position. This function rotates the rotor mapping by one position,
+// Rotate - Rotate a rotor by one position. This function rotates the rotor mapping by one position,
 // simulating the rotor movement in the Enigma machine. The rotor mapping is circular, and after
 // reaching the last position, it wraps around to the first position. This function is used to
 // rotate the rotors of the Enigma machine during the encryption and decryption process.
 // -----------------------------------------------------------------------------------------------
 // @param rotor as a pointer to the rotor to be rotated.
 // -----------------------------------------------------------------------------------------------
-void rotate(Rotor *rotor);
+void Rotate(Rotor *rotorInOut);
 
 // -----------------------------------------------------------------------------------------------
-// cleanMemoryLane - Clean up memory for all rotors. This function is used to free the memory
+// CleanMemoryLane - Clean up memory for all rotors. This function is used to free the memory
 // allocated for the rotor mappings. It ensures that no memory leaks occur during the execution
 // of the program. Memory management is crucial in C programming, and this function helps to
 // clean up the memory used by the rotor mappings.
 // -----------------------------------------------------------------------------------------------
-void cleanMemoryLane();
+void CleanMemoryLane(void);
 
 #endif

@@ -20,6 +20,7 @@
  * Sun 2025-04-06 Added component Enigma to Samael.TowerOfBabel.                Version: 00.02
  * Sun 2025-04-06 Added component Rotor to Samael.TowerOfBabel.                 Version: 00.03
  * Sun 2025-04-06 Register Samael.TowerOfBabel with Version Control.            Version: 00.04
+ * Tue 2025-04-08 Implemented the Samael naming convention.                     Version: 00.05
  * ********************************************************************************************/
 #include "Samael.h"
 #include "Samael.TowerOfBabel.h"
@@ -34,7 +35,7 @@
 // mechanism, ensuring that the version details for this component are registered as soon
 // as the module is loaded.
 // -------------------------------------------------------------------------------------------
-__attribute__((constructor)) void regTowerOfBabel(void) {
+__attribute__((constructor)) void RegTowerOfBabel(void) {
     // Register the component with the version control system
-    registerVersion("Samael.TowerOfBabel", "", 0, 4);
+    RegisterVersion("Samael.TowerOfBabel", "", 0, 5);
 }

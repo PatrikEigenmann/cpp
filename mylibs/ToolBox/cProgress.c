@@ -6,10 +6,6 @@
  * Imagine effortless integration of a progress bar that not only tracks but also visually communicates
  * the advancement of tasks with customizable markers and titles. cProgress empowers developers to
  * maintain clear oversight, enhancing both productivity and user engagement.
- *
- * Compile instructions:
- * clang/gcc -c cProgress.c -o cProgress.o
- * pmake cProgress.makefile
  * --------------------------------------------------------------------------------------------------
  * Author:  Patrik Eigenmann
  * eMail:   p.eigenmann@gmx.net
@@ -25,6 +21,7 @@
  * Wed 2025-01-22 Header comment GitHub URL updated.                                    Version: 00.07
  * Sun 2025-04-06 Moved to the ToolBox.                                                 Version: 00.08
  * Sun 2025-04-06 New versioning system implemented.                                    Version: 00.09
+ * Tue 2025-04-08 BugFix: RegisterVersion("Samael.ToolBox", "cProgress", 0, 10);        Version: 00.10
  * **************************************************************************************************/
 #include <stdio.h>
 
@@ -71,7 +68,7 @@ const int DIVIDER = 60;     // The DIVIDER defines how many markers are seen in 
 // -------------------------------------------------------------------------------------------
 __attribute__((constructor)) void regCProgress(void) {
     // Register the Progress package with its version number.
-    registerVersion("Samael.ToolBox", "cProgress", 0, 9);
+    RegisterVersion("Samael.ToolBox", "cProgress", 0, 10); // BugFix: From registerVersion -> RegisterVersion Version 00.10
 }
 
 // ***************************************************************************************************

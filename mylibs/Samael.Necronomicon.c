@@ -9,10 +9,6 @@
  * all database-related tasks. Samael.Necronomicon bridges the gap between raw data and meaningful
  * results, embodying the mystical transformation of information into wisdom. By harnessing its
  * capabilities, users can command their databases with confidence and precision.
- *
- * Compile instructions:
- * gcc -shared Samael.Necronomicon.c -o bin/libSamael.Necronomicon.so
- * or pmake Samael.Necronomicon.makefile
  * -------------------------------------------------------------------------------------------
  * Author:  Patrik Eigenmann
  * eMail:   p.eigenmann@gmx.net
@@ -20,6 +16,8 @@
  * -------------------------------------------------------------------------------------------
  * Wed 2025-03-26 File created.                                                 Version: 00.01
  * Sun 2025-04-06 Register package Necronomicon with it's version number.       Version: 00.02
+ * Mon 2025-04-07 Implemented the Samael naming convention.                     Version: 00.03
+ * Tue 2025-04-08 BugFix: RegisterVersion("Samael.Necronomicon", "", 0, 4);     Version: 00.04
  * ********************************************************************************************/
 
 #include "Samael.h"
@@ -35,7 +33,7 @@
 // mechanism, ensuring that the version details for this component are registered as soon
 // as the module is loaded.
 // -------------------------------------------------------------------------------------------
-__attribute__((constructor)) void regNecronomicon(void) {
+__attribute__((constructor)) void RegNecronomicon(void) {
     // Register the Necronomicon package with its version number.
-    registerVersion("Samael.Necronomicon", "", 0, 2);
+    RegisterVersion("Samael.Necronomicon", "", 0, 4); // BugFix: Version 00.04
 }

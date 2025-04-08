@@ -16,26 +16,28 @@
  * GitHub:  www.github.com/PatrikEigenmann/cpp
  * -------------------------------------------------------------------------------------------
  * Sun 2025-04-06 File created.                                                 Version: 00.01
+ * Mon 2025-04-07 Changed All names to new Samael naming convention.            Version: 00.02
+ * Tue 2025-04-08 Bug Fixed: Call of ToString(versionIn, buffer); L116          Version: 00.03
  * ********************************************************************************************/
-#include<stdio.h>
+#include <stdio.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #ifdef _WIN32
-// --= Windows Section please uncomment what you need! =-- //
-#include "..\Framework.h"
+    // --= Windows Section please uncomment what you need! =-- //
+    #include "..\Framework.h"
 
 #else
-// --= MacOS/Linux Section please uncomment what you need! =-- //
-#include "../Framework.h"
+    // --= MacOS/Linux Section please uncomment what you need! =-- //
+    #include "../Framework.h"
 
 #endif
 
 #include "Version.h"
 
 // -------------------------------------------------------------------------------------------
-// regVersion - Automatically registers this component's version information with the 
+// RegVersion - Automatically registers this component's version information with the 
 // versioning system of the Samael framework.
 // 
 // This function is marked with the constructor attribute in the implementation file 
@@ -44,8 +46,8 @@
 // mechanism, ensuring that the version details for this component are registered as soon 
 // as the module is loaded.
 // -------------------------------------------------------------------------------------------
-__attribute__((constructor)) void regVersion() {
-    registerVersion("Samael.Chronicle", "Version", 0, 1);
+__attribute__((constructor)) void RegVersion(void) {
+    RegisterVersion("Samael.Chronicle", "Version", 0, 2);
 }
 
 // -------------------------------------------------------------------------------------------
@@ -58,18 +60,22 @@ __attribute__((constructor)) void regVersion() {
 // @param major    - The major version number.
 // @param minor    - The minor version number.
 // -------------------------------------------------------------------------------------------
-Version* createVersion(char* package, char* name, int major, int minor) {
-    Version* newVersion = (Version*)malloc(sizeof(Version));
-    if (newVersion == NULL) {
+Version* CreateVersion(char* packageIn, char* nameIn, int majorIn, int minorIn) {
+    
+    Version* versionOut = (Version*)malloc(sizeof(Version));
+    
+    if (versionOut == NULL) {
         fprintf(stderr, "Memory allocation failed for new version entry.\n");
         return NULL;
     }
-    snprintf(newVersion->package, sizeof(newVersion->package), "%s", package);
-    snprintf(newVersion->name, sizeof(newVersion->name), "%s", name);
-    newVersion->major = major;
-    newVersion->minor = minor;
-    newVersion->tail = NULL;  // Initialize the tail pointer to NULL
-    return newVersion;
+    
+    snprintf(versionOut->package, sizeof(versionOut->package), "%s", packageIn);
+    snprintf(versionOut->name, sizeof(versionOut->name), "%s", nameIn);
+    versionOut->major = majorIn;
+    versionOut->minor = minorIn;
+    versionOut->tail = NULL;  // Initialize the tail pointer to NULL
+    
+    return versionOut;
 }
 
 // -------------------------------------------------------------------------------------------
@@ -77,26 +83,27 @@ Version* createVersion(char* package, char* name, int major, int minor) {
 // for the given Version entry. If the Version's name is empty, the entry is treated 
 // as a package-only entry. Otherwise, it's treated as a component entry.
 // 
-// @param v       - The Version object.
-// @param buffer  - The memory to write the formatted string into.
+// @param versionIn - The Version object.
+// @param bufferIn  - The memory to write the formatted string into.
 // -------------------------------------------------------------------------------------------
-void toString(Version* v, char* buffer) {
-    if (v == NULL || buffer == NULL) {
+void ToString(Version* versionIn, char* bufferIn) {
+    
+    if (versionIn == NULL || bufferIn == NULL) {
         fprintf(stderr, "Invalid version or buffer pointer.\n");
         return;
     }
 
     // Check if the name field is empty, meaning it is a package-only entry.
-    int packageOnly = (v->name[0] == '\0');
+    int packageOnly = (versionIn->name[0] == '\0');
 
     if (packageOnly) {
         // For package-only entries, display the package with version and a horizontal line.
-        snprintf(buffer, 256, "\nPackage:   %s v%02d.%02d\n------------------------------", 
-                 v->package, v->major, v->minor);
+        snprintf(bufferIn, 256, "\nPackage:   %s v%02d.%02d\n------------------------------", 
+            versionIn->package, versionIn->major, versionIn->minor);
     } else {
         // For component entries, display the package and component name along with the version.
-        snprintf(buffer, 256, "Component: %s.%s v%02d.%02d", 
-                 v->package, v->name, v->major, v->minor);
+        snprintf(bufferIn, 256, "Component: %s.%s v%02d.%02d", 
+            versionIn->package, versionIn->name, versionIn->major, versionIn->minor);
     }
 }
 
@@ -104,15 +111,14 @@ void toString(Version* v, char* buffer) {
 // This function prints the version information for the given Version entry to the standard
 // output by first converting the version entry to a formatted string with toString().
 // 
-// @param v       - The Version entry to be printed.
+// @param versionIn - The Version entry to be printed.
 // -------------------------------------------------------------------------------------------
-void printVersion(Version* v) {
-    if (v == NULL) {
+void PrintVersion(Version* versionIn) {
+    if (versionIn == NULL) {
         fprintf(stderr, "Invalid version pointer.\n");
         return;
     }
     char buffer[256];
-    toString(v, buffer);
+    ToString(versionIn, buffer);
     printf("%s\n", buffer);
 }
-

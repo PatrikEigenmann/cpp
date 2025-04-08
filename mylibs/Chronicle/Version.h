@@ -10,6 +10,8 @@
  * GitHub:  www.github.com/PatrikEigenmann/cpp
  * -------------------------------------------------------------------------------------------
  * Sun 2025-04-06 File created.                                                 Version: 00.01
+ * Mon 2025-04-07 Changed All names to new Samael naming convention.            Version: 00.02
+ * Tue 2025-04-08 Bug Fixed: Call of ToString(versionIn, buffer); L116          Version: 00.03
  * ********************************************************************************************/
 
 #ifndef VERSION_H
@@ -45,7 +47,7 @@ typedef struct Version {
 } Version;
 
 // -------------------------------------------------------------------------------------------
-// regVersion - Automatically registers this component's version information with the 
+// RegVersion - Automatically registers this component's version information with the 
 // versioning system of the Samael framework.
 // 
 // This function is marked with the constructor attribute in the implementation file 
@@ -54,37 +56,37 @@ typedef struct Version {
 // mechanism, ensuring that the version details for this component are registered as soon 
 // as the module is loaded.
 // -------------------------------------------------------------------------------------------
-void regVersion();
+void RegVersion();
 
 // -------------------------------------------------------------------------------------------
 // This function creates a new version entry with the specified package name, component name,
 // major version number, and minor version number. It initializes the version entry and
 // returns a pointer to the newly created Version structure.
 //
-// @param package  - The name of the framework or software package.
-// @param name     - The name of the component or module.
-// @param major    - The major version number.
-// @param minor    - The minor version number.
+// @param packageIn - The name of the framework or software package.
+// @param nameIn    - The name of the component or module.
+// @param majorIn   - The major version number.
+// @param minorIn   - The minor version number.
 // -------------------------------------------------------------------------------------------
-Version* createVersion(char* package, char* name, int major, int minor);
+Version* CreateVersion(char* packageIn, char* nameIn, int majorIn, int minorIn);
 
 // -------------------------------------------------------------------------------------------
 // This function creates a formatted string representing the version information of the given
 // Version entry. The formatted string includes the package name, component name, major and
 // minor version numbers with two digits, and is stored in the provided buffer.
 //
-// @param v       - The Version entry to be formatted.
-// @param buffer   - The buffer to store the formatted string.
+// @param versionIn - The Version entry to be formatted.
+// @param bufferIn  - The buffer to store the formatted string.
 // -------------------------------------------------------------------------------------------
-void toString(Version* v, char* buffer);
+void ToString(Version* versionIn, char* bufferIn);
 
 // -------------------------------------------------------------------------------------------
 // This function prints the version information of the given Version entry to the standard
 // output. It formats the output to include the package name, component name, major and minor
 // version numbers, and the total number of versions registered in the linked list.
 //
-// @param v       - The Version entry to be printed.
+// @param versionIn - The Version entry to be printed.
 // -------------------------------------------------------------------------------------------
-void printVersion(Version* v);
+void PrintVersion(Version* versionIn);
 
 #endif

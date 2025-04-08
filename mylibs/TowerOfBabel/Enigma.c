@@ -36,6 +36,8 @@
  * Thu 2025-03-27 setRotorLength in powerUp before initializing the rotors.         Version: 00.03
  * Sun 2025-04-06 Register component with its version in the Samael Framework.      Version: 00.04
  * Sun 2025-04-06 Renamed encrypt and decrypt to encryptChar and decryptChar.       Version: 00.05
+ * Tue 2025-04-08 Implemented the new Samael naming conventions.                    Version: 00.06
+ * Tue 2025-04-08 BugFix: RegisterVersion instead of registerVersion.               Version: 00.07
  * ***********************************************************************************************/
 #include <stdio.h>
 #include <string.h>
@@ -56,7 +58,7 @@
 #endif
 
 // -------------------------------------------------------------------------------------------
-// regEnigma - Automatically registers this component's version information with the versioning
+// RegEnigma - Automatically registers this component's version information with the versioning
 // system of the Samael framework.
 //
 // This function is marked with the constructor attribute in the implementation file
@@ -65,8 +67,8 @@
 // mechanism, ensuring that the version details for this component are registered as soon
 // as the module is loaded.
 // -------------------------------------------------------------------------------------------
-__attribute__((constructor)) void regEnigma(void) {
-    registerVersion("Samael.TowerOfBabel", "Enigma", 0, 5);
+__attribute__((constructor)) void RegEnigma(void) {
+    RegisterVersion("Samael.TowerOfBabel", "Enigma", 0, 7); // BugFix: RegisterVersion instead of registerVersion Version 00.07
 }
 
 // -----------------------------------------------------------------------------------------------
@@ -83,187 +85,201 @@ Rotor smallRotor, mediumRotor, largeRotor;
 // There is something seriously satisfying just writing the word "powerUp". Ignite your cipher machine
 // and let the magic begin.
 // -----------------------------------------------------------------------------------------------
-void powerUp() {
+void PowerUp(void) {
     
+    // Check if rotorLength is set, if not, set it to the default value.
     if (rotorLength == -1) {
-        setRotorLength(ROTOR_LENGTH);
+        SetRotorLength(ROTOR_LENGTH);
         // printf("Error: Rotor length not set. Please set the rotor length before powering up the Enigma machine.\n");
         //return;
     }
     
-    initRotor(&smallRotor,  "Small",  " 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~", SMALL);
-    initRotor(&mediumRotor, "Medium", "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~abcdefghijklmnopqrstuvwxyz", MEDIUM);
-    initRotor(&largeRotor,  "Large",  "89./:;<=>?@[\\]^_`{|}~ABCD4567LMNOghijklmnopqrEFGHIJK0123stuvwxyz!\"#$%&'()*+,-PQRST UVWXYZabcdef", LARGE);
+    // Initialize the rotors with their respective mappings and types.
+    InitRotor(&smallRotor,  "Small",  " 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~", SMALL);
+    InitRotor(&mediumRotor, "Medium", "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~abcdefghijklmnopqrstuvwxyz", MEDIUM);
+    InitRotor(&largeRotor,  "Large",  "89./:;<=>?@[\\]^_`{|}~ABCD4567LMNOghijklmnopqrEFGHIJK0123stuvwxyz!\"#$%&'()*+,-PQRST UVWXYZabcdef", LARGE);
 }
 
 // -----------------------------------------------------------------------------------------------
-// startFromScratch - Reset the Enigma machine to its original state. This function is used to
+// StartFromScratch - Reset the Enigma machine to its original state. This function is used to
 // reset the rotor mappings to their original state. It is used to start the Enigma machine from
 // scratch, ensuring that the rotor mappings are in their initial configuration.
 // -----------------------------------------------------------------------------------------------
-void startFromScratch() {
-    resetRotor(&smallRotor);
-    resetRotor(&mediumRotor);
-    resetRotor(&largeRotor);
+void StartFromScratch(void) {
     
-    //printf("Enigma machine reset to its original state: Ready to start from scratch!\n");
+    ResetRotor(&smallRotor);    // Reset the small rotor to its original mapping.
+    ResetRotor(&mediumRotor);   // Reset the medium rotor to its original mapping.
+    ResetRotor(&largeRotor);    // Reset the large rotor to its original mapping.
 }
 
 // -----------------------------------------------------------------------------------------------
-// crankThatCipher - Crank that cipher wheel! This function rotates the rotors of the Enigma machine
+// CrankThatCipher - Crank that cipher wheel! This function rotates the rotors of the Enigma machine
 // to create a new mapping for the encryption and decryption process. This was truly unique to the
 // Enigma machine and was one of the reasons why it was so secure. The dynamic rotor mechanism ensured
 // after every keypress, that a new mapping was used to encrypt or decrypt the message. Of course,
 // sender and receiver had to be in sync with their rotor settings.
 // -----------------------------------------------------------------------------------------------
-// @param iteration as an integer to track the number of keypresses.
+// @param iterationIn as an integer to track the number of keypresses.
 // -----------------------------------------------------------------------------------------------
-void crankThatCipher(int iteration) {
-    rotate(&smallRotor);
+void CrankThatCipher(int iterationIn) {
+    
+    Rotate(&smallRotor);    // Small rotor rotates after every keypress.
 
-    if (iteration % rotorLength == 0 && iteration != 0) {
-        rotate(&mediumRotor);
+    // Medium rotor rotates after every full rotation of the small rotor
+    if (iterationIn % rotorLength == 0 && iterationIn != 0) {
+        Rotate(&mediumRotor);   // Rotate the medium rotor
     }
 
     // Large rotor rotates after every full rotation of the medium rotor
-    if (iteration % (rotorLength * rotorLength) == 0 && iteration != 0) {
-        rotate(&largeRotor);
+    if (iterationIn % (rotorLength * rotorLength) == 0  && iterationIn != 0) {
+        Rotate(&largeRotor);    // Rotate the large rotor
     }
 }
 
 // -----------------------------------------------------------------------------------------------
-// encrypt - Encrypt a single character using the Enigma machine. This function takes a single
+// EncryptChar - Encrypt a single character using the Enigma machine. This function takes a single
 // character as input and encrypts it using the rotor mappings of the small, medium, and large rotor.
 // The character is passed through the rotor mappings in a specific order to create the encrypted
 // character. The Enigma machine was a marvel of engineering and cryptography, and this function
 // emulates its encryption process.
 // -----------------------------------------------------------------------------------------------
-// @param inputChar as a character to be encrypted.
-// @param smallRotor as a pointer to the small rotor.
-// @param mediumRotor as a pointer to the medium rotor.
-// @param largeRotor as a pointer to the large rotor.
+// @param charIn         - Character to be encrypted.
+// @param smallRotorIn   - Pointer to the small rotor.
+// @param mediumRotorIn  - Pointer to the medium rotor.
+// @param largeRotorIn   - Pointer to the large rotor.
 // @return the encrypted character.
 // -----------------------------------------------------------------------------------------------
-char encryptChar(char inputChar, Rotor *smallRotor, Rotor *mediumRotor, Rotor *largeRotor) {
+char EncryptChar(char charIn, Rotor *smallRotorIn, Rotor *mediumRotorIn, Rotor *largeRotorIn) {
         
     // Step 1: checking if the input character is a encryptable character
-    if (strchr(smallRotor->original, inputChar) == NULL) {
+    if (strchr(smallRotorIn->original, charIn) == NULL) {
         // Character not found in mapping, return as-is
-        return inputChar;
+        return charIn;
     }
  
     // Step 2: Find inputChar in smallRotor.mapping and get the index
     int index = -1;
     for (int i = 0; i < rotorLength; i++) {
-        if (smallRotor->mapping[i] == inputChar) {
+        if (smallRotorIn->mapping[i] == charIn) {
             index = i;
             break;
         }
     }
+
     // Now it shouldn't be necessary to check if index is -1, because we already checked
     // if the character is encryptable but we will keep it for safety.
     if (index == -1) {
-        printf("Error: Character '%c' not found in smallRotor.\n", inputChar);
+        printf("Error: Character '%c' not found in smallRotor.\n", charIn);
         return '?';  // Return a placeholder if the character is invalid
     }
 
-    // Step 3: Map inputChar to mediumRotor.mapping[index]
-    char currentChar = mediumRotor->mapping[index];
+    // Step 3: Map charIn to mediumRotor.mapping[index]
+    char currentChar = mediumRotorIn->mapping[index];
 
     // Step 4: Find the index of currentChar in largeRotor.mapping
     index = -1;
     for (int i = 0; i < rotorLength; i++) {
-        if (largeRotor->mapping[i] == currentChar) {
+        if (largeRotorIn->mapping[i] == currentChar) {
             index = i;
             break;
         }
     }
 
     // Step 5: Map back to smallRotor.mapping[index]
-    return smallRotor->mapping[index];
+    return smallRotorIn->mapping[index];
 }
 
 // -----------------------------------------------------------------------------------------------
-// decrypt - Decrypt a single character using the Enigma machine. This function takes a single
+// DecryptChar - Decrypt a single character using the Enigma machine. This function takes a single
 // character as input and decrypts it using the rotor mappings of the small, medium, and large rotor.
 // The character is passed through the rotor mappings in reverse order to create the decrypted
 // character. The Enigma machine was a marvel of engineering and cryptography, and this function
 // emulates its decryption process.
 // -----------------------------------------------------------------------------------------------
-// @param inputChar as a character to be decrypted.
-// @param smallRotor as a pointer to the small rotor.
-// @param mediumRotor as a pointer to the medium rotor.
-// @param largeRotor as a pointer to the large rotor.
+// @param charIn        - Character to be decrypted.
+// @param smallRotorIn  - Pointer to the small rotor.
+// @param mediumRotorIn - Pointer to the medium rotor.
+// @param largeRotorIn  - Pointer to the large rotor.
 // @return the decrypted character.
 // -----------------------------------------------------------------------------------------------
-char decryptChar(char inputChar, Rotor *smallRotor, Rotor *mediumRotor, Rotor *largeRotor) {
+char DecryptChar(char charIn, Rotor *smallRotorIn, Rotor *mediumRotorIn, Rotor *largeRotorIn) {
 
     // Step 1: checking if the input character is a encryptable character
-    if (strchr(smallRotor->original, inputChar) == NULL) {
+    if (strchr(smallRotorIn->original, charIn) == NULL) {
         // Character not found in mapping, return as-is
-        return inputChar;
+        return charIn;
     }
 
-    // Step 2: Find inputChar in smallRotor.mapping
+    // Step 2: Find charIn in smallRotor.mapping
     int index = -1;
     for (int i = 0; i < rotorLength; i++) {
-        if (smallRotor->mapping[i] == inputChar) {
-            index = i;  // Find index of inputChar in smallRotor
+        if (smallRotorIn->mapping[i] == charIn) {
+            index = i;  // Find index of charIn in smallRotor
             break;
         }
     }
     // Now it shouldn't be necessary to check if index is -1, because we already checked
     // if the character is encryptable but we will keep it for safety.
     if (index == -1) {
-        printf("Error: Character '%c' not found in smallRotor.\n", inputChar);
+        printf("Error: Character '%c' not found in smallRotor.\n", charIn);
         return '?'; // Return placeholder for invalid characters
     }
 
     // Step 3: Get character at index from largeRotor.mapping
-    char currentChar = largeRotor->mapping[index];
+    char currentChar = largeRotorIn->mapping[index];
 
     // Step 4: Find index of currentChar in mediumRotor.mapping
     index = -1;
     for (int i = 0; i < rotorLength; i++) {
-        if (mediumRotor->mapping[i] == currentChar) {
+        if (mediumRotorIn->mapping[i] == currentChar) {
             index = i;  // Find index of character in mediumRotor
             break;
         }
     }
 
     // Step 5: Retrieve original character at index from smallRotor.mapping
-    return smallRotor->mapping[index];
+    return smallRotorIn->mapping[index];
 }
 
 // -----------------------------------------------------------------------------------------------
-// rotate - Rotate a rotor by one position. This function rotates the rotor mapping by one position,
+// Rotate - Rotate a rotor by one position. This function rotates the rotor mapping by one position,
 // simulating the rotor movement in the Enigma machine. The rotor mapping is circular, and after
 // reaching the last position, it wraps around to the first position. This function is used to
 // rotate the rotors of the Enigma machine during the encryption and decryption process.
 // -----------------------------------------------------------------------------------------------
-// @param rotor as a pointer to the rotor to be rotated.
+// @param rotorInOut as a pointer to the rotor to be rotated.
 // -----------------------------------------------------------------------------------------------
-void rotate(Rotor *rotor) {
-    if (!rotor->initialized) {
+void Rotate(Rotor *rotorInOut) {
+
+    // Check if the rotor is initialized before rotating
+    if (!rotorInOut->initialized) {
+        // If the rotor is not initialized, print an error message and return  
         printf("Error: Attempted to rotate an uninitialized rotor.\n");
         return;
     }
 
-    char firstChar = rotor->mapping[0];
-    for (int i = 0; i < rotorLength - 1; i++) {
-        rotor->mapping[i] = rotor->mapping[i + 1];
-    }
-    rotor->mapping[rotorLength - 1] = firstChar;
+    // Rotate the rotor mapping by one position
+    char firstChar = rotorInOut->mapping[0];
 
-    // Debug print for the rotated rotor
-    // printf("Rotated %sRotor: %s\n", rotor->name, rotor->mapping);
+    // Shift all characters to the left
+    for (int i = 0; i < rotorLength - 1; i++) {
+        // Move each character to the left
+        rotorInOut->mapping[i] = rotorInOut->mapping[i + 1];
+    }
+    // Wrap around the first character to the end of the mapping
+    rotorInOut->mapping[rotorLength - 1] = firstChar;
 }
 
-// Clean up memory for all rotors
-void cleanMemoryLane() {
-    freeRotorMemory(&smallRotor);
-    freeRotorMemory(&mediumRotor);
-    freeRotorMemory(&largeRotor);
+// -----------------------------------------------------------------------------------------------
+// CleanMemoryLane - Clean up memory for all rotors. This function is used to free the memory
+// allocated for the rotor mappings. It ensures that no memory leaks occur during the execution
+// of the program. Memory management is crucial in C programming, and this function helps to
+// clean up the memory used by the rotor mappings.
+// -----------------------------------------------------------------------------------------------
+void CleanMemoryLane(void) {
     
-    //printf("Memory lane has been cleaned up. Safe travels!\n");
+    // Free the memory allocated for the rotor mappings
+    FreeRotorMemory(&smallRotor);   // Free the small rotor memory
+    FreeRotorMemory(&mediumRotor);  // Free the medium rotor memory
+    FreeRotorMemory(&largeRotor);   // Free the large rotor memory
 }

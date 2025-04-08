@@ -20,13 +20,15 @@
  * -------------------------------------------------------------------------------------------
  * Wed 2025-03-26 File created.                                                 Version: 00.01
  * Sun 2025-04-06 Register package Tabernacle with it's version number.         Version: 00.02
+ * Mon 2025-04-07 Implemented the Samael naming convention.                     Version: 00.03
+ * Tue 2025-04-08 BugFix: RegisterVersion("Samael.Tabernacle", "", 0, 4);       Version: 00.04
  * ********************************************************************************************/
 
 #include "Samael.h"
 #include "Samael.Tabernacle.h"
 
 // -------------------------------------------------------------------------------------------
-// regTabernacle - Automatically registers this component's version information with the
+// RegTabernacle - Automatically registers this component's version information with the
 // versioning system of the Samael framework.
 //
 // This function is marked with the constructor attribute in the implementation file
@@ -35,7 +37,7 @@
 // mechanism, ensuring that the version details for this component are registered as soon
 // as the module is loaded.
 // -------------------------------------------------------------------------------------------
-__attribute__((constructor)) void regTabernacle(void) {
+__attribute__((constructor)) void RegTabernacle(void) {
     // Register the Tabernacle package with its version number.
-    registerVersion("Samael.Tabernacle", "", 0, 2);
+    RegisterVersion("Samael.Tabernacle", "", 0, 4); // BugFix: Version 00.04
 }

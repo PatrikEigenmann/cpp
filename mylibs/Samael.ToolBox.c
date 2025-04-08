@@ -10,11 +10,6 @@
  * From basic operations to sophisticated utilities, Samael.ToolBox embodies versatility and
  * efficiency, supporting both the framework and its extensions. It stands as a reliable
  * companion for developers seeking clarity and simplicity in their codebase.
- * 
- * Compiler instructions:
- * gcc -shared -o bin/libSamael.ToolBox.so Samael.ToolBox.c ToolBox/cManPage.c ToolBox/cProgress.c
- *                   ToolBox/cVersion.c
- * or pmake Samael.ToolBox.makefile
  * -------------------------------------------------------------------------------------------
  * Author:  Patrik Eigenmann
  * eMail:   p.eigenmann@gmx.net
@@ -25,12 +20,13 @@
  * Sun 2025-04-06 Depricate cVersion.h and moved it to Samael.Chronicle.        Version: 00.03
  * Sun 2025-04-06 Register package ToolBox with it's version number.            Version: 00.04
  * Mon 2025-04-07 Component StringAppend added to Samael.ToolBox.               Version: 00.05
+ * Mon 2025-04-07 Implemented the Samael naming convention.                     Version: 00.06
  * ********************************************************************************************/
 #include "Samael.h"
 #include "Samael.ToolBox.h"
 
 // -------------------------------------------------------------------------------------------
-// regToolBox - Automatically registers this component's version information with the versioning
+// RegToolBox - Automatically registers this component's version information with the versioning
 // system of the Samael framework.
 //
 // This function is marked with the constructor attribute in the implementation file
@@ -39,7 +35,7 @@
 // mechanism, ensuring that the version details for this component are registered as soon
 // as the module is loaded.
 // -------------------------------------------------------------------------------------------
-__attribute__((constructor)) void regToolBox(void) {
+__attribute__((constructor)) void RegToolBox(void) {
     // Register the ToolBox package with its version number.
-    registerVersion("Samael.ToolBox", "", 0, 5);
+    RegisterVersion("Samael.ToolBox", "", 0, 6);
 }

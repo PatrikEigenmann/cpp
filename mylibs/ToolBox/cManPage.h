@@ -20,6 +20,8 @@
  * Sun 2025-04-06 Moved to the ToolBox.                                                     Version: 00.07
  * Sun 2025-04-06 New versioning system implemented.                                        Version: 00.08
  * Mon 2025-04-07 append_format exluded to StringAppend.                                    Version: 00.09
+ * Tue 2025-04-08 BugFix: RegisterVersion("Samael.ToolBox", "cManPage", 0, 10);             Version: 00.10
+ * Tue 2025-04-08 BugFix: AppendFormat(&mp.filename, filenameIn);                           Version: 00.11
  * *****************************************************************************************************/
 #ifndef CMANPAGE_H
 #define CMANPAGE_H

@@ -25,6 +25,7 @@
  * Sun 2025-04-06 Depricate cVersion.h and moved it to Samael.Chronicle.        Version: 00.03
  * Sun 2025-04-06 Register package ToolBox with it's version number.            Version: 00.04
  * Mon 2025-04-07 Component StringAppend added to Samael.ToolBox.               Version: 00.05
+ * Mon 2025-04-07 Implemented the Samael naming convention.                     Version: 00.06
  * ********************************************************************************************/
 
 #ifndef SAMAEL_TOOLBOX_H
@@ -51,7 +52,7 @@
 #endif
 
 // -------------------------------------------------------------------------------------------
-// regToolBox - Automatically registers this component's version information with the versioning
+// RegToolBox - Automatically registers this component's version information with the versioning
 // system of the Samael framework.
 //
 // This function is marked with the constructor attribute in the implementation file
@@ -60,6 +61,6 @@
 // mechanism, ensuring that the version details for this component are registered as soon
 // as the module is loaded.
 // -------------------------------------------------------------------------------------------
-void regToolBox(void);
+void RegToolBox(void);
 
 #endif

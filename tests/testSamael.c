@@ -5,7 +5,7 @@
 int main () {
 
     // Let's see if the versioning in Samael is working
-    printListString();
+    PrintListString();
 
     return 0;
 }

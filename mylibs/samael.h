@@ -17,9 +17,7 @@
  * is development without compromise.
  * 
  * Compiler instructions:
- * gcc -shared -o bin/libSamael.so Samael.c ToolBox/cManPage.c ToolBox/cProgress.c
- *        ToolBox/cVersion.c TowerOfBabel/rotor.c TowerOfBabel/enigma.c
- * or pmake Samael.makefile
+ * pmake Samael.makefile
  * -------------------------------------------------------------------------------------------
  * Author:  Patrik Eigenmann
  * eMail:   p.eigenmann@gmx.net
@@ -32,6 +30,7 @@
  * Wed 2025-03-26 Path correction for Windows/Unix systems.                     Version: 00.04
  * Thu 2025-03-27 Include all the modules for the Samael Framework.             Version: 00.05
  * Sun 2025-04-06 Register the Samael framework with it's version number.       Version: 00.06
+ * Mon 2025-04-07 Implemented all new Samael nameing conventions.               Version: 00.07
  * ********************************************************************************************/
 #ifndef SAMAEL_H
 #define SAMAEL_H
@@ -62,6 +61,6 @@
 // mechanism, ensuring that the version details for this component are registered as soon
 // as the module is loaded.
 // -------------------------------------------------------------------------------------------
-void regSamael(void);
+void RegSamael(void);
 
 #endif

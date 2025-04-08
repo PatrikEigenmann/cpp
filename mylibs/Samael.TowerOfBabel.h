@@ -20,8 +20,7 @@
  * Sun 2025-04-06 Added component Enigma to Samael.TowerOfBabel.                Version: 00.02
  * Sun 2025-04-06 Added component Rotor to Samael.TowerOfBabel.                 Version: 00.03
  * Sun 2025-04-06 Register Samael.TowerOfBabel with Version Control.            Version: 00.04
- * -------------------------------------------------------------------------------------------
- * To Do's:
+ * Tue 2025-04-08 Implemented the Samael naming convention.                     Version: 00.05
  * ********************************************************************************************/
 #ifndef SAMAEL_TOWEROFBABEL_H
 #define SAMAEL_TOWEROFBABEL_H
@@ -52,6 +51,6 @@
 // mechanism, ensuring that the version details for this component are registered as soon
 // as the module is loaded.
 // -------------------------------------------------------------------------------------------
-void regTowerOfBabel(void);
+void RegTowerOfBabel(void);
 
 #endif

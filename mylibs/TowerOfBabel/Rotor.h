@@ -24,6 +24,7 @@
  * Mon 2025-03-24 File created.                                                     Version: 00.01
  * Thu 2025-03-27 Replaced the ROTOR_LENGTH with a dynamic value rotorLength.       Version: 00.02
  * Sun 2025-04-06 Register component with its version in the Samael Framework.      Version: 00.03
+ * Tue 2025-04-08 Implemented the new Samael naming conventions.                    Version: 00.04
  * -----------------------------------------------------------------------------------------------
  * To Do:
  * - Change the rotor length to a dynamic value for more flexibility.
@@ -57,7 +58,7 @@ typedef struct {
 } Rotor;
 
 // -------------------------------------------------------------------------------------------
-// regRotor - Automatically registers this component's version information with the versioning
+// RegRotor - Automatically registers this component's version information with the versioning
 // system of the Samael framework.
 //
 // This function is marked with the constructor attribute in the implementation file
@@ -66,18 +67,18 @@ typedef struct {
 // mechanism, ensuring that the version details for this component are registered as soon
 // as the module is loaded.
 // -------------------------------------------------------------------------------------------
-void regRotor(void);
+void RegRotor(void);
 
 // -----------------------------------------------------------------------------------------------
-// setRotorLength - Set the rotor length to a specific value. This function is used to set the rotor
+// SetRotorLength - Set the rotor length to a specific value. This function is used to set the rotor
 // length to a specific value. The rotor length is the number of characters in the rotor's mapping.
 // -----------------------------------------------------------------------------------------------
-// @param length as an integer to set the rotor length.
+// @param lengthIn as an integer to set the rotor length.
 // -----------------------------------------------------------------------------------------------  
-void setRotorLength(int length);
+void SetRotorLength(int lengthIn);
 
 // -----------------------------------------------------------------------------------------------
-// defaultRotor - Because of a declaration problem, this function is a workaround to set the rotor
+// DefaultRotor - Because of a declaration problem, this function is a workaround to set the rotor
 // in its empty (default) state right after declaration and before initialization to avoid weird
 // behavior.
 // Program didn't work correctly when variable was created like:
@@ -85,37 +86,37 @@ void setRotorLength(int length);
 // -----------------------------------------------------------------------------------------------
 // @param rotor as a pointer to the rotor to be set to default.
 // -----------------------------------------------------------------------------------------------
-void defaultRotor(Rotor *rotor);
+void DefaultRotor(Rotor *rotorInOut);
 
 // -----------------------------------------------------------------------------------------------
-// initRotor - First time initialize a rotor with the given name, mapping, and type. This function
+// InitRotor - First time initialize a rotor with the given name, mapping, and type. This function
 // is acting as a constructor for the rotor struct.
 // -----------------------------------------------------------------------------------------------
-// @param rotor as a pointer to the rotor to be initialized.
-// @param name as a string to store the rotor's name.
-// @param mapping as a string to store the current mapping.
-// @param type as an integer to identify the rotor type.
+// @param rotorIn as a pointer to the rotor to be initialized.
+// @param nameIn as a string to store the rotor's name.
+// @param mappingIn as a string to store the current mapping.
+// @param typeIn as an integer to identify the rotor type.
 // -----------------------------------------------------------------------------------------------
 // To Do: Change order of parameters for better readability.
 // -----------------------------------------------------------------------------------------------
-void initRotor(Rotor *rotor, const char *name, const char *mapping, int type);
+void InitRotor(Rotor *rotorInOut, const char *nameIn, const char *mappingIn, int typeIn);
 
 // -----------------------------------------------------------------------------------------------
-// resetRotor - Reset a rotor to its original mapping. Usage is when the rotor is needed to be put
+// ResetRotor - Reset a rotor to its original mapping. Usage is when the rotor is needed to be put
 // back to its initial state during the runtime of the program. This function uses the original
 // propertye of the struct to restore the mapping inside the rotor.
 // -----------------------------------------------------------------------------------------------
-// @param rotor as a pointer to the rotor to be reset.
+// @param rotorIn as a pointer to the rotor to be reset.
 // -----------------------------------------------------------------------------------------------
-void resetRotor(Rotor *rotor);
+void ResetRotor(Rotor *rotorInOut);
 
 // -----------------------------------------------------------------------------------------------
-// freeRotorMemory - Old school garbage collection. I almost forgot about this, thank you Java and
+// FreeRotorMemory - Old school garbage collection. I almost forgot about this, thank you Java and
 // C# for making programmer's live easy. Back in c programming we had to do this manually. Not to
 // leave dead memory behind down memory lane.
 // -----------------------------------------------------------------------------------------------
-// @param rotor as a pointer to the rotor to free the memory of.
+// @param rotorIn as a pointer to the rotor to free the memory of.
 // -----------------------------------------------------------------------------------------------
-void freeRotorMemory(Rotor *rotor);
+void FreeRotorMemory(Rotor *rotorInOut);
 
 #endif

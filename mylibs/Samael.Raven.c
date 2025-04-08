@@ -10,10 +10,6 @@
  * component for establishing and maintaining robust communication pipelines. Samael.Raven
  * bridges the digital divide, embodying the efficiency and reliability of a modern-day messenger
  * in the digital world.
- *
- * Compile instructions:
- * gcc -shared Samael.Raven.c -o bin/libSamael.Raven.so
- * or pmake Samael.Tabernacle.makefile
  * -------------------------------------------------------------------------------------------
  * Author:  Patrik Eigenmann
  * eMail:   p.eigenmann@gmx.net
@@ -21,13 +17,15 @@
  * -------------------------------------------------------------------------------------------
  * Wed 2025-03-26 File created.                                                 Version: 00.01
  * Sun 2025-04-06 Register package Raven with it's version number.              Version: 00.02
+ * Mon 2025-04-07 Implemented the Samael naming convention.                     Version: 00.03
+ * Tue 2025-04-08 BugFix: RegisterVersion("Samael.Raven", "", 0, 4);            Version: 00.04
  * ********************************************************************************************/
 
 #include "Samael.h"
 #include "Samael.Raven.h"
 
 // -------------------------------------------------------------------------------------------
-// regRaven - Automatically registers this component's version information with the versioning
+// RegRaven - Automatically registers this component's version information with the versioning
 // system of the Samael framework.
 //
 // This function is marked with the constructor attribute in the implementation file
@@ -36,7 +34,7 @@
 // mechanism, ensuring that the version details for this component are registered as soon
 // as the module is loaded.
 // -------------------------------------------------------------------------------------------
-__attribute__((constructor)) void regRaven(void) {
+__attribute__((constructor)) void RegRaven(void) {
     // Register the Raven package with its version number.
-    registerVersion("Samael.Raven", "", 0, 2);
+    RegisterVersion("Samael.Raven", "", 0, 4);
 }

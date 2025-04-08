@@ -9,10 +9,6 @@
  * Samael.Scribe serves as a reliable assistant in managing the written artifacts of any
  * application. Its versatility and reliability make it an indispensable element of the
  * framework.
- * 
- * Compile instructions:
- * gcc -shared Samael.Scribe.c -o bin/libSamael.Scribe.so
- * or pmake Samael.Scribe.makefile
  * -------------------------------------------------------------------------------------------
  * Author:  Patrik Eigenmann
  * eMail:   p.eigenmann@gmx.net
@@ -20,6 +16,8 @@
  * -------------------------------------------------------------------------------------------
  * Wed 2025-03-26 File created.                                                 Version: 00.01
  * Sun 2025-04-06 Register package Scribe with it's version number.             Version: 00.02
+ * Mon 2025-04-07 Implemented the Samael naming convention.                     Version: 00.03
+ * Tue 2025-04-08 BugFix: RegisterVersion("Samael.Scribe", "", 0, 4);           Version: 00.04
  * ********************************************************************************************/
 
 #ifndef SAMAEL_SCRIBE_H
@@ -38,7 +36,7 @@
 #endif
 
 // -------------------------------------------------------------------------------------------
-// regScribe - Automatically registers this component's version information with the
+// RegScribe - Automatically registers this component's version information with the
 // versioning system of the Samael framework.
 //
 // This function is marked with the constructor attribute in the implementation file
@@ -47,6 +45,6 @@
 // mechanism, ensuring that the version details for this component are registered as soon
 // as the module is loaded.
 // -------------------------------------------------------------------------------------------
-void regScribe(void);
+void RegScribe(void);
 
 #endif

@@ -28,6 +28,7 @@
  * Sat 2024-10-26 #include <stdlib.h> removed.                                          Version: 00.02
  * Thu 2024-11-21 get_major & get_minor removed, unnecessary methods.                   Version: 00.03
  * Wed 2025-01-22 Header comment GitHub URL updated.                                    Version: 00.04
+ * Mon 2025-04-07 Changed All names to new Samael naming convention.                    Version: 00.05
  * ---------------------------------------------------------------------------------------------------
  * To Do's:
  * ***************************************************************************************************/

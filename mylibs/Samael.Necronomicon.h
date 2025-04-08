@@ -1,18 +1,14 @@
 /* *******************************************************************************************
- * Samael.Necronomicon.h - Samael.Necronomicon stands as the ultimate repository for
- * powerful and arcane knowledge in the realm of databases. This module seamlessly handles
- * connectivity, storage, and analytics for systems like SQLite, MySQL, and Progress, offering
- * both flexibility and reliability. Samael.Necronomicon is designed to simplify complex database
- * interactions, making it effortless to query, manage, and analyze data. With its intuitive
- * interface, it empowers developers to uncover insights and optimize workflows. From handling
- * vast datasets to ensuring secure connections, this module provides a robust foundation for
- * all database-related tasks. Samael.Necronomicon bridges the gap between raw data and meaningful
- * results, embodying the mystical transformation of information into wisdom. By harnessing its
- * capabilities, users can command their databases with confidence and precision.
- * 
- * Compile instructions:
- * gcc -shared Samael.Necronomicon.c -o bin/libSamael.Necronomicon.so
- * or pmake Samael.Necronomicon.makefile
+ * Samael.Necronomicon.h - Samael.Necronomicon stands as the ultimate repository for powerful
+ * and arcane knowledge in the realm of databases. This module seamlessly handles connectivity,
+ * storage, and analytics for systems like SQLite, MySQL, and Progress, offering both flexibility
+ * and reliability. Samael.Necronomicon is designed to simplify complex database interactions,
+ * making it effortless to query, manage, and analyze data. With its intuitive interface, it
+ * empowers developers to uncover insights and optimize workflows. From handling vast datasets
+ * to ensuring secure connections, this module provides a robust foundation for all database-related
+ * tasks. Samael.Necronomicon bridges the gap between raw data and meaningful results, embodying
+ * the mystical transformation of information into wisdom. By harnessing its capabilities, users
+ * can command their databases with confidence and precision.
  * -------------------------------------------------------------------------------------------
  * Author:  Patrik Eigenmann
  * eMail:   p.eigenmann@gmx.net
@@ -20,6 +16,8 @@
  * -------------------------------------------------------------------------------------------
  * Wed 2025-03-26 File created.                                                 Version: 00.01
  * Sun 2025-04-06 Register package Necronomicon with it's version number.       Version: 00.02
+ * Mon 2025-04-07 Implemented the Samael naming convention.                     Version: 00.03
+ * Tue 2025-04-08 BugFix: RegisterVersion("Samael.Necronomicon", "", 0, 4);     Version: 00.04
  * ********************************************************************************************/
 
 #ifndef SAMAEL_NECRONOMICON_H
@@ -47,6 +45,6 @@
 // mechanism, ensuring that the version details for this component are registered as soon
 // as the module is loaded.
 // -------------------------------------------------------------------------------------------
-void regNecronomicon(void);
+void RegNecronomicon(void);
 
 #endif
