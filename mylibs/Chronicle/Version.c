@@ -20,7 +20,6 @@
  * Tue 2025-04-08 Bug Fixed: Call of ToString(versionIn, buffer); L116          Version: 00.03
  * ********************************************************************************************/
 #include <stdio.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
